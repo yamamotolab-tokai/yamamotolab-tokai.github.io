@@ -1,1 +1,0 @@
-# yamamotolab-tokai.github.io
