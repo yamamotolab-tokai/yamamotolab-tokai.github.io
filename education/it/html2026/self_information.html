@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="keywords" content="情報量,自己情報量,対数,理由,証明,解説,紹介">
+<meta name="description" content="情報量を指数関数で定義する理由と証明">
+<title> Self-information </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="../../index.html">
+<link rel="stylesheet"
+ href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="http://wwwyamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Self-information<br>
+情報量
+</h1>
+
+<p>
+確率 <var>p</var> で起こる事象 <var>E</var> について，その事象の情報量 <var>I</var>(<var>E</var>) は
+</p>
+<p>
+<var>I</var>(<var>E</var>) = log<sub>2</sub>(1/<var>p</var>) （単位はbit）
+</p>
+<p>
+で定義される．事象の情報量としてこの式が用いられる理由を解説する．
+</p>
+
+<h2>
+情報の量の尺度に求められる性質
+</h2>
+<p>
+情報理論の教科書の多くは情報の量の尺度を数学的に定義することから始まる．
+一般に使われる「情報」という言葉は，「A 市の天気は雨だった」といった通報から
+得られるような，自分が新しく知った事実という意味で使われる．
+通報に含まれる情報の量が多いか少ないかは必ずしも通報の長さで決まる
+訳では無い．例えばある年の A 市の天気について「4 月 1 日は晴， 4 月 2 日は雨．」
+という通報 1 と，「4 月 1 日は晴， 4 月 1 日は晴．」という同じことを繰り返しただけの通報 2 は，長さは同じだが前者のほうが情報の量が多いことは明らかだろう．
+通報 1 と 2 による，受け取る情報の量の違いは知った事実が起こる確率に関係すると考えることができる．
+簡単のために A 市の天気は「晴，雨，曇，雪」の 4 種類だけであり，
+生起確率が全て 1/4 であり，
+天気の生起確率はそれ以前の天気によらず独立であると仮定する．
+このとき，通報 1 は確率 1/16 で起こることを伝えているのに対して
+通報 2 は確率 1/4 で起こることを伝えている．
+このことから通報に含まれる情報の量は事象（この場合は天気）の確率に関係し，
+確率が低い事実を伝える通報の方が含まれている情報の量が多い
+と考えるのが自然であると言える．
+また，通報 1 が含む情報の量は「4 月 1 日は晴．」という通報と
+「4 月 2 日は雨．」という通報が含む情報の量の和であるべき，
+ということも自然な要求と言える．
+</p>
+<p>
+このようなことを考慮に入れ，情報の量を数学的に表す尺度を考える．
+現実社会では，たとえば雪に関係するビジネスに従事している者には確率が同じであっても晴の情報よりも雪の情報のほうが価値があることもあり得るがそれを数学的に扱うことは困難なのでここでは無視し，起こる確率によってのみ情報の量が決まるものとする．
+このことから情報の量の尺度は通報が知らせる事象の確率の関数となり，
+確率 <var>p</var>
+に対して <var>f</var>(<var>p</var>) と書ける．（ただし <var>p</var> は 0 以上 1 以下の実数）
+上で述べた考察などから，情報の量の尺度として関数 <var>f</var>(<var>p</var>) に自然に求められる性質として以下のものが条件として挙げられる．
+</p>
+<ol>
+<li>
+確率が小さい事象が起こったという通報のほうが
+確率が大きいものに対して情報の量が大きい，すなわち
+<var>f</var>(<var>p</var>) 
+は単調減少関数である．
+</li>
+<li>
+独立な事象 <var>E</var><sub>1</sub>,  <var>E</var><sub>2</sub>
+の生起確率をそれぞれ <var>p</var><sub>1</sub>,  <var>p</var><sub>2</sub>
+とする．<var>E</var><sub>1</sub>,  <var>E</var><sub>2</sub> 
+の両方が起こったことを伝える通報の情報の量は <var>E</var><sub>1</sub> 
+が起こった事を伝える通報の情報の量と
+<var>E</var><sub>2</sub> が起こった事を伝える通報の情報の量の
+和に等しい．<var>E</var><sub>1</sub> と <var>E</var><sub>2</sub>
+は独立なのでそれら両方が起こる確率は 
+<var>p</var><sub>1</sub>・<var>p</var><sub>2</sub> であるから，
+<var>f</var>(<var>p</var><sub>1</sub>・<var>p</var><sub>2</sub>) 
+=
+<var>f</var>(<var>p</var><sub>1</sub>) 
++ <var>f</var>(<var>p</var><sub>2</sub>) 
+である．
+</li>
+<li>
+近い確率で起こる事象の通報の情報の量は近い値であるべきであるから，
+<var>f</var>(<var>p</var>) 
+は連続関数である．
+</li>
+</ol>
+<h2>
+情報量の定義
+</h2>
+<p>
+前節で述べた 3 つの条件を満たす関数は
+</p>
+<p>
+<var>f</var>(<var>p</var>) = <var>C</var>・log<sub>2</sub>(1/<var>p</var>) （<var>C</var> は正の定数）
+</p>
+<p>
+のみであること，すなわち情報の量の尺度として求められる自然な要求を満たす
+ためには確率の逆数の対数関数を用いなければならないことを示す．
+</p>
+<h3>
+証明
+</h3>
+<p>
+前節条件 2 より，0 以上 1 以下の実数である <var>x</var>, <var>y</var>
+について
+</p>
+<p>
+<var>f</var>(<var>x</var>・<var>y</var>) 
+=
+<var>f</var>(<var>x</var>) 
++ <var>f</var>(<var>y</var>)　　　　　　　　　　　　（式 1）
+</p>
+<p>
+が成り立つ．ここで以下に定義する関数 <var>g</var>(<var>z</var>)
+を考える．
+</p>
+<p>
+<var>g</var>(<var>z</var>) = 
+<var>f</var>(2<sup>-<var>z</var></sup>) （ただし，<var>z</var> は 0 以上の実数）
+　（式 2）
+</p>
+
+<p>
+前節条件 3 より<var>f</var>(<var>p</var>)が連続関数であるから
+<var>g</var>(<var>z</var>)も連続関数である．
+（式 2）より，任意の非負数 <var>x</var>, <var>y</var> について，
+</p>
+
+<p>
+<var>g</var>(<var>x</var> + <var>y</var>) = 
+<var>f</var>(2<sup>-(<var>x</var> + <var>y</var>)</sup>)<br>
+続けて変形してゆくと，<br>
+=<var>f</var>(2<sup>-<var>x</var></sup>・2<sup>-<var>y</var></sup>)<br>
+（式 1）より，<br>
+=<var>f</var>(2<sup>-<var>x</var></sup>) + <var>f</var>(2<sup>-<var>y</var></sup>)<br>
+（式 2）より，<br>
+=<var>g</var>(<var>x</var>) + <var>g</var>(<var>y</var>)
+</p>
+<p>
+すなわち，<br>
+<var>g</var>(<var>x</var> + <var>y</var>) 
+= <var>g</var>(<var>x</var>) + <var>g</var>(<var>y</var>)
+　　　　　　　　　　　（式 3）<br>
+が成り立つ．
+</p>
+
+<p>
+<var>n</var> が正整数のとき，<var>x</var>・<var>n</var>
+を <var>x</var> を <var>n</var> 回繰り返して和をとったものと考え，
+（式 3）を繰り返し適用することで，<br>
+<var>g</var>(<var>x</var>・<var>n</var>) 
+= <var>n</var>・<var>g</var>(<var>x</var>)
+　　　　　　　　　　　　　（式 4）<br>
+が成り立つ．
+</p>
+
+<p>
+<var>m</var> を非負の整数，<var>n</var> を正の整数とすると（式 4）より，<br>
+<var>n</var>・<var>g</var>(<var>m</var>/<var>n</var>) = 
+<var>g</var>(<var>m</var>/<var>n</var>・<var>n</var>)<br>
+= <var>g</var>(<var>m</var>)<br>
+= <var>g</var>(1・<var>m</var>)<br>
+= <var>m</var>・<var>g</var>(1)<br>
+</p>
+<p>
+結局，<br>
+<var>n</var>・<var>g</var>(<var>m</var>/<var>n</var>)
+ = <var>m</var>・<var>g</var>(1)<br>
+すなわち，<br>
+<var>g</var>(<var>m</var>/<var>n</var>)
+ = <var>g</var>(1)・<var>m</var>/<var>n</var><br>
+が成り立つ．
+</p>
+<p>
+<var>m</var>/<var>n</var> は任意の非負の有理数であるから，
+非負の有理数 <var>q</var> に書き換えることで，非負の有理数 <var>q</var>
+については<br>
+<var>g</var>(<var>q</var>)
+ = <var>g</var>(1)・<var>q</var><br>
+が成り立つ．任意の非負の有理数についてこれが成り立つ
+ため，<var>g</var>(<var>z</var>)が連続関数であることから非負の
+実数 <var>z</var> について<br>
+<var>g</var>(<var>z</var>)
+ = <var>g</var>(1)・<var>z</var><br>
+であると言える．
+</p>
+<p>
+ここで（式 2）により関数 
+<var>g</var>(<var>z</var>) を
+<var>f</var>(2<sup>-<var>z</var></sup>)に戻すと，<br>
+<var>f</var>(2<sup>-<var>z</var></sup>)
+ = <var>f</var>(1/2)・<var>z</var><br>
+が得られる．
+2<sup>-<var>z</var></sup> = <var>x</var> として変数変換を
+行うと，<br>
+<var>f</var>(<var>x</var>)
+ = <var>f</var>(1/2)・log<sub>2</sub>(1/<var>x</var>)　　　（<var>x</var> は 0 より大きい 1 以下の実数）<br>
+となる．<var>f</var>(0) は <var>x</var>→0の極限を考えて 無限大であると定義する．
+</p>
+<p>
+<var>f</var>(1/2)は定数であり，前節条件 1 を満たすにはこれが
+正の数となるようにする必要がある．
+</p>
+<p>
+結局，事象 <var>E</var> の確率が <var>p</var> であるとき，
+前節 3 つの条件をすべて満たす関数は
+<p>
+<var>f</var>(<var>p</var>) = <var>C</var>・log<sub>2</sub>(1/<var>p</var>) （<var>C</var> は正の定数）
+</p>
+<p>
+の形であることが必要条件であることが言えた．
+逆にこの形の関数であれば 3 つの条件を満たすことも言える．
+</p>
+<p>
+情報量の尺度としては定数係数 <var>C</var> は正の値であれば
+何でも良いが，特に
+<var>C</var> = 1 となるように，すなわち <var>p</var> = 1/2
+のときの情報量が 1 となるように決めた情報量の単位<br>
+<var>I</var>(<var>E</var>) = log<sub>2</sub>(1/<var>p</var>)<br>
+を[bit]と呼ぶ．
+</p>
+
+<h2>
+参考文献
+</h2>
+<p>嵩 忠雄,
+ &quot;情報と符号の理論入門,&quot; 昭晃堂, 1989.
+</p>
+
+<hr>
+<address>
+Updated in June 23, 2013, 
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Information theory </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="../../index.html">
+<link rel="stylesheet"
+ href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print"
+ href="http://wwwyamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Information Theory<br>
+情報理論
+</h1>
+
+<h2>
+科目紹介
+</h2>
+<h3>
+科目内容
+</h3>
+<p>
+情報理論は，情報の発信を確率過程としてとらえることで情報を定義し，情報の持つ
+性質を明らかにする学問である．情報理論の存在なくしては現在のディジタル機器の出
+現，普及は不可能だったと言われており，通信ネットワーク工学分野における最も重要な
+基礎学問の一つである．講義では情報源と通信路の定義，情報の表現，確率の基礎，エン
+トロピーと情報量，典型系列，符号化，通信路容量について学ぶ．最後に通信路符号化定
+理と誤り訂正符号の理論を学ぶ．本科目で扱うテーマには確率・統計理論の理解を必要と
+するものがある．授業の前半の確率基礎を学ぶ段階において事象と確率，条件付き確率と
+独立，確率変数と確率分布，平均と分散などの確率に関する知識を学習する．
+履修のポイント：将来，ディジタル信号・画像の処理・伝送・記憶システム，さらにデー
+タ圧縮理論を学びたいと希望する学生は情報理論を是非履修して欲しい．確率・統計，お
+よび情報理論を単なる理論的操作と見るのではなく，それらが現代の科学技術，特に情報
+通信技術の中でどのように重要な位置を占めているかを理解することが大切である．
+</p>
+<h3>
+時限，教室，対象クラス
+</h3>
+<p>
+火曜 1 限， 4103 教室，（履修者 81 名）
+</p>
+<h3>
+教科書
+</h3>
+<p>
+植松友彦著，「イラストで学ぶ情報理論の考え方」，講談社，(ISBN 978-4-06-153817-7)
+</p>
+<h2>
+成績判定
+</h2>
+<p>
+成績判定は定期試験の点数により行う．
+</p>
+
+
+<h2>
+授業計画
+</h2>
+
+<ul>
+<li>
+第 1 回(2013 年 4 月 9 日) ガイダンス，
+</li>
+<li>
+第 2 回(2013 年 4 月 16 日) 情報理論の概要 p.4
+</li>
+<li>
+第 3 回(2013 年 4 月 23 日) 情報の表現，p.11 l.8
+</li>
+<li>
+第 4 回(2013 年 4 月 30 日) 確率，事象 p.23 l.21
+</li>
+<li>
+第 5 回(2013 年 5 月 7 日) 確率，独立 p.28 l.24
+</li>
+<li>
+第 6 回(2013 年 5 月 14 日) 確率変数，平均と分散 p.33
+</li>
+<li>
+第 7 回(2013 年 5 月 21 日) チェビシェフの不等式，エントロピー p.39 l.5
+</li>
+<li>
+第 8 回(2013 年 5 月 28 日) 同時エントロピー p.42 l.1
+</li>
+<li>
+第 9 回(2013 年 6 月 4 日) 周辺確率，条件付き確率 p.43 l.8
+</li>
+<li>
+第 10 回(2013 年 6 月 11 日) 条件付きエントロピー，ダイバージェンス p.47 l.13
+</li>
+<li>
+第 11 回(2013 年 6 月 18 日) 相互情報量 p.48
+</li>
+<li>
+第 12 回(2013 年 6 月 25 日) エントロピーの加法性と相互情報量の性質 p.52 l.15
+</li>
+<li>
+第 13 回(2013 年 7 月 2 日) 相互情報量と各種エントロピーの関係，凸関数
+p.57 l.9
+</li>
+<li>
+第 14 回(2013 年 7 月 9 日) イェンゼンの不等式 p.60 l. 9
+</li>
+<li>
+第 15 回(2013 年 7 月 16 日) ダイバージェンスの非負性 p.63
+</li>
+<li>
+定期試験（2013 年 7 月 30 日 1 限）試験範囲は p.63 まで
+<ul>
+<li>
+2BJT1クラス：4106 教室
+</li>
+<li>
+2BJT2クラス，その他学生：4105 教室
+</li>
+</ul>
+</ul>
+
+<h2>
+過去の試験
+</h2>
+<p>
+<a href="../pdf/exam.pdf"> 2013 年度期末試験問題 </a>,
+<a href="exam.html">試験結果</a>
+</p>
+
+<h2>
+参考資料
+</h2>
+<ul>
+<li>
+<a href="../pdf/log.pdf">log 関連公式の参考資料(pdf)</a>
+</li>
+<li>
+<a href="self_information.html">情報量の関数が対数関数に限られる理由</a>
+</li>
+<li>
+<a href="calculator.html">情報系学生のための関数電卓ガイド</a>
+</li>
+</ul>
+
+<hr>
+<address>
+Updated in August 10, 2013, 
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

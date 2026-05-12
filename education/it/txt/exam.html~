@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> result</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print"
+ href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+result<br>
+定期試験の結果</h1>
+
+<p>
+定期試験の成績の度数分布は以下の通りとなりました．
+
+<p>
+<img src="../img/result.png" width="734" height="479"
+alt="定期試験の結果"></p>
+
+<hr>
+<address>
+Updated in August 29, 2023,
+<a href="index.html">information theory,</a>
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>
