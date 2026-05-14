@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>scalar data</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Scalar Data<br>
+スカラーデータ</h1>
+<h2>
+2章 スカラーデータ
+</h2>
+<p>
+教科書に沿って演習を行う．主な内容は
+</p>
+
+<ul>
+<li>
+キーボードからの入力，画面への出力
+</li>
+<li>
+スカラー変数による記憶
+</li>
+<li>
+選択処理，ループ処理などのプログラムの構造
+</li>
+<li>
+文字列の比較
+</li>
+</ul>
+<p>
+である．
+</p>
+
+<p>
+単一の変数に格納できる値を配列などのように複数のデータを格納する変数と
+区別してスカラーデータとよぶ．
+C 言語などと大きく異なる点は，文字列もスカラーデータであり，単一の
+変数に格納できる点である．
+</p>
+<p>
+p.26（第6版ではp.32） 2.2.4 節の数値と文字列の自動変換に注意せよ． 
+</p>
+<h2>
+スカラー変数
+</h2>
+<p>
+スカラー変数で単一のデータを記憶することができる．
+簡単のためデータとして整数と文字列のみ考える．
+</p>
+<ul>
+<li>
+整数リテラル，文字列リテラルなど
+を記憶するためのものが変数である．
+変数名は &quot;$&quot; ではじめる．P.36 2.4 節で使える文字を確認せよ．
+</li>
+<li>
+使う前に整数型，文字列型などの宣言を行う必要はない．
+</li>
+</ul>
+<div class="embox">
+<pre>
+$number = 1;       #整数リテラル
+$name1 = 'Randal'; #シングルクォート文字列リテラル
+$name2 = &quot;Tom&quot;;    #ダブルクォート文字列リテラル
+</pre>
+</div> <!-- embox -->
+
+<h3>
+変数展開(2.5.1 節)
+</h3>
+<p>
+ダブルクォート文字列リテラル内では変数などが展開される．
+下の例を実行し，違いを確認せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+
+$number = 1;       
+$name1 = &quot;number is $number.\n&quot;;
+$name2 = 'number is $number.\n';
+print $name1;
+print $name2;
+</pre>
+</div> <!-- embox -->
+
+<h3>
+演算子
+</h3>
+<p>
+p.35（第6版ではp.43）の演算子の優先順位表はどの言語を学習する場合でも重要．
+</p>
+<p>
+p.36（第6版ではp.44）表2-3 に示されるように，
+数値リテラルと文字列リテラルに対しては異なる演算子を使用する．
+</p>
+
+<h3>
+制御構造(2.6)
+</h3>
+<p>
+if の判定式など，真偽値が要求される場所ではリテラルは
+2.6.1 節の約束にしたがって処理される．
+</p>
+
+
+<h3>
+入力(2.7)
+</h3>
+<p>
+  p.39（第6版p. 47） のプログラム例を動作させよ．
+  &lt;STDIN&gt; を使った入力を理解せよ．
+また 2.8 節で chomp 関数について理解せよ．
+</p>
+<h3>
+課題3
+</h3>
+<p>
+2.12 練習問題を解け．
+解答プログラムを添付メールとして提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を Seminar 1-3 とせよ．
+</p>
+
+
+<hr>
+<address>
+Updated in June 13, 2017, 
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

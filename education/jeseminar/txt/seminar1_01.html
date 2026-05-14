@@ -1,0 +1,521 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Ubuntu </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Ubuntu Linux<br>
+ubuntu 環境準備</h1>
+
+<p>
+自分の番号の USB メモリを受け取り，
+スロットに挿入してから電源を投入し，
+Ubuntu Linux を起動させよ．
+起動したらユーザ yamamotolab で
+ログインせよ．
+</p>
+
+<h2>インストール後の設定</h2>
+<p>
+USB メモリから起動後，ユーザーyamamotolabとしてログインし，まず
+自分用のユーザを作成する．
+</p>
+<!--
+<p>
+Unix では各アカウントは内部的には uid と呼ばれる番号で扱われている．
+後で nfs ファイル共有を行う場合にはすべてのホストのアカウントで
+uid が揃っている必要が有るので念のためにサーバの uid と同じ
+uid で自分のアカウントを作る．
+</p>
+<p>
+自分の学生証番号が 9AJT<em>XXXX</em> であれば サーバ上のアカウント名は
+jt<em>XXXX</em>9a である．ターミナルを開き以下のコマンド
+でサーバにログインせよ．
+</p>
+<div class="embox">
+<pre>
+yamamoto@yamamoto-00:~$ ssh -l jt<em>XXXX</em>9a 150.7.136.62 
+</pre>
+</div>
+<p>
+サーバ上で id コマンドを実行し，自分の uid と gid を確認せよ．（等しいはず）
+</p>
+<p>
+まず，自分用のグループを作る．自分の gid が <em>GID</em>
+であれば以下のコマンドを入力する．
+</p>
+<div class="embox">
+<pre>
+yamamoto@yamamoto-00:~$ sudo groupadd -g <em>GID</em> jt<em>XXXX</em>9a
+</pre>
+</div>
+<p>
+/etc/group の内容を確認し，自分の名前のグループが作成されていることを確認せよ．
+</p>
+<p>
+自分の uid （gidと一致しているはず）を <em>UID</em> と書くと
+ターミナルから以下のコマンドを入力し，
+で自分のアカウントを作成せよ．
+</p>
+<div class="embox">
+<pre>
+yamamoto@yamamoto-00:~$ sudo useradd -m -g jt<em>XXXX</em>9a -u <em>UID</em> -s "/bin/bash" jt<em>XXXX</em>9a
+</pre>
+</div>
+-->
+<p>
+コマンドの実行や各種設定を文字ベースで行う最も基本的なアプリケーションである
+terminal （端末）をいつでも起動できるように画面左のドックに登録
+する．手順は以下の通りである．
+</p>
+<ol>
+<li>
+左上の「アクティビティ」をクリックし，
+検索窓に terminal と入力する．
+</li>
+<li>
+表示された「端末」のアイコンを左のランチャーのどこかにドラッグする
+</li>
+</ol>
+
+<p>
+ランチャー上に作ったターミナルのアイコンをクリックし，
+ターミナルを起動せよ．ターミナルに以下のコマンドを入力し，
+で自分のアカウントを作成せよ．
+</p>
+<div class="embox">
+<pre>
+yamamotolab@yamamoto-00:~$ sudo useradd -m -s "/bin/bash" jt<em class="var">XXXX</em>7b
+</pre>
+</div> <!-- embox -->
+<p>
+sudo は管理者権限がないと実行できないコマンドを実行するときに
+コマンドの前につける．この場合は useradd が管理者権限が必要な
+コマンドである．作業の最初にsudoを使用したときにパスワードを聞かれる．
+ログインしているユーザー（今はyamamotolab）のパスワードを入力せよ．
+</p>
+<p>
+次にパスワードを設定する．
+自分用のパスワードを考える．
+以下のコマンドの後に入力し，パスワードを設定せよ．
+</p>
+<div class="embox">
+<pre>
+yamamotolab@yamamoto-00:~$ sudo passwd jt<em class="var">XXXX</em>7b
+</pre>
+</div> <!-- embox -->
+
+<p>
+作成後，もう一枚ターミナルを開き，su jt<em class="var">XXXX</em>7b を実行
+してパスワード入力せよ．そのアカウントにユーザーが変更されることを確認せよ．
+<!--
+id コマンドを実行し，uid, gid を確認せよ．
+-->
+</p>
+<p>
+jt<em class="var">XXXX</em>7b のほうのターミナルで
+sudo ls などを試みるとわかるが，今回作成した
+アカウントはこの状態では sudo を行う権利がない．
+sudo の権利を得るには visudo コマンドで設定ファイルに明示的に
+ユーザ名を書き込むか，まとめて sudo 権が与えられている admin グループ
+に加える方法がある．当然，どちらも sudo の権利がないとできない作業である．
+今回は後者の方法を行う．
+<p>
+yamamotolab のほうのターミナル（こちらは sudo の権利がある）
+で以下のコマンドを行え．
+</p>
+<div class="embox">
+<pre>
+yamamotolab@yamamoto-00:~$ sudo vigr
+</pre>
+</div> <!-- embox -->
+<p>
+  "Select an editor." という画面が表示される．
+  これはファイルをエディットするのに用いるデフォルトの
+  アプリケーションを指定するためのもので，今回は<br>
+  2. /user/bin/vim.tiny<br>
+  を選択せよ．
+</p>
+<p>
+起動しているテキストエディタでは vi エディタの操作で編集を行う．
+vi はカーソル移動モードと
+編集モードがはっきり分かれているのが
+特徴である．最初は移動モードになっている．
+HJKL キーでそれぞれ左下上右へ移動する．
+</p>
+<p>
+sudo グループの行で A （Shift+A） キーを押す．
+これで編集モードへ写り，行末へ挿入できる状態になる．
+カンマの後に自分のログイン名を入れる．
+</p>
+<div class="embox">
+<pre>
+sudo:x:27:yamamotolab,jt<em class="var">XXXX</em>7b
+</pre>
+</div> <!-- embox -->
+<p>
+入力が終れば Esc キーで編集モードを抜け，ZZ （Shift+Z を2回）
+で保存して終了する．sudo vigr -s で同じ事をもう一度行う．
+</p>
+<p>
+ここでユーザの設定は終了である．一旦ログアウトし，
+自分のアカウントでログインする．ログアウトは画面右上のメニューから
+行う．
+</p>
+<p>
+自分の名前でログインしたら，
+sudo ls 等を実行し，sudo を行う権利が与えられていることを確認せよ．
+</p>
+
+<p>
+まずパッケー管理システム apt の環境の準備を行う．
+ここまでの作業でアップデートマネージャが自動的にあがっていても
+この段階では閉じておく．
+</p>
+<p>
+パッケージ管理システムはインストールしたいソフトウェアのバージョン
+をチェックし，それをインストールするために必要なソフトウェアが
+あれば自動的にネットを使って検索し，ダウンロード，
+インストールを行うシステムである．インストール中のソフトウェアの
+更新のチェック，アップデートも行う．Ubuntu では apt という
+パッケージ管理システムを採用している．
+</p>
+<!--
+<p>
+apt がソフトウェアを探すときにネット上のどこを検索するのか，
+などの設定情報を記入するファイルは
+/etc/apt/sources.list である．
+ターミナルから cd /etc/apt とコマンドを入力し，
+目的のディレクトリに移動せよ．ls コマンドで sources.list 
+ファイルがあることを確認せよ．
+</p>
+<p>
+/etc/コマンド名 というのは Unix におけるソフトウェアの
+設定ファイルの置き場所としてポピュラーなものである．
+</p>
+<p>
+重要な設定ファイルを変更するときは元のファイルの
+コピーを残しておくと修復作業などに役立つ．
+sudo cp sources.list sources.list.20160615
+というコマンドを実行しコピーを作成せよ．
+ls でコピーができていることを確認せよ．
+</p>
+<p>
+次に sources.list を書き換えて apt の
+設定変更を行う．
+以下のコマンドで sources.list をエディタで開け
+</p>
+
+<p id="sudogedit">gedit</p>
+<div class="embox">
+<pre>
+jtXXXX4b@yamamoto-00:apt$ sudo gedit sources.list
+</pre>
+</div>
+
+<p>
+sources.list の一番上に以下の行を挿入し，保存せよ．
+</p>
+
+<p id="slist">sources.list への追加</p>
+<div class="embox">
+<pre>
+deb http://sirius.yamamotolab.je.u-tokai.ac.jp/ubuntu xenial main restricted universe multiverse
+deb http://sirius.yamamotolab.je.u-tokai.ac.jp/ubuntu xenial-security main restricted universe multiverse
+deb http://sirius.yamamotolab.je.u-tokai.ac.jp/ubuntu xenial-updates main restricted universe multiverse
+</pre>
+</div>
+
+<p>
+設定が終れば apt は研究室のミラーサーバを
+優先して利用するようになる．初回のアップデート作業は時間が多く
+かかるため，今日の実習ではアップデート作業を行わない．
+</p>
+-->
+<p>
+ターミナルで
+sudo apt update を行ったあと
+sudo apt upgrade を行うという手順でアップデートを行えば
+よいが，今回は
+自動的に
+アップデートを行う仕組みを使う．以下の手順で設定せよ．
+</p>
+
+<p>
+Dash ホームで "update" を検索し，
+「ソフトウェアの更新」をクリックして起動する．
+</p>
+<p>
+「設定」ボタンを押し，「アップデート」タブの
+「セキュリティアップデートがあるとき」の
+値を「すぐに表示」ではなく
+「ダウンロードとインストールを自動的に行う」
+になっていることを確認して「閉じる」を押す．
+</p>
+
+
+<!--
+<h2> （参考）自動アップデートの設定</h2>
+
+<p id="sudogedit">unattended-upgradesインストールと有効化</p>
+<div class="embox">
+<pre>
+jtXXXX3b@yamamoto-00:$ sudo apt-get update
+jtXXXX3b@yamamoto-00:$ sudo apt-get install unattended-upgrades
+jtXXXX3b@yamamoto-00:$ sudo dpkg-reconfigure -plow unattended-upgrades 
+</pre>
+</div>
+<p>
+一番最後のコマンドにより 「unattended-ugprades を設定しています」
+というダイアログが出るので「はい」を選ぶ．（Enterキー）
+</p>
+<p>
+標準では自動アップデートの対象はセキュリティアップデートだけ
+になっている一般のアプリケーションのアップデートも自動的に
+行う対象にする．まず以下のコマンドで unattended-upgrades
+の設定ファイルのある場所へ移動せよ．ls をとってみて
+どんな設定ファイルがあるか確認せよ．
+</p>
+
+<div class="embox">
+<pre>
+jtXXXX3b@yamamoto-00:$ cd /etc/apt/apt.conf.d
+</pre>
+</div>
+
+<p>
+これから変更する設定ファイルは 50unattended-upgrades である．
+以下のコマンドで gedit エディタを使ってこのファイルを開く．
+</p>
+
+<div class="embox">
+<pre>
+jtXXXX3b@yamamoto-00:apt.conf.d$ sudo gedit 50unattended-upgrades
+</pre>
+</div>
+
+<p>
+変更内容は上記ファイル中の4行目にある
+</p>
+
+<div class="embox">
+<pre>
+//  "${distro_id}:${distro_codename}-updates";
+</pre>
+</div>
+
+<p>
+の先頭の '//' の 2 文字を削除することである．
+これによりコメントアウトされていた設定が
+有効になる．削除が終わったら gedit で保存し，gedit を終了せよ．
+</p>
+-->
+<h2>UNIX 入門</h2>
+<p>
+総合情報センターのページの
+<a href="http://www.cc.u-tokai.ac.jp/FAQ/Unix/basic.html">
+UNIX 基本操作</a>
+の文書を用いて UNIX の基本操作について説明する．</p>
+
+<ol>
+<li>
+<p>
+ubuntu 18.04 を起動し，自分のユーザIDでログインし，
+ターミナルを起動せよ．
+</p>
+
+<p>
+以下のコマンドを入力せよ．
+左端から $ まではプロンプトといい，入力する必要はない．
+</p>
+<div class="embox">
+<pre>
+jtXXXX0b@yamamoto-00$ pwd
+</pre>
+</div> <!-- embox --></li>
+<li>
+<p>
+Unix コマンドについて調べたい場合，Web で検索するのは
+手軽ではあるが， OS のバージョンにより同じコマンドでも
+細かい仕様が違う可能性がある．
+Unix では標準でオンラインマニュアルが実装されているので，
+実際に使う計算機にログインし，オンラインコマンドを
+利用して調べることで仕様する計算機のバージョンでのコマンドの
+仕様を確実に知ることができる．
+</p>
+<p>
+この授業で使用する Ubuntu のバージョンではインストール直後は
+英語版の man のみが利用できる状態になっている．
+</p>
+<p>
+日本語マニュアルをインストールする．
+apt はネットワーク上のサーバに用意されているソフトウェアの
+データベースから依存関係を確認しながら必要なソフトウェアを
+自動的にインストールするツールである．
+apt を使う場合，自分がもっている apt のデータベースを
+更新する手続きを最初に行う．以下のコマンドを実行せよ．
+</p>
+<div class="embox">
+<pre>
+jtXXXX0b@yamamoto-00$ sudo apt update
+</pre>
+</div> <!-- embox -->
+<p>
+以下のコマンドで apt システムを使って
+日本語版の man をインストールできる．実行せよ．
+</p>
+<div class="embox">
+<pre>
+jtXXXX0b@yamamoto-00$ sudo apt install manpages-ja
+</pre>
+</div> <!-- embox -->
+<p>
+sudo からパスワードを聞かれたらログインしたユーザのパスワードを入力せよ．
+</p>
+
+<p>以下のように入力し，
+オンラインマニュアルのコマンド man を利用して pwd コマンドについて調査せよ
+</p>
+<div class="embox">
+<pre>
+jtXXXX0b@yamamoto-00$ man pwd
+</pre>
+</div> <!-- embox --></li>
+<li>
+<p>
+以下のコマンドを入力せよ．
+&quot;&gt;&quot;記号はコマンドの出力をディスプレイではなくファイルへ書き
+出ための指示である．ファイル，ディレクトリ名は半角英数文字で入力せよ．</p>
+<div class="embox">
+<pre>
+jtXXXX0b@yamamoto-00$ pwd &gt;test
+</pre>
+</div> <!-- embox --></li>
+<li>
+<p>
+ls コマンドをマニュアルで調べよ．(man ls)</p></li>
+<li>
+<p>
+作成したファイル &quot;test&quot; を ls コマンドで確認せよ．</p></li>
+<li>
+<p>
+作成したファイル &quot;test&quot; の内容を cat コマンドで表示させよ．</p></li>
+<li>
+<p>
+mkdir コマンドでホームディレクトリに
+testdir という名前のディレクトリを作成せよ．
+</p></li>
+<li>
+<p>
+前の項目で作成したファイル &quot;test&quot; を cp コマンドで test2 とい
+う名前のファイルとして testdir 内にコピーせよ．(cp test testdir/test2)
+test は作業中ディレクトリ(カレントディレクトリ)にあるが，test2 は別のディ
+レクトリにある．
+カレントディレクトリ以外のファイルは &quot;/&quot; 記号でディレクトリを
+繋げて示す．これをパスと呼ぶ．
+</p></li>
+<li>
+<p>
+testdir ディレクトリに移動し(cd testdir)，コピーが成功したかどうか 
+ls, cat コマンドを使って確認せよ．
+</p></li>
+<li>
+<p>
+testdir のすぐ上のディレクトリへ移動せよ (cd ..)
+&quot;..&quot; はすぐ上の階層のディレクトリを示す．
+また，&quot;.&quot; でカレントディレクトリそのものを示すことができる．
+cd コマンドを引数なしで実行するとホームディレクトリへ移動する．
+</p></li>
+<li>
+<p>
+再び testdir ディレクトリに移動せよ．test は一つ上の階層，
+test2 は同じ階層にある．cat ../test test2 コマンドを実行し，
+2 つのファイルを結合させて表示させよ．&quot;../test&quot; 
+のようにカレントディレクトリを起点にファイルを指定する方式を相対パス
+という．pwd コマンドの出力のように &quot;/&quot;から始まるパスを
+絶対パスという．
+cat ../test test2 &gt;test3 を実行し，test3 の内容を確認せよ．
+</p></li>
+<li>
+<p>
+rm コマンドを使って上でコピーした test2 を削除せよ．</p></li>
+<li>
+<p>
+削除が成功したかどうか cd, ls コマンドを使って確認せよ．
+</p></li>
+<li>
+<p>
+test をコピーし，testdir 内に test, test1, test10 というファイルを作成せよ．
+</p></li>
+<li>
+<p>
+testdir内で ls test? コマンドと ls test* コマンドを実行し，違いを確かめよ．
+&quot;?&quot; は任意の 1 文字にマッチし，&quot;*&quot; は長さ 0
+以上の任意の文字列にマッチする． 
+</p></li></ol>
+
+<h2 id="exp0">
+演習問題
+</h2>
+
+<p>
+以下の作業を順に行い，5 の設問に答えよ．
+</p>
+<ol>
+<li>
+ホームディレクトリに report1 というディレクトリを作り，
+cd コマンドで report1 へ移動せよ．
+</li>
+<li>
+report1 にファイル名が file1 (内容は何でもよい．
+授業で作成したファイル test のコピーでよい) であるファイルを作成せよ．
+</li>
+<li>
+file1 をコピーして file2, file10, f3 という名前の
+3 つのファイルを作り，report1 ディレクトリに置け．
+</li>
+<li>
+report1 ディレクトリの直下に report2 ディレクトリを作り，そこへ cd せよ．
+</li>
+<li>
+report2 がカレントディレクトリである状態で
+ls コマンドを行い，<br>
+問 1．report1 ディレクトリにある
+ file1, file2 という名前のファイル名のみが表示されるコマンドと引数，<br>
+問 2．report1 ディレクトリにある
+ file1, file2 file10 という名前のファイル名のみ表示されるコマンドと引数，<br>
+をそれぞれ述べよ．
+</li>
+</ol>
+
+<h3>
+課題1
+</h3>
+<p>
+上の練習問題解き，5 番問1,問2 の解答を．
+メールで提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を Seminar 1-1 とせよ．
+</p>
+
+<hr>
+<address>
+Updated in May 15, 2019, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

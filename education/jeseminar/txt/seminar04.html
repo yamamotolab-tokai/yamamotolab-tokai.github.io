@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Dictionary</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Dictionary<br>
+辞書</h1>
+
+<h2>5. リストとタプル（残り）
+</h2>
+<p>
+  p. 119 - p.120を実習する．
+</p>
+<h2>6. 辞書と set
+</h2>
+<p>
+  6.2.3 までを実習する．
+</p>
+
+<p>
+  6.2.4 から 6.2.7 までと 6.4 を実習する．
+</p>
+<p>
+  6.4 ではまずAnaconda プロンプトから cd コマンドでサンプルプログラムの
+  ch06 ディレクトリ（フォルダ）に移動する．
+  長いパス名をタイプするのは大変なのでコマンドプロンプトに cd
+  とスペースを入力し，ファイルエクスプローラーで ch06 が見える状態にして
+  ch06 フォルダを Anaconda プロンプトにドラッグアンドドロップする．
+  これで cd のあとにパス名が入力された状態になるので Enter
+  キーを押して移動せよ．
+</p>
+<p>
+  dir コマンドを実行し，現在いるディレクトリにあるディレクトリとファイルを表示せよ．RollDieDynamic.py というファイルがあることを確認せよ．
+</p>
+<p>
+  RollDieDynamic.py は 1 章で実行したものと同じものであるので同様に
+  修正する必要がある．サンプルコードの 17 行目
+</p>
+<div class="embox">
+<pre>
+  axes = sns.barplot(faces, frequencies, palette='bright')  # new bars
+</pre>
+</div> <!-- embox -->
+<p>
+  の部分を
+</p>
+<div class="embox">
+<pre>
+  axes = sns.barplot(x=faces, y=frequencies, palette='bright')  # new bars
+</pre>
+</div> <!-- embox -->
+<p>
+  に変更せよ．ファイルを保存した後，
+</p>
+
+<div class="embox">
+<pre>
+&gt; ipython RollDieDynamic.py 6000 1
+</pre>
+</div> <!-- embox -->
+<p>
+  というコマンドを実行せよ．RollDieDynamic.py
+  は第1引数の回数だけグラフを描くが，
+  1回のグラフ描写の前に第2引数回サイコロを振る．
+  上記コマンドであればサイコロを1回振るたびにグラフを書き換える．
+  乱数でサイコロを振って数を記録する処理と比較すると
+  グラフを描写する処理は非常に時間がかかる．
+  グラフの描写に時間の多くをつかってしまい，多くの試行ができない．
+  実際に上記コマンドでグラフを表示した場合の試行回数の増加ペースを
+  確認せよ．
+</p>
+<div class="embox">
+<pre>
+&gt; ipython RollDieDynamic.py 1000 600
+</pre>
+</div> <!-- embox -->
+<p>
+  コマンドで実行すると1回のグラフ描写の前に 600 回サイコロを振る．
+  実行して試行回数の増加ペースを確認せよ．
+</p>
+
+<hr>
+<address>
+Updated in October 15, 2024, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

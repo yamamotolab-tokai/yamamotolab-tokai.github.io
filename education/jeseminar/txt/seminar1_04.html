@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> lists and arrays </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Lists and Array<br>
+リストと配列
+</h1>
+<h2>
+  2章練習問題の動作確認
+</h2>
+<p>
+  2章練習問題の動作確認を行います．
+</p>
+<h2>
+  練習問題
+</h2>
+<p>
+  以下の練習問題を解け．授業中に動作確認を行う．
+</p>
+<ol>
+  <li>
+    プロンプトを表示して数を2個読み込んで（1行に1個ずつ別々に読み込みます）、
+    それらのうち大きいほうの値を表示するプログラムを書け．
+    （テスト入力として (1と2), (2と1) を入力して確認せよ） 
+  </li>
+  <li>
+    数を3個読み込んでそれらのうち最も大きい値を表示するプログラムを書け．
+    （テスト入力として (1と2と3), (1と3と2), (2と1と3), (2と3と1), (3と1と2), (3と2と1)
+    を入力して確認せよ） 
+  </li>
+  <li>
+    数を4個読み込んでそれらのうち最も大きい値を表示するプログラムを書け．
+  </li>
+</ol>
+  
+<h2>
+3 章 リストと配列
+</h2>
+<p>
+配列は変数の一種．配列とリストは変数とその内容という関係．
+これはスカラー変数の内容が整数リテラルなどであったのと同様である．
+</p>
+<p>
+他の言語と同様に添字で特定の内容にアクセスできる．
+</p>
+
+<div class="embox">
+<pre>
+$name[0] = 'Randal' ;
+$name[1] = 'Tom' ;
+print "($name[0], $name[1])\n";
+</pre>
+</div> <!-- embox -->
+
+<p>
+配列の各要素はスカラー変数であり，他のスカラー変数同様先頭に &quot;$&quot; 記号を
+付ける．配列全体を表す変数名の先頭には &quot;@&quot; をつける．
+また，第一要素が &quot;Randal&quot;, 第二要素が&quot;Tom&quot;である
+リストは ('Randal','Tom') と書く．配列の内容がリストであるから上のプログラムは
+以下のように書く事もできる．
+</p>
+<div class="embox">
+<pre>
+@name = ('Randal', 'Tom') ;
+print "($name[0], $name[1])\n";
+</pre>
+</div> <!-- embox -->
+
+<p>
+要素の多いリストを楽にタイプできるように qw ショートカットがある．
+以下のプログラムは上記 2 つと同じである．
+</p>
+<div class="embox">
+<pre>
+@name = qw/Randal Tom/;
+print "($name[0], $name[1])\n";
+</pre>
+</div> <!-- embox -->
+
+<p>
+foreach (3.6節，第6版では3.8 節)など，Perl には特殊化された機能が多い．
+覚えるのは大変だがヘビーユーザーには快適なように設計されている．
+</p>
+
+<hr>
+<address>
+Updated in May 5, 2019, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

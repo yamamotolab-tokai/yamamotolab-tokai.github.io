@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> subroutine 2</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+subroutine 2 <br>
+サブルーチン 2</h1>
+
+<h2>4章つづき</h2>
+<h3>
+復習
+</h3>
+
+<p>
+プログラミング言語でいう関数は
+</p>
+<ol>
+<li>
+処理の一部を分割するためのものと
+</li>
+<li>
+入力値から出力値を計算するためのもの（数学でいう関数）
+</li>
+</ol>
+<p>
+の2種類に分けて考えるとよい。
+</p>
+
+<p>
+教科書 p. 78 の marine は 1 のタイプの例である。
+以下も処理を分割するための関数の形である．実行せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+sub f1{
+    print "Hello f1\n";
+}
+
+sub f2{
+    print "Hello f2\n";
+}
+
+&amp;f1;
+&amp;f2;
+&amp;f1;
+</pre>
+</div>
+
+<p>
+教科書 p.83 の関数 max は
+入力値から出力値を計算するタイプの例である．
+以下もそのタイプの簡単な例である．実行せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $out;
+
+sub f3{
+    my($x) = @_;
+
+    return $x;
+}
+
+$out = &amp;f3(1);
+print "$out\n";
+$out = &amp;f3(2);
+print "$out\n";
+$out = &amp;f3(3);
+print "$out\n";
+</pre>
+</div>
+<p>
+上記の関数 f3 は入力値をそのまま出力する関数である．
+</p>
+
+<h4>
+練習問題4.1
+</h4>
+
+<p>
+関数 f3 を参考に入力値より 1 多い数値を返す関数
+f4 を f3 のすぐ下に定義せよ．
+メインルーチンで使用してテストを行え．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $out;
+
+sub f3{
+    my($x) = @_;
+
+    return $x;
+}
+
+sub f4{
+（ここを作成）
+}
+
+$out = &amp;f3(1);
+print "$out\n";
+$out = &amp;f3(2);
+print "$out\n";
+$out = &amp;f3(3);
+print "$out\n";
+$out = &amp;f4(1);
+print "$out\n";
+$out = &amp;f4(2);
+print "$out\n";
+$out = &amp;f4(3);
+print "$out\n";
+</pre>
+</div>
+
+<h4>
+練習問題4.2
+</h4>
+
+<p>
+摂氏の温度の数値を入力すると対応する華氏の温度を
+出力する関数 fahrenheit を作成し，テストせよ．
+</p>
+
+<h4>
+練習問題4.3
+</h4>
+
+<p>
+下記プログラムの括弧内を埋めて
+摂氏と華氏の 5 度刻みの対応表を出力せよ．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $i;
+my $out;
+
+sub fahrenheit{
+    my($x) = @_;
+
+    return $x*9/5 +32;
+}
+
+for ($i = 0 ; $i &lt; 50 ; $i = $i + 5){
+    $out = &amp;fahrenheit($i);
+（ここを作成）
+}
+</pre>
+</div>
+<h4>
+練習問題4.4
+</h4>
+<p>
+練習問題4.2とは逆に華氏の温度を入力すると摂氏の温度を出力する関数
+celsius を作れ．適当にテストせよ。
+</p>
+<h4>
+練習問題4.5
+</h4>
+<p>
+最初に以下のような画面を出力し，
+</p>
+<div class="embox">
+<pre>
+Please input
+1:C-&gt;F
+2:F-&gt;C
+0:quit
+</pre>
+</div>
+<p>
+1 が入力されれば数値を入力して摂氏から華氏への変換，
+2 が入力されれば数値を入力して華氏から摂氏への変換，
+0 が入力されれば終了するプログラムを作成せよ．
+</p>
+<h3>
+課題5
+</h3>
+<p>
+本日作成したプログラムを添付ファイルとしてメールで提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を report perl 5 とせよ．
+</p>
+<!--
+<p>
+下記のプログラムは 2 個引数をもつ関数の例である．
+単純に 2 個の引数の合計を返す関数である．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $out;
+
+sub f5{
+    my($x, $y) = @_;
+
+    return $x + $y;
+}
+
+$out = &f5(1,1);
+print "$out\n";
+$out = &f5(1,2);
+print "$out\n";
+</pre>
+</div>
+
+<h4>
+練習問題4.4
+</h4>
+
+<p>
+f5 を参考に 2 つの引数のうち大きいほうの値を
+返す関数 f6 を作れ．テストするメインルーチンも自分で考えよ．
+</p>
+-->
+<hr>
+<address>
+Updated in June 22, 2012, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

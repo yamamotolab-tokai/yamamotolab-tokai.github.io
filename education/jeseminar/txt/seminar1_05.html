@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> loop </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+exercise1-4<br>
+練習問題1-4</h1>
+<h2>
+  練習問題
+</h2>
+<p>
+  以下の練習問題を解け．授業中に動作確認を行う．
+</p>
+<ol>
+  <li>
+    以下のプログラム部分は配列 @a の要素
+    $a[0] から $a[4] に一行ごとに一個づつ
+    値を入力する部分を入力を書き連ねる方法で
+    記述したものである．
+    入力された 5個の値を空白を挟んで出力し，最後に1回だけ
+    改行して終了するプログラムをこの後に付け足して完成させよ．
+    ここではあえてprint文を5行書く方法で作成せよ．
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+
+my @a;
+
+chomp($a[0] = &lt;STDIN&gt;);
+chomp($a[1] = &lt;STDIN&gt;);
+chomp($a[2] = &lt;STDIN&gt;);
+chomp($a[3] = &lt;STDIN&gt;);
+chomp($a[4] = &lt;STDIN&gt;);
+（ここに出力部分を書き加える）
+</pre>
+</div> <!-- embox -->
+<div class="embox">
+<pre>
+[入力例]
+5
+2
+8
+3
+6
+
+[出力例]
+5 2 8 3 6
+</pre>
+</div> <!-- embox -->
+
+  </li>
+  <li>
+    以下のプログラム部分は配列上と同じことを
+    for ループを使って記述したものである．
+    同様に入力された 5個の値を空白を挟んで出力する
+    プログラムを for ループを使って記述し，完成させよ．
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+
+my $i;
+my @a;
+
+for ($i = 0 ; $i &lt; 5 ; $i++){
+    chomp($a[$i] = &lt;STDIN&gt;);
+}
+（ここに出力部分を書き加える）
+</pre>
+</div> <!-- embox -->
+  </li>
+  <li id="sum">
+    一行に一個ずつ5個の数値を入力すると，入力された全ての数値の
+    和を出力するプログラムを書け．
+  </li>
+  <li id="max">
+    一行に一個ずつ5個の数値を入力すると，入力された全ての数値の
+    最大値を出力するプログラムを書け．
+  </li>
+</ol>
+
+<hr>
+<address>
+Updated in June 14, 2019, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

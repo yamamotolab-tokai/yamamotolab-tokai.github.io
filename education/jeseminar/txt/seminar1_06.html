@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> lists and arrays </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+scalar context anda list contexis<br>
+スカラーコンテキストとリストコンテキスト</h1>
+<h2>
+  3章続き
+</h2>
+<h2>
+  練習問題
+</h2>
+<p>
+  前回の<a href="seminar1_05.html#sum">練習問題3,4</a>を参考に以下のプログラムを作成せよ．
+  </p>
+<ol start="5">
+  <li>
+    一行に一個ずつ5個の数値を入力すると，そのうち偶数が何個あったかを
+    出力するプログラムを書け．（ヒント: $n % 2 は $n を 2 で割った余りが求める演算．2で割った余りが 0 であれば偶数，そうでなければ奇数と判定できる．）
+  </li>
+</ol>
+
+<p>
+3.6 節（第6版では3.8 節）で foreach 制御構造について説明し， デフォルト変数
+$_ について説明する
+</p>
+
+<p>
+教科書 p.52 3.6節（第6版ではp.65, 3.8節)最初の例を実際に動作させ，確認せよ．
+</p>
+<p>
+3.6.1節（第6版は3.8.1 節）の &quot;$_&quot; も良く使われる簡略化なので知っておく必要がある．
+</p>
+<h2>
+スカラーコンテキストとリストコンテキスト
+</h2>
+<p>
+配列全体を表すには添字なしで変数名の頭に &quot;@&quot; 記号をつけて表す．
+(p.48，第6版ではp.60) 配列である &quot;@&quot; つきの変数の内容は本来リストである．
+しかし，スカラーが要求される場所に配列変数を書くと，
+配列のサイズの値がスカラーとして得られる．下のプログラムを実行して確認せよ．
+</p>
+
+<div class="embox">
+<pre>
+$name[0] = 'Randal' ;
+$name[1] = 'Tom' ;
+$x = @name;
+print "$x\n";
+</pre>
+</div> <!-- embox -->
+
+<p>
+この配列の要素数を得る方法は配列すべての要素を処理するときによく使われる.
+下記がその典型的な例である.
+</p>
+
+<div class="embox">
+<pre>
+$name[0] = 'Randal' ;
+$name[1] = 'Tom' ;
+for ($i = 0 ; $i &lt; @name ; $i++){
+    print "$name[$i]\n";
+}
+</pre>
+</div> <!-- embox -->
+
+<p>
+この方法でループの終わりを指定することで配列の要素数が分からなくても
+正しくすべての要素に対して処理が行える. 3.8節（第6版では3.10 節）の
+p.59, 17行目（第6版ではp.73, 18 行目）の
+文によりリストコンテキストで&lt;STDIN&gt;を使うと配列 @lines には
+入力された行数に応じて可変個の要素が格納される.それをすべて出力
+させるプログラムが以下のものである.
+</p>
+
+<div class="embox">
+<pre>
+@lines = &lt;STDIN&gt;;
+chomp (@lines);
+for ($i = 0 ; $i &lt; @lines ; $i++){
+    print "$lines[$i]\n";
+}
+</pre>
+</div> <!-- embox -->
+
+<p>
+上記プログラムを実行すると入力待ちになるので
+文字列を数行入力した後，行頭で Ctrl-D を押せ.
+これで入力が終わったことをプログラムに伝えることができる.
+入力した行がそのまま出力されることを確認せよ.
+</p>
+
+<h2>
+  練習問題
+</h2>
+<p>
+  以下の練習問題を解け．授業中に動作確認を行う．
+</p>
+<ol start="6">
+  <li>
+    一行に一個ずつ数値を入力すると，（最後の入力が終わったら行頭で Ctrl-D）
+    入力された全ての数値の合計を出力するプログラムを書け．
+  </li>
+  <li>
+    一行に一個ずつ数値を入力すると，
+    入力された全ての数値の最大値を出力するプログラムを書け．
+  </li>
+  <li>
+    一行に一個ずつ数値を入力すると，
+    入力された数値のうち偶数のものの個数を出力するプログラムを書け．
+    （ヒント： (n % 2) は n が偶数のとき0,そうでないとき1)
+  </li>
+</ol>
+
+<!--
+<h3>
+練習問題
+</h3>
+<ol>
+<li>
+数のリスト（1行に1個ずつ）入力の終わりになるまで読み込んで，
+その合計を表示するプログラムを書け．
+</li>
+<li>
+整数を一つ読み込んで，
+2で割り切れるかどうかを表示するプログラムを書け．
+</li>
+<li>
+整数を一つ読み込んで，
+素数かどうかを表示するプログラムを書け．
+</li>
+</ol>
+-->
+
+<h3>
+課題4
+</h3>
+<p>
+3.9（第6版では3.11） 練習問題を解け．
+解答プログラムを添付メールとして提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を Seminar 1-4 とせよ．
+</p>
+
+<!--
+<h2> 第 1 回課題「曜日表示変換プログラム」</h2>
+
+<p>
+<a href="ex-day.html">第 1 回課題「曜日表示変換プログラム」</a>
+を読んで第 1 回課題を提出しなさい．
+</p>
+-->
+
+<hr>
+<address>
+Updated in May 3, 2019, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

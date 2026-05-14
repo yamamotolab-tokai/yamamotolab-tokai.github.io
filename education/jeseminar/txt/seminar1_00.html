@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Ubuntu </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Ubuntu Linux<br>
+ubuntu のインストール</h1>
+<!--
+<h2>学科からの宿題</h2>
+<p>
+以下の内容を A4 用紙にまとめ，7/1（木）のこの授業開始時に提出しなさい．
+</p>
+<ol>
+<li>
+自分はどの企業に勤めたいか→最悪、どの業界に行きたいか、複数の社名をあげる
+</li>
+<li>
+志望の動機は何か、なぜその企業に入りたいのか
+</li>
+<li>
+自分のアピール点は何か
+</li>
+<li>
+入社することによって、その企業に何をもたらせるか
+</li>
+<li>
+履歴書→必ず手書き！
+</li>
+</ol>
+<p>
+以下のリンクから履歴書のテンプレートをダウンロードして利用して下さい．
+今回は写真は貼らなくて結構です．
+</p>
+<p>
+<a href="../pdf/c_v_template.pdf">
+履歴書テンプレート
+</a>
+</p>
+-->
+
+<h2>OS のインストール</h2>
+<p>
+自分の番号の USB メモリを受け取り着席せよ．
+</p>
+
+<p>
+まず，以下の手順でインストールディスクからの起動を行う．
+</p>
+<ol>
+<li>
+Ubuntu 18.04 と書かれたディスクを準備する．
+</li>
+<!--
+<li>
+esc キー（キーボード左上）を押す準備をして電源ボタン（その上）を押す．
+</li>
+<li>
+起動時に HP のロゴが出ている間に esc キーを押す．
+失敗して Window が起動した場合は CD トレーを開き，
+「Ubuntu 14.04」ディスクを入れて再起動し，5. に進む．
+</li>
+<li>
+起動の中断に成功したらCD ドライブを開き
+ 「Ubuntu 14.04」ディスクを入れ，Enter キーを押す．
+</li>
+-->
+<li>
+  PC の電源ボタンを押し，windows を起動させる．ディスクのトレイを
+  開き，「Ubuntu 18.04」ディスクを入れて再起動を行う．
+  </li>
+<li>
+Ubuntu インストール CD が起動した後，
+「Ubuntu を試す」を選択せよ．
+</li>
+</ol>
+
+<p>
+以上の操作で Ubuntu Linux の Live CD が起動するので
+以下のウェブページを参考に USB メモリへのインストールを行う．
+</p>
+
+<p>
+Ubuntu に関する情報は以下のページで参照できる
+</p>
+<p>
+<a href="http://www.ubuntulinux.jp/">
+Ubuntu Japanese Team
+</a>
+</p>
+<p>
+上のメニューの「コミュニティ」から「日本語 Wiki へ移動」を選ぶ．
+「Ubuntu の利用」内にある
+「Ubuntu に関する Tips 」
+を選択する．「USBデバイスへのインストール」内の
+<a href="https://wiki.ubuntulinux.jp/UbuntuTips/UsbInstall/InstalltoUSBStorage">
+「Ubuntu をUSBストレージ（USBメモリ・HDDなど）にインストールするには」
+</a>
+に従って作業する．以下に授業の環境での具体的な手順を書き出す．
+</p>
+<ol>
+<li>
+USB メモリを挿入する．自動でマウントされるので
+そのままにしておく．
+</li>
+<li>
+画面左上の「Ubuntu 18.04 のインストール」のアイコンをダブルクリックして
+インストールを始める．
+</li>
+<li>
+「ようこそ」画面はそのまま
+日本語を選択した状態で
+「続ける」を選ぶ．
+</li>
+<li>
+「アップデートと他のソフトウェア」画面はそのまま
+「続ける」を選ぶ．
+</li>
+<li>
+「使用中のパーティションをアンマウントしますか」というダイアログが出る．
+画面に "/dev/sdb" などが表示されていることを確認し，「はい」を選んで
+アンマウントする．"/dev/sdc" など sdb 以降が表示されている場合は
+それを記録し，以後の説明で "sdb" の部分を適宜読み替えて実行せよ．
+</li>
+<li>
+「インストールの種類」画面は
+「ディスクを削除してUbuntuをインストール」にチェックを変更し，
+「続ける」を押す．
+</li>
+<li>
+「ディスクを削除してUbuntuをインストール」画面になるので，
+ドライブの選択欄を上で確認した
+<strong>
+(sdb) 
+</strong>
+のディスク（これがUSBメモリ）に<strong>変更する</strong>．
+これを忘れると本体のハードディスクの内容全てが
+失われるので細心の注意を払うこと．手順 5 で sdb 以外が
+表示されていた場合はそのディスクを選択せよ．
+上記を確認したら「インストール」を押せ．
+</li>
+<li>
+「ディスクに変更を書き込みますか？」画面に表示されているディスクが
+(sdb)など自分が確認したディスクだけであることを確認して
+「続ける」を押せ．
+</li>
+<li>
+「どこに住んでいますか？」画面で Tokyo が選択されていることを確認し，
+「続ける」を押す．
+</li>
+<li>
+「キーボードレイアウト」画面は「日本語」「日本語」のままで
+「続ける」を押す．
+</li>
+<li>
+「あなたの名前」，「ユーザー名の入力」の両方を
+yamamotolab とする．パスワードは当日連絡する．コンピュータの名前は
+USB メモリの番号が <em>NN </em>とすると yamamoto-<em>NN</em> とせよ．
+ログイン時にパスワードを要求する設定で，「続ける」を押す．
+</li>
+</ol>
+
+
+<hr>
+<address>
+Updated in June 7, 2017, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

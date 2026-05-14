@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> k-nearest neighbors </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+machine learning<br>
+機械学習</h1>
+
+
+<h2>14．機械学習：分類，回帰，クラスタリング
+</h2>
+<p>
+  p.370 14.2.2 から実習する．前ページ
+  p.369 の ipython --matplotlib で python を起動し，p.370 の
+  スニペット In [1], In [2] を実行する．他のスニペットは
+  データを表示するためのものなのでこれで 14.2.3 の実習ができる
+  ようになる．
+</p>
+<p>
+  ロードされた大量のデータは digits というオブジェクトに格納される．
+  digits.data は要素数 1797 個の配列で，その要素それぞれは要素数64の配列である．
+  この要素数64個は p.373 の図12.4 のような8x8ピクセルのグレースケール画像を
+  左上のピクセルからスタートして右へスキャン，右端まで来たら一行下を同様にスキャン，
+  という順で濃淡値を一次元に並べたものである（白が0,黒が16）．
+  画像は本来図1.24の二次元データであるが，モデルの訓練にはこの1次元の形のデータを使用する．
+</p>
+<p>
+  digits.target は data と同じ要素数の配列で，同じ添字の digits.data の画像に対応する
+  「正解」の数値（0-9）である．
+</p>
+<p>
+  digits.images は data と同じ画像を表すデータだが，こちらは 8 ピクセルの一行を単位として
+  8 行からなる 8x8 の二次元配列の形になったデータである．画像をプロットする
+  imshow（p.374 スニペットIn [11]）はこの形式のデータを使うので用意されている．
+</p>
+<p>
+  例えば 0 番の「正解」を確認するため，<br>
+  digits.target[0]<br>
+  と入力してみよ．次に対応するグレースケール画像のデータを確認するために，<br>
+  digits.data[0]<br>
+  として表示してみよ．また，このデータの2次元配列版を<br>
+  digits.images[0]<br>
+  として表示し，比較せよ．
+</p>
+<p>
+  p.374 スニペット In [10] は axes が 4 行 6  列の二次元配列になり，
+  それぞれの要素がグラフ記入用オブジェクトになる．
+</p>
+<p>
+  p.374 スニペット In[11] を実行する前に下記の命令を一行づつ実行し，
+  図のウィンドウの左上の表示の変化を確認せよ． 
+</p>
+<div class="embox">
+<pre>
+axes[0][0].imshow(digits.images[0], cmap=plt.cm.gray_r)
+axes[0][0].set_xticks([])
+axes[0][0].set_yticks([])
+axes[0][0].set_title(digits.target[0])
+</pre>
+</div> <!-- embox -->
+
+<p>
+  p.375 スニペット In [23] は訓練セットとテストセットへの分割である．
+  オブジェクト名に_trainとつくのが訓練セット，_test とつくのがテストセットである．
+  X は「問題」，この場合は手書き数字の画像データ（digits.data），y が「正解」，
+  この場合は対応する添字の画像テータに対する正解の数字（digits.target）である．
+  つまり，X_train は訓練用データの「問題」画像，y_train が訓練用データの「正解」の数値，
+  X_test はテストデータの「問題」画像，y_test がテストデータの「正解」の数値である．
+  モデルに訓練データの問題と正解を学習させ，テストデータの問題から予測値を計算する．
+</p>
+<p>
+  p.377 スニペット In [19] で配列 predicted にテストデータの問題から推測した
+  予測値が入る．In [20] で expected に正解の値が入る．
+</p>
+<p>
+  In [21], In [22] の結果をみると添字 18 のデータだけ間違って予測されていることがわかる．
+  この場合は正解が 3 の画像に対して5であると予測している．
+  この添字 18 の画像をチェックしてみたい．p.374 スニペット In [10], In [11] と同様の方法で
+  確認することができる．まず表示されているグラフウィンドウを消去し，以下の処理を実行せよ．
+</p>
+<div class="embox">
+<pre>
+figure, axes = plt.subplots(nrows=4, ncols=6, figsize=(6,4))
+for item in zip(axes.ravel(), X_test, y_test):
+    axes, image, target = item
+    image2 = image.reshape(8,8)
+    axes.imshow(image2, cmap=plt.cm.gray_r)
+    axes.set_xticks([])  # remove x-axis tick marks
+    axes.set_yticks([])  # remove y-axis tick marks
+    axes.set_title(target)
+plt.tight_layout()
+</pre>
+</div> <!-- embox -->
+<p>
+  添字18は左下のもので，正解3の画像を5と予測した画像である．
+</p>
+
+<hr>
+<address>
+Updated in December 12, 2025, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

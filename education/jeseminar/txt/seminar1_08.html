@@ -1,0 +1,489 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> subroutine</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+subroutine<br>
+サブルーチン</h1>
+<h2>4章</h2>
+<h3>4.1</h3>
+<p>
+p.61 (第6版はp.78) の例のように &quot;sub&quot; キーワードの次に名前を書き，
+サブルーチンを定義できる．サブルーチン定義はグローバルである．
+</p>
+<p>
+Perl では変数はデフォルトでグローバル変数である．
+サブルーチン内で全てのグローバル変数にアクセスできる．
+p.61 (第6版はp.78) の例はグローバル変数を読み書きし，
+戻り値を使わないサブルーチンである．
+多数のサブルーチンからグローバル変数を利用できることは
+便利な点も多いがデバッグを困難にする場合もあるので注意すること．
+プライベートな変数の作り方は後述する．
+</p>
+<p>
+Perl ではメインルーチンを囲むブロックに名前がない．
+</p>
+<h3>4.2</h3>
+
+<p>
+サブルーチン名の前に &amp; をつけて呼び出す．
+&amp; は省略できる場合が多いが，組込み関数と名前が
+ぶつかったときのために書いておくほうがよい．
+</p>
+
+<h3>4.3</h3>
+
+<p>
+最後に<em>計算された</em>式の値が戻り値となる．
+場所的にサブルーチンの最後にある式ではないことに注意．
+</p>
+<p>
+他の言語と同様に return 文で明示的に値を返すこともできる．
+</p>
+<p>
+サブルーチンを呼び出した側ではその値を使わなくてもよい．
+</p>
+
+<h3>4.4</h3>
+<div class="embox">
+<pre>
+$n = &amp;max(10, 15);
+</pre>
+</div> <!-- embox -->
+
+<p>
+上の形でサブルーチンを呼び出すことで，第 1 引数として 10, 第 2 引数として
+15 が与えられる．これらは max サブルーチン内では
+ $_[0], $_[1] としてアクセスできる．すなわち，サブルーチン内では
+引数リストは配列 @_ に代入されている．
+</p>
+<p>
+p.65 (第6版はp.82) 上のサブルーチン max とそれを使うメインルーチンを書き，
+動作させてみよ．
+</p>
+<h3>4.5</h3>
+<p>
+my を使ってサブルーチン内にローカルなプライベート変数を作ることができる．
+プライベート変数はアクセス範囲が制限されるため，デバッグに有利である．
+</p>
+<p>
+サブルーチン冒頭で my を使ったプライベート変数に引数をコピーするという
+書き方がよく用いられる．引数のあるサブルーチンではいつも最初に
+</p>
+<div class="embox">
+<pre>
+my($a,$b) = @_;
+</pre>
+</div> <!-- embox -->
+
+<p>
+のように書き，わかりやすい変数名をつけるとよい．
+</p>
+<p>
+  p.66 (第6版はp. 83) 上の例のパラメータに名前をつける部分を
+  一行にしたバージョンが
+  p. 66下の例(第6版はp. 84 上の例)
+  である．p.65 (第6版はp.82) のサブルーチン max をこの形に書き換え，
+動作を確認せよ．
+</p>
+<h3>4.7</h3>
+<p>
+my は for ループの中などのサブルーチンよりも
+小さい単位にも使うことができる．
+</p>
+<h3>4.8</h3>
+<p>
+Perl はいろいろな便利な自動変換がある半面，間違いをみつけにくい．
+プログラムの最初に use strict; と書くことでエラーが多く出力
+されるようになる．プログラムの制限が厳しくなるため書きにくい面も
+あるが，よいプログラムを書く習慣がつくので毎回 use strict;
+を使うようにすべきである．
+</p>
+<h3>4.9</h3>
+<p>
+  return はサブルーチンを即座に終了させる．
+  戻り値を強制的に返すこと（C言語のreturn と同様の使い方）が
+  できる．
+</p>
+
+<!--
+<h3>
+練習問題
+</h3>
+<p>
+以下のプログラム4.1 は 10000 以下の素数を
+単純なアルゴリズムで出力するものである．
+prime.pl というファイル名で保存し，
+実行パーミッションを与えて (chmod 755 prime.pl)
+実行せよ．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $n;
+my $i;
+my $prime; # 0:False 1:True
+
+for ($n = 2; $n &lt;= 10000; $n++){
+    $prime = 1; 
+    for ($i = 2 ; $i &lt; $n ; $i++){
+        if ($n % $i == 0){
+            $prime = 0;
+        } 
+    }
+    if ($prime == 1) {
+        print "$n\n";
+    }
+}
+</pre>
+</div>
+<p>プログラム4.1</p>
+<p>
+動作確認はあらかじめ正しい素数を出力した以下のリンクのファイル
+を用いて行う．
+</p>
+<ul>
+<li>
+<a href="prime10000.txt">10000以下の素数</a>
+</li>
+<li>
+<a href="prime50000.txt">50000以下の素数</a>
+</li>
+<li>
+<a href="prime100000.txt">100000以下の素数</a>
+</li>
+</ul>
+<p>
+例えば，上の 10000以下の素数の出力を prime10000.txt というファイル名で
+保存しておく．以下のコマンドで自分が作成したプログラムの出力を
+ファイルに出力する．（リダイレクション）
+</p>
+<div class="embox">
+<pre>
+jt00000a@yamamoto-00:~/pl$ prime.pl &gt; out.txt
+</pre>
+</div>
+<p>
+2 つのファイルの内容の違いを調べるには diff を使用する．
+</p>
+<div class="embox">
+<pre>
+jt00000a@yamamoto-00:~/pl$ diff prime10000.txt out.txt
+</pre>
+</div>
+<p>
+2つのファイルの内容が全く同じなら何も出力されない．
+違いがあればその行だけが出力される．out.txt のどこか
+1行を書き換えて  diff を実行してみよ．
+</p>
+
+<p>
+プログラム4.1 の素数判定処理部を関数化し，
+メインルーチンからその関数を呼び出す形に変更する．
+</p>
+<p>
+関数を作るときはその外部仕様を明確にすることが重要である．
+素数判定関数の外部仕様を以下のように決める．
+</p>
+<dl>
+<dt>
+関数名
+</dt>
+<dd>
+prime
+</dd>
+<dt>
+引数（入力）
+</dt>
+<dd>
+整数 1 個
+</dd>
+<dt>
+戻り値（出力）
+</dt>
+<dd>
+引数が素数だったときは 1, そうでなければ 0 を返す．
+</dd>
+</dl>
+<p>
+以下のプログラム部分の空白部分を埋めて，
+プログラム4.1の関数使用バージョンを作れ．
+正解の素数ファイルと diff を用いて比較し，
+正しいく動作していることを確認せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $n;
+
+sub prime {
+    my $number = $_[0];
+#
+#   この部分を埋める
+#
+}
+
+for ($n = 2; $n &lt;= 10000; $n++){
+    if (&amp;prime($n) == 1) {
+        print "$n\n";
+    }
+}
+</pre>
+</div>
+<p>
+プログラム部分4.2
+</p>
+
+<p>
+time 関数を使うことでシステムの現在時刻を得ることができる．
+これを利用して実行時間を測定することができる．方法は
+上記プログラム部分のメインルーチンの for ループの前と後を
+以下のように変更する．
+</p>
+<div class="embox">
+<pre>
+$stime = time;
+for ($n = 2; $n &lt;= 100000; $n++){
+    if (&amp;prime($n) == 1) {
+        print "$n\n";
+    }
+}
+$etime = time;
+$ptime = $etime - $stime;
+print "Time: $ptime\n";
+</pre>
+</div>
+<p>
+最初の $stime = time で処理開始の時刻を変数 $stime に保存し，
+終了の時刻を変数 $etime に保存している．両変数の差を
+求めることで処理にかかった秒数を知ることができる．
+ループ回数を変更して処理時間の変化を確認せよ
+</p>
+
+<p>
+prime 関数だけを変更し，高速化を試みよ．
+変更後のプログラムの出力を diff で正解ファイルと比較し
+正しいことを確認せよ．処理時間の変化も確認せよ．
+</p>
+-->
+
+<h3>
+4 章補足
+</h3>
+
+<p>
+プログラミング言語でいう関数は
+</p>
+<ol>
+<li>
+処理の一部を分割するためのものと
+</li>
+<li>
+入力値から出力値を計算するためのもの（数学でいう関数）
+</li>
+</ol>
+<p>
+の2種類に分けて考えるとよい。
+</p>
+
+<p>
+教科書 p. 61 の marine は 1 のタイプの例である。
+以下も処理を分割するための関数の形である．実行せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+sub f1{
+    print "Hello f1\n";
+}
+
+sub f2{
+    print "Hello f2\n";
+}
+
+&amp;f1;
+&amp;f2;
+&amp;f1;
+</pre>
+</div>
+
+<p>
+教科書 p.64 の関数 max は
+引数（入力値）から戻り値（出力値）を計算するタイプの例である．
+以下もそのタイプの簡単な例である．実行せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $out;
+
+sub f3{
+    my($x) = @_;
+
+    return $x;
+}
+
+$out = &amp;f3(1);
+print "$out\n";
+$out = &amp;f3(2);
+print "$out\n";
+$out = &amp;f3(3);
+print "$out\n";
+</pre>
+</div>
+<p>
+上記の関数 f3 は引数の入力値をそのまま戻り値として返す関数である．
+</p>
+
+<h4 id="ex4_1">
+練習問題4.1
+</h4>
+
+<p>
+関数 f3 を参考に引数より 1 多い数値を戻り値として返す関数
+f4 を f3 のすぐ下に定義せよ．
+メインルーチンで使用してテストを行え．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $out;
+
+sub f3{
+    my($x) = @_;
+
+    return $x;
+}
+
+sub f4{
+（ここを作成）
+}
+
+$out = &amp;f3(1);
+print "$out\n";
+$out = &amp;f3(2);
+print "$out\n";
+$out = &amp;f3(3);
+print "$out\n";
+$out = &amp;f4(1);
+print "$out\n";
+$out = &amp;f4(2);
+print "$out\n";
+$out = &amp;f4(3);
+print "$out\n";
+</pre>
+</div>
+
+<h4>
+練習問題4.2
+</h4>
+
+<p>
+摂氏の温度の数値を引数とすると対応する華氏の温度を
+戻り値として返す関数 fahrenheit を作成し，テストせよ．
+</p>
+
+<h4>
+練習問題4.3
+</h4>
+
+<p>
+  下記プログラムの括弧内を埋めて摂氏0度から
+  45 度まで 5 度刻みの摂氏と華氏の対応表を出力せよ．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+my $i;
+my $out;
+
+sub fahrenheit{
+    my($x) = @_;
+
+    return $x*9/5 +32;
+}
+
+for ($i = 0 ; $i &lt; 50 ; $i = $i + 5){
+    $out = &amp;fahrenheit($i);
+（ここを作成）
+}
+</pre>
+</div>
+<h4>
+練習問題4.4
+</h4>
+<p>
+練習問題4.2とは逆に華氏の温度を引数とすると摂氏の温度を戻り値として返す関数
+celsius を作れ．作成関数celciusを使い，キーボードから入力された
+華氏の温度を摂氏の温度に変換して出力するプログラムを作れ．
+</p>
+<h4>
+練習問題4.5
+</h4>
+<p>
+  ここまでで作成した fahrenheit とcelcius は変更せずに
+  そのまま使用するプログラムを作成する．
+</p>
+<p>
+最初に以下のような画面を出力し，
+</p>
+<div class="embox">
+<pre>
+Please input
+1:C-&gt;F
+2:F-&gt;C
+0:quit
+</pre>
+</div>
+<p>
+1 が入力されれば数値を入力して摂氏から華氏への変換，
+2 が入力されれば数値を入力して華氏から摂氏への変換，
+0 が入力されれば終了するプログラムを作成せよ．
+プログラムは 0 が入力されるまで繰り返し動作するものとする．
+</p>
+<h3>
+課題6
+</h3>
+<p>
+本日作成したプログラムを添付ファイルとしてメールで提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を Seminar 1-6 とせよ．
+</p>
+
+<hr>
+<address>
+Updated in June 5, 2015, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

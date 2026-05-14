@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> emacs, permittion</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+emacs, permittion<br>
+emacs の操作，ファイル許可属性</h1>
+
+<p>
+USB メモリから Ubuntu18.04 を起動し,自分のアカウントでログインせよ．
+</p>
+
+<h2>UNIX の操作</h2>
+<p>
+この授業専用のディレクトリ pl をホームディレクトリ直下に
+作成せよ (mkdir を使用する)
+その後 cd コマンドで
+pl ディレクトリへ移動せよ．以降，プログラムの作成は
+pl ディレクトリ以下で行う．
+</p>
+
+<h2>emacs</h2>
+<p>
+最初にこの授業で使用するテキストエディタ emacs をインストールする.
+以下のコマンドを実行せよ．
+</p>
+<div class="embox">
+<pre>
+jtXXXX0b@yamamoto-00$ sudo apt install emacs
+</pre>
+</div> <!-- embox -->
+<p>
+sudo からパスワードを聞かれたらログインしたユーザのパスワードを入力せよ．
+</p>
+<p>
+インストールが終ればターミナルから emacs コマンドを入力し起動せよ．
+emacs を起動したターミナルにエラーが表示されるときは
+システム-&gt;設定-&gt;外観の設定，
+でデスクトップの外観を Ambiance, Radiance 以外のテーマに変更してみよ．
+</p>
+<p>
+総合情報センターのページの
+<a href="http://www.cc.u-tokai.ac.jp/FAQ/Unix/Editor/emacs.html">
+emacs エディタ</a>
+の文書を用いて emacs の基本操作について説明する．</p>
+
+<p>
+emacs を使用して pl ディレクトリ直下に
+sample というファイル名のファイルを作成せよ．内容は任意でよい．
+ファイルを作成したら ls で存在を確認し，cat で内容を確認せよ．
+</p>
+
+<h2>emacs によるプログラム作成</h2>
+<p>
+テキストエディタ emacs はエディットするファイルの種類によって入力モードを
+自動的に変えることができる．実習で使用する環境では
+ファイルの拡張子が pl であるファイルをエディットすると
+ perl プログラム入力用モードになる．
+</p>
+
+<p>
+emacs を起動し，教科書 p.12 （第6版はp.16） のプログラムを hello.pl という名前で保存せよ．
+(<a href="http://www.cc.u-tokai.ac.jp/FAQ/Unix/Editor/emacs.html">
+emacs の説明</a>)
+</p>
+
+<p>
+コマンドラインから emacs test.pl のようにエディットするファイル名を
+与えて emacs を起動することができる．
+初期設定ではこの場合に上下2ウィンドウに分割されて起動する．
+下のウィンドウは今後必要ないので下のウィンドウの内容を最後までスクロールさせ，
+"Never show it again" のボックスにチェックを入れ，
+"Dismiss this startup screen" を押せ．これで次回以降下のウィンドウは
+表示されなくなる．
+</p>
+
+<h2>chmod コマンド</h2>
+<p>
+以下のコマンドで perl へプログラムファイルを与えて実行する
+ことができる．実行結果を確認せよ．
+</p>
+<div class="embox">
+<pre>
+jtXXXXXX@yamamoto-00:~/pl$ perl hello.pl
+</pre>
+</div> <!-- embox -->
+<p>
+UNIX システムではすべてのファイル，ディレクトリについて
+そのファイル，ディレクトリに対する操作の許可属性を保持している．
+これを利用して作成した perl
+プログラムファイルに実行属性を与えることができる．
+まず，ls コマンドで hello.pl ファイルに実行属性があるかどうか確認する．
+</p>
+<div class="embox">
+<pre>
+jtXXXXXX@yamamoto-00:~/pl$ ls -l
+</pre>
+</div> <!-- embox -->
+
+<p>
+以下のように出力されたとする．
+</p>
+
+<div class="embox">
+<pre>
+-rw-r--r--   1 yhiroshi user          43 10月 22日  13:39 hello.pl
+</pre>
+</div> <!-- embox -->
+
+<p>
+最も左はファイルかディレクトリかを表す． &quot;-&quot; 
+はファイルであることを示す．次の 3 つがファイルのオーナー(自分)
+に対する許可属性であり，左から読みだし権限，書きこみ権限，実行権限である．
+&quot;rw-&quot; は読みだし，書きこみ，は許可されているが
+実行は許可されていないことを示す．次の 3 つが同じグループに属する
+他のユーザ，次の 3 つが同じグループにも属さないユーザに対する読みだし，
+書きこみ，実行権限である．残りのフィールドについては man で調べてみよ．
+</p>
+<p>
+自分に対しては読み，書き，実行の権限を与え，他人に対しては読み，実行だけに
+権限を与えたい．グループに対しての権限は
+この授業では使わないので他人に対するものと同一にしておく．
+まとめると許可属性を表す文字列を &quot;-rwxr-xr-x&quot; としたい．
+</p>
+<p>
+chmod コマンドを使って許可属性を変更するのだが，
+変更後の許可属性のパターン(上の例では &quot;-rwxr-xr-x&quot;)
+は以下の方法で記述しなおしたものを与える．
+</p>
+<ol>
+<li>
+ファイルの許可属性を表す文字列の右 9 文字の部分文字列に
+注目する．&quot;-&quot; を 0, それ以外の文字を 1 に置き換える．
+これにより &quot;-rwxr-xr-x&quot; は &quot;111101101&quot; となる．
+</li>
+<li>
+左から 3 文字ずつに分け，それぞれを 2 進数として読み，10進数に変換する．
+これにより &quot;111101101&quot; は &quot;755&quot;  となる．
+</li>
+</ol>
+<p>
+以下のように chmod コマンドを使用する．
+</p>
+<div class="embox">
+<pre>
+jtXXXXXX@yamamoto-00:~/pl$ chmod 755 hello.pl
+</pre>
+</div> <!-- embox -->
+<p>
+ls コマンドで望む許可属性になっているか確認せよ．
+</p>
+
+<p>
+自分に対して実行許可属性がついていれば ./hello.pl と入力して
+直接ファイルをコマンドとして実行できる．
+</p>
+
+<p>
+1.5 節（第6版は1.4節）の内容を実行するには perldoc をインストールする必要がある．
+コマンドラインから sudo apt install perl-doc を実行し，
+インストールしてから実習を行え．
+</p>
+<p>
+perldoc は perl に関するドキュメントを読むコマンドである．
+コマンド名の後に - 記号を先頭につけた文字を入力することがある．
+このような文字をオプションとよぶ．
+perl の組み込み関数の説明を読むときは -f オプションを使う．
+例えば組み込み関数 atan2 の内容を知りたい場合は
+perldoc -f atan2 というコマンドを入力する．
+実行して結果を確認せよ．
+</p>
+<p>
+教科書p.16（第6版はp.21） のプログラムの一部にある -u オプションは
+Pod 形式とよばれる文書表示整形のための特殊記号を解釈せずに
+そのまま表示するコマンドである．
+perldoc -u -f atan2 というコマンドを実行し，差を比較せよ．
+</p>
+<p>
+教科書p.16（第6版はp.21）のプログラム例は，Pod 形式の特殊記号をそのまま表示させ，
+その中の「英文字1個の後に"&lt;"と"&gt;"で囲まれた部分」という指定した
+パターンに当てはまる部分を書き換えて表示している．
+</p>
+<h3>
+課題2
+</h3>
+<p>
+1.6（第6版は1.5）練習問題を解け．
+作成したプログラムを添付メールとして提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を Seminar 1-2 とせよ．
+</p>
+
+
+<hr>
+<address>
+Updated in June 13, 2017, 
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

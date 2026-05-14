@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Control statements</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Control statements<br>
+制御文</h1>
+
+<h2>3. 制御文</h2>
+<p>
+  if などの制御文については他の授業で学習済みなので省略する．
+</p>
+<p>
+  p. 49 「print 関数のキーワード引数 end」
+  はよく使用する機能なので理解すること．p. 49 一番下のグレーの部分のプログラムの
+</p>
+<div class="embox">
+<pre>
+      print(character, end=' ')
+</pre>
+</div> <!-- embox -->
+<p>
+  の部分を
+</p>
+<div class="embox">
+<pre>
+      print(character)
+</pre>
+</div> <!-- embox -->
+<p>
+  に変えて実行してみよ．
+  print 関数は最後に end= で与えられたパラメータの文字を出力する．
+  このパラメータはデフォルトでは改行文字になっているので
+  デフォルトでは表示後に自動的に改行が入る．この for 文は 'Programming'
+  の一文字ごとに対して実行するので 11 回ループする．
+  上の変更では一文字ごとに print 関数が呼ばれるので毎回改行される
+</p>
+<p>
+  print 関数で，自動的に改行させたくない場合は上の print 関数を
+</p>
+<div class="embox">
+<pre>
+      print(character, end='')
+</pre>
+</div> <!-- embox -->
+<p>
+  に変更すればいい．
+</p>
+<div class="embox">
+<pre>
+      print(character, end='#')
+</pre>
+</div> <!-- embox -->
+<p>
+  なども試して変更して実行し，
+  print関数が最後に出力する文字の変更が行えることを実験せよ．
+</p>
+
+</p>
+<p>
+  p. 50, 3・6・1「イテラブル，リスト，イテレータ」と
+  p. 51, 3・6・2「組込み関数 range」は
+  は python のループ処理の特徴なので理解すること．
+</p>
+<p>
+  p. 60 「3・14・1 「データサイエンスへの導入：代表値ー平均値，中央値，最頻値」
+  を実習せよ．
+</p>
+<h2>4. 関数
+</h2>
+<p>
+  関数の作成，利用方法を学習する．4.4まで実習する．
+</p>
+<p>
+  import を使って機能を拡張するライブラリを使用することができる．
+  p. 74 の上2つのプログラムを実行せよ．
+</p>
+<h2>5. リストとタプル
+</h2>
+<p>
+  p. 106，リスト内包表現は各括弧内にループの記述をして，
+  一行で中身入りのリストを作成する方法である．
+</p>
+<p>
+  p. 115，5.17節を実習する．（今回はp.118まで）
+</p>
+<hr>
+<address>
+Updated in October 15, 2024, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

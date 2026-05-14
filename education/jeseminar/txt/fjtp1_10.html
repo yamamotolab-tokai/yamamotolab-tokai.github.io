@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>random</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+random number<br>
+乱数
+</h1>
+
+<h2>ミニレポート 4 のチェック</h2>
+<p>
+テスト用の入力ファイルを使ってプログラムが正しく動作しているかどうか確
+認します．
+</p>
+<p>
+以下の操作を行うことで自分が作成した infile と outfile は変更されます．
+必要なら別名でコピーしてから以下の操作を行って下さい．
+</p>
+
+<div class="embox">
+<pre>
+% cp ~hiroshi/pl/infile ~/pl/infile
+% ~/pl/report4.pl
+% diff ~hiroshi/pl/outfile ~/pl/outfile
+</pre>
+</div> <!-- embox -->
+
+<p>
+何も表示されなければ正しい出力が生成されています．
+何か表示された場合はその行の処理が違います．模範回答である
+~hiroshi/pl/outfile と自分の ~/pl/outfile を見比べて下さい．
+</p>
+
+<h2>
+14 章
+</h2>
+<h3>
+14.1
+</h3>
+<p>
+system 関数を使って別のプログラムを呼出すことができる．
+</p>
+<p>
+シェルに直接 date コマンドを入力してみよ．次に perl 
+プログラムから system 関数を利用して呼出してみよ．
+</p>
+<p>
+エスケープ文字をシェルが解釈するのか perl が解釈するのか熟慮せよ．
+シングルクォート，ダブルクォートを使い，解釈してほしいほうが解釈するよ
+うにせよ．p.232 6 行めの $HOME は perl は解釈せず，シェルが解釈する．
+なぜか．
+</p>
+
+<h3>
+14.4
+</h3>
+<p>
+system,exec では，呼出したコマンドの出力は標準出力へ送られる．
+呼出したコマンドの出力を加工するなどの目的で文字列に取り込みたいとき，
+逆クォートを使う．
+</p>
+<p>
+教科書 p.238 2-3 行めをプログラムに書き加えて確認せよ．
+</p>
+
+<h2>演習プログラム</h2>
+<h3>
+乱数
+</h3>
+<p>
+rand (n) で 0 以上 n 未満の乱数が得られる．
+ループを使って乱数を 10 個生成し，表示するプログラムを作成し，
+何度か実行してみよ．
+</p>
+<p>
+rand は引数を省略すると 0 以上 1 未満の数を返す．
+</p>
+
+<div class="embox">
+<pre>
+$x = rand;
+$y = rand;
+</pre>
+</div> <!-- embox -->
+
+<p>
+とすることで，$x,$y 座標がどちらも 0 以上 1 未満である xy 平面上の
+正方形部分の座標がランダムに得られる．
+</p>
+<p>
+<img src="../img/square.png" alt="0-1 の2次元範囲" height="155" width="155">
+</p>
+<p>
+この正方形に内接する円を考える．
+</p>
+<p>
+<img src="../img/sqci.png" alt="0-1 の2次元範囲" height="194" width="309">
+</p>
+<ol>
+<li>
+正方形領域内の一様乱数を多数発生させ，
+そのうち，円内に入った数を計測する．
+</li>
+<li>
+発生した乱数の総数と，円内に入った個数の比
+で，正方形と円の面積比が近似できる．
+</li>
+<li>
+上で求めた比と正方形の面積が 1 であることから円の面積の近似値が得られる．
+</li>
+<li>
+円の面積が π×0.25 であることよりπの近似値が得られる．
+</li>
+</ol>
+
+<h2>
+第 5 回課題
+</h2>
+
+<p>
+<a href="ex-pi.html">課題「乱数を利用したアルゴリズム」</a>
+を読んで第 5 回課題を提出しなさい．
+</p>
+
+<hr>
+<address>
+Updated in December 16, 2004, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

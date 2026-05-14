@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Installing software </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Installing software<br>
+ソフトウェアのインストール</h1>
+
+<h2>コード例の取得</h2>
+<p>
+  p. xxxvii 「コード例の取得」の作業を行う．<a href="https://www.tkd-pbl.com">東京化学同人</a>
+  サイトに行き，キーワード検索で「ダイテル python」を検索して表示される教科書のイメージを
+  クリックして説明を開け．そのページに「コードサンプル（原著）」というリンクがあるのでダウンロードせよ．
+  教科書に従ってDocumentsフォルダに展開せよ．ただしフォルダ名に自分の学生証番号を含ませるなどして
+  別の学生が作業したものと区別できるようにせよ．
+</p>
+<h2>環境の構築</h2>
+<p>
+  xxxviii ページの Anaconda のインストール，Anaconda の更新を行え．
+</p>
+<p>
+  xxxix ページの jupyter-matplotlib のインストールを行え．
+</p>
+<p>
+  「VSCode」でウェブ検索を行い，Visual Studio Code をインストールせよ．<br>
+  左のメニューの下，拡張機能から「Japanese」を検索して「日本語」をインストールせよ．<br>
+ 拡張機能から「python」を検索して「Python」をインストールせよ．
+  </p>
+
+<h2>1.5 IPython と Jupyter Notebook を使ってみる</h2>
+<p>
+p. 8 「1・5・1 IPython の対話モードを電卓として使う」を実習せよ．
+</p>
+<p>
+  p. 9 「1・5・2 IPython インタプリタを用いて Python プログラムを実行する」を実習せよ．
+  ただし，サンプルコードの 17 行目
+</p>
+<div class="embox">
+<pre>
+  axes = sns.barplot(faces, frequencies, palette='bright')  # new bars
+</pre>
+</div> <!-- embox -->
+<p>
+  の部分を
+</p>
+<div class="embox">
+<pre>
+  axes = sns.barplot(x=faces, y=frequencies, palette='bright')  # new bars
+</pre>
+</div> <!-- embox -->
+<p>
+  に変更せよ．
+</p>
+<p>
+  p. 10 「1・5・3 Jupyter Notebook でのスクリプトの作成と実行」を実習せよ．
+</p>
+
+<hr>
+<address>
+Updated in October 15, 2024, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

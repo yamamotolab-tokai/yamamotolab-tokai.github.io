@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> OpenCV </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+OpenCV<br>
+OpenCVの利用</h1>
+
+<h2>Open CV のインストール</h2>
+<p>
+  Windows 左下の検索窓を使って Anaconda Prompt アプリを起動せよ（Mac はターミナルを起動する）．
+</p>
+<p>
+  pip install opencv-python<br>
+  を入力すると OpenCV がインストールされる．
+</p>
+
+<h2>9章のソースコードについて</h2>
+<p>
+  他の章と同様 Google Colaboratory 上での使用を前提としたコードなので
+  いくつか書き換える必要があったり，動作しないコードがある．
+  Google Colaboratory を使う方法は教科書
+  p.20 から書かれている．Google アカウントが必須だが，教科書の
+  全てのコードを実行したい場合はためしてみよ．
+</p>
+<p>
+  授業ではローカルにインストールしたVS Code で実習を行う．教科書の
+  コードについて下記の書き換えを行え．
+</p>
+<p>
+  cv2では本来 cv2.imshow で画像を表示するが，
+  Google Colaboratory では動作しないために替わりに
+  cv2_imshow というコマンドを使っている．
+  授業ではローカルでの使い方にもどすため，
+  p.235 コードの 2 行目の
+</p>
+<div class="embox">
+  from google.colab.patches import cv2_imshow
+  </div>
+<p>
+  をコメントアウトし，9行目の</p>
+<div class="embox">
+  cv2_imshow(img)
+  </div>
+<p>  を</p>
+<div class="embox">
+cv2.imshow("image", img)<br>
+cv2.waitKey(0)<br>
+cv2.destroyAllWindows()
+</div>
+<p>
+  に書き換えよ．cv2.waitKey はいずれかのキーが入力するまで待つ関数である．
+  どれかのキーを押すとプログラムが進んでウィンドウが消える．先に進む時に
+  この表示部分は不要になるのでこの3行をセットでコメントアウトせよ．
+</p>
+<p>
+  p.236-238 のコードは以下のものに差し替えると同様の動作を行える．
+  waitKey()は一枚表示するごとに入れる待ち時間のための関数で，
+  引数はミリ秒である．先に進む場合はこの全体をコメントアウトせよ．
+  （1行目のcap = cv2.VideoCapture("mov/mov01.avi")を
+  次のプログラムでも行なっているため）
+</p>
+<div class="embox">
+cap = cv2.VideoCapture("mov/mov01.avi")<br>
+while True:<br>
+&#160;&#160;&#160;&#160;ret, img = cap.read()<br>
+&#160;&#160;&#160;&#160;cv2.imshow('Video', img)<br>
+&#160;&#160;&#160;&#160;cv2.waitKey(1)<br>
+</div>
+<p>
+  p.239-240のプログラムはそのまま動作する．
+  </p>
+<p>
+  ノック84,85,86のプログラムは最初の例と同様に
+  </p>
+<div class="embox">
+  cv2_imshow(img)
+  </div>
+<p>  を</p>
+<div class="embox">
+cv2.imshow("image", img)<br>
+cv2.waitKey(0)<br>
+cv2.destroyAllWindows()
+</div>
+<p>
+  に書き換えると動作する．
+</p>
+<hr>
+<address>
+Updated in December 19, 2023, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

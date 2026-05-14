@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> regular expression 2</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+File IO<br>
+ファイル入出力</h1>
+
+<h2>5 章</h2>
+
+<p>
+入出力について教科書に従って説明する．
+</p>
+
+<h3>5.7 節</h3>
+<p>
+ファイルをプログラムから読み書きするとき，ファイルハンドルを使用する．
+pl ディレクトリに，任意のテキストデータからなるファイル text1.txt
+を作れ．
+</p>
+
+<p>
+以下のサンプルプログラムを sample06_1.pl という名前で作成し，実行せよ
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+open INFILE, "text1.txt";
+while (&lt;INFILE&gt;) {
+    chomp;
+    print "It was $_ that I saw!\n";
+}
+close INFILE;
+</pre>
+</div> <!-- embox -->
+
+<p>
+プログラム内でユーザが入出力用にファイルをオープンすることができる．
+</p>
+<div class="embox">
+<pre>
+open INFILE, &quot;&lt; file1&quot;;
+open OUTFILE, &quot;&gt; file2&quot;;
+open APPEND, &quot;&gt;&gt; file3&quot;;
+</pre>
+</div> <!-- embox -->
+
+<p>
+は，上から file1 を入力用に開く， file2 を出力用に開く，
+file3 を追加出力用に開くという意味である．それぞれシェルに対して入力す
+る文字と同じ記号が使われている．&gt; は一旦出力用ファイルを空にして
+新しい内容だけを書き込むのに対し，&gt;&gt; は古い内容を残したまま，後
+に新しい内容を追加する．&lt; も &gt; も付かない場合は &lt; を指定した
+のと同じ意味になる．
+</p>
+
+<h3>5.8 節</h3>
+<p>
+ファイルのオープンは失敗する可能性がある．
+</p>
+<div class="embox">
+<pre>
+open INFILE, &quot;&lt; file1&quot;
+  or die &quot;Cannot open: $!&quot;;
+</pre>
+</div> <!-- embox -->
+
+<p>
+をファイルオープンの構文と思い，毎回この構文を使ってオープンを行う．
+</p>
+<p>
+この方法で sample06_1.pl のファイルオープン部分を書き直したものは
+以下のようになる．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+open INFILE, &quot;&lt; text1.txt&quot;
+  or die &quot;Cannot open: $!&quot;;
+while (&lt;INFILE&gt;) {
+    chomp;
+    print "It was $_ that I saw!\n";
+}
+close INFILE;
+</pre>
+</div> <!-- embox -->
+
+<p>
+書き込み用にエラーチェックつきでファイルをオープンしたいときは
+以下のように書く．
+</p>
+<div class="embox">
+<pre>
+open OUTFILE, &quot;&gt; text2.txt&quot;
+  or die &quot;Cannot open: $!&quot;;
+</pre>
+</div> <!-- embox -->
+
+<p>
+sample06_1.pl の出力を text2.txt というファイルに書き出すように
+するには以下のようにすればよい．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+use strict;
+
+open INFILE, &quot;&lt; text1.txt&quot;
+  or die &quot;Cannot open: $!&quot;;
+open OUTFILE, &quot;&gt; text2.txt&quot;
+  or die &quot;Cannot open: $!&quot;;
+while (&lt;INFILE&gt;) {
+    chomp;
+    print OUTFILE "It was $_ that I saw!\n";
+}
+close INFILE;
+close OUTFILE;
+</pre>
+</div> <!-- embox -->
+
+<h3>
+課題8
+</h3>
+<p>
+5.13 練習問題を解け．
+解答プログラムを添付メールとして提出せよ．
+メールの宛先は &lt;hiroshi@tokai.ac.jp&gt; とし，
+Subject (件名）を Seminar 1-8 とせよ．
+</p>
+
+
+<hr>
+<address>
+Updated in December 8, 2009, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

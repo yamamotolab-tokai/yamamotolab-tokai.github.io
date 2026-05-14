@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Natural Language Processing</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Natural Language Processing<br>
+自然言語処理</h1>
+
+<h2>10章のソースコードについて</h2>
+<h3>
+ノック93
+</h3>
+<div class="embox">
+%matplotlib inline
+</div>
+<p>  は Google Colaboratory 用なので不要．p.267 最後の行の後に，</p>
+
+<div class="embox">
+plt.show()
+</div>
+<p>
+  を追加すると動作する．
+</p>
+<h3>
+  ノック94
+</h3>
+<p>
+  p.269 の 1 行目の
+</p>
+<div class="embox">
+!pip install mecab-python3 unidic-lite
+</div>
+<p>
+  はプログラムには書かない．
+    Windows 左下の検索窓を使って Anaconda Prompt アプリを起動し（Mac はターミナルを起動する），
+</p>
+<div class="embox">
+pip install mecab-python3 unidic-lite
+</div>
+<p>
+  を実行せよ．
+  </p>
+<p>
+  p.269 の
+  </p>
+<div class="embox">
+  words = tagger.parse(text).splitlines()
+</div>
+<p>
+  は，上のブロックの処理と違い最後に
+  splitlines() メソッドの処理が加えられている．
+  このメソッドはデータを改行コードを区切りとして分割し，
+  リストとして返すメソッドである．
+  </p>
+<div class="embox">
+  if i == 'EOS' : continue
+</div>
+<p>
+  はMeCabの処理結果の最後の行である EOS という行を読み飛ばす
+  処理である．
+</p>
+<h3>
+  ノック95
+</h3>
+<p>
+  p.270 の
+  </p>
+<div class="embox">
+part = i.split()[4].split("-")[0]
+</div>
+<p>
+  の説明をする．i を split() で分割した [4] 番目は例えば
+  「名詞-普通名詞-一般」のフォーマットで品詞情報が
+  書かれている．これを split("-") で 「-」を区切り文字として
+  分割し，[0] 番，つまり最初のものを取り出しているので
+  '名詞'，'助詞'などの品詞種別が得られる．
+</p>
+<div class="embox">
+  if not (part in parts):continue
+</div>
+<p>
+  でそれが'名詞'でも'動詞'でもない場合にループの処理をスキップする．
+  </p>
+<hr>
+<address>
+Updated in January 16, 2024, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

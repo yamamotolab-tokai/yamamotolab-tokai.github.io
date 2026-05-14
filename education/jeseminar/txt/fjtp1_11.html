@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>CGI</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+CGI<br>
+CGI プログラミング
+</h1>
+
+<h2>
+ヒアドキュメント
+</h2>
+
+<p>
+ヒアドキュメントの記法は
+複数行にわたる文章を出力するのに便利である．
+下のプログラム部分を
+実行してみよ．
+</p>
+<div class="embox">
+<pre>
+print &lt;&lt;Section1;
+This is the first line.
+This is the second line.
+Section1
+</pre>
+</div> <!-- embox -->
+<p>
+この例の Section1 の部分の文字列を終端文字列という．
+終端文字列は変数名と同様，ユーザが決める．
+print &lt;&lt;Section1 の次の行から引用が始まり，
+引用開始に使った終端文字列だけからなる行があると，
+そこで引用は終了する．
+</p>
+<p>
+デフォルトでは二重引用符と同じ引用となり，変数展開が行なわれる．
+終端文字列を一重引用符で囲むことで一重引用符と同じ引用ができる．
+二重引用符を明示的に指示することもできる．
+次のプログラム部分を実行し，違いを確かめよ．
+</p>
+<div class="embox">
+<pre>
+$a = "llama";
+print &lt;&lt;"Section1";
+The valiable is $a.
+Section1
+print &lt;&lt;'Section2';
+The valiable is $a.
+Section2
+</pre>
+</div> <!-- embox -->
+<p>
+HTML 文書の生成など，
+複数行に渡る文字列を出力する場合，個別の print 文を
+書き連ねてもよいが，ヒアドキュメントを利用することもできる．
+つかいやすい方を利用せよ．
+</p>
+<div class="embox">
+<pre>
+print '&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;\n';
+print '&lt;html lang="ja"&gt;\n';
+print '&lt;head&gt;\n';
+</pre>
+</div> <!-- embox -->
+
+<div class="embox">
+<pre>
+print &lt;&lt;'Section1';
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+Section1
+</pre>
+</div> <!-- embox -->
+<p>
+変数展開を行いたい場合は 2 重引用符による引用を
+行う必要があるが，$ などの文字をエスケープしなければならない
+ことに注意せよ．
+</p>
+<div class="embox">
+<pre>
+my $repno = 1;
+print "&lt;title&gt;shortreport $repno \"here-document\"&lt;/title&gt;";
+</pre>
+</div> <!-- embox -->
+
+
+<h2>
+CGI
+</h2>
+
+<p>
+CGI プログラムは，HTML 文書(とヘッダ)を生成するプログラムと思えば理解
+しやすい．ユーザは通常の静的な HTML 文書と同様に CGI プログラムにリク
+エストを行う．CGI プログラムが動作し，ヘッダと HTML 文書を生成し，
+ユーザに返す．ユーザからは静的な HTML と同様に利用できる．
+</p>
+
+<h3>
+簡単な CGI プログラム
+</h3>
+<p>
+CGI プログラムとして標準出力へヘッダと HTML 本体を出力するプログラムを
+書けばよい．
+</p>
+<p>
+antares のホームディレクトリの下に public_html ディレクトリがある.
+ここに他人から読み出し可能のパーミッションで置かれたファイルは
+ウェブ上に公開さる．この public_html 直下に cig-bin というディレクトリ
+を作成せよ．public_html, cgi-bin のパーミッションはどちらも 755 に
+なっているか確認せよ．
+<p>
+
+</p>
+下記のプログラムを antares 上で
+ ~/public_html/cgi-bin/first.cgi として作成せよ．
+</p>
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+
+print &lt;&lt;'Section1';
+Content-type: text/html
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=euc-jp"&gt;
+&lt;title&gt;my first CGI&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;p&gt;This is my first CGI page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+Section1
+</pre>
+</div> <!-- embox -->
+
+<p>
+cgi-bin ディレクトリで ls -l first.cgi コマンドを実行し，アクセス権が
+-rwxr-xr-x となっていることを確認し，コマンドラインから実行せよ．
+異なっている場合は chmod 755 first.cgi コマンドを実行し，正しく設定せ
+よ．
+</p>
+<p>
+ブラウザから<br>
+http://www.yamamotolab.je.u-tokai.ac.jp/%7Eusername/cgi-bin/first.cgi<br>
+としてアクセスしてみよ．
+</p>
+<p>
+次に This is my first CGI page. の代りに date コマンドの結果を表示する CGI
+プログラムを作成する．
+</p>
+<p>
+ここでは
+&lt;p&gt;This is my first CGI page.&lt;/p&gt; を出力する部分，
+その前を出力する部分，後ろを出力する部分に分割する方針で作成する．
+This is my first CGI page. を出力するプログラムを以下のように書き変え
+よ．
+</p>
+
+<div class="embox">
+<pre>
+#!/usr/bin/perl -w
+
+print &lt;&lt;'Section1';
+Content-type: text/html
+
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=euc-jp"&gt;
+&lt;title&gt;my first CGI&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Hello world!&lt;/h1&gt;
+Section1
+
+print "&lt;p&gt;";
+print "This is my first CGI page.";
+print "&lt;/p&gt;\n";
+
+print &lt;&lt;'Section2';
+&lt;/body&gt;
+&lt;/html&gt;
+Section2
+</pre>
+</div> <!-- embox -->
+<p>
+一般の perl プログラムでできる処理を
+行うことができる．
+print "This is my first CGI page."; の部分を
+print `date`; に変更することで目的のプログラムを作成できる．
+</p>
+
+<h2>
+第 6 回課題
+</h2>
+
+<p>
+<a href="ex-genhtml.html">課題「HTML 文書の生成」</a>
+を読んで第 6 回課題を提出しなさい．
+</p>
+
+<hr>
+<address>
+Updated in December 18, 2007, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

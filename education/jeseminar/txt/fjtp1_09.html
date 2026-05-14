@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>file operation</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+File operation<br>
+ファイル操作
+</h1>
+
+<h2>10章</h2>
+<p>
+10.7節，for より foreach を使うほうが perl らしい書き方．
+</p>
+<p>
+10.9節，論理演算子 &quot;&amp;&amp;&quot;&quot;||&quot;
+は C 言語と同様．ショートカットが行われることに注意．
+これが「制御構造」の章に演算子の内容が書いてある理由である．
+</p>
+
+<h2>11章 ファイル</h2>
+<h3>
+11.1 標準入出力
+</h3>
+<p>
+&lt;STDIN&gt;,&lt;STDOUT&gt; など，自動的にオープンされている
+ファイルハンドルは，特別なことをしなくても利用できる．
+&lt;STDIN&gt; は標準入力，&lt;STDOUT&gt; は標準出力を示す．
+プログラムがキーボードから入力したり，ファイルから入力したりで
+きるように OS が入出力先を抽象化している．
+</p>
+<p>
+デフォルトでは
+標準入力 はキーボードに，標準出力 はディスプレイに
+接続されている．コマンドラインで &quot;&lt;&quot; や 
+&quot;&gt;&quot; 記号を使って接続先をファイルに変更することが
+できる．これは Unix の「シェル」の機能である．
+</p>
+<p>
+p.122 のパターンテストプログラムを例に説明する．
+&quot;&lt;&gt;&quot; 演算子は(コマンドラインからファイル名が与えられない場
+合は) STDIN から読み込みを行う．&quot;print&quot; 文は，後述の
+ファイルハンドルが明記されない場合，STDOUT へ書き出す．
+p.122 のパターンテストプログラムは標準入力から読み出しを行い，
+標準出力へ書き込むプログラムである．
+</p>
+<p>
+Unix のシェルに対して &quot;&lt;&quot; 記号を用いて標準入力を
+ファイルへ変更することができる．p.122 のパターンテストプログラム
+のファイル名が match.pl であれば，コマンドラインへ
+</p>
+<div class="embox">
+<pre>
+% ./match.pl &lt; indata
+</pre>
+</div> <!-- embox -->
+
+<p>
+と入力することで標準入力をキーボードから indata という名前のファイルへ
+切り換えることができる．上記コマンドを入力する前にキーボードから入力予
+定であったものをそのまま書きこんだファイル indata をカレントディレクト
+リに作成し，実行してみよ．
+</p>
+
+<p>
+&quot;&gt;&quot; 記号を用いて標準出力を
+ファイルへ変更することができる．
+コマンドラインへ
+</p>
+<div class="embox">
+<pre>
+% ./match.pl &lt; indata &gt; outdata
+</pre>
+</div> <!-- embox -->
+
+<p>
+と入力することで indata という名前のファイルから入力し，
+outdata という名前のファイルへ出力するように変更できる．
+実行して確認せよ．
+</p>
+
+<h3>
+11.2 ファイルハンドルのオープン
+</h3>
+<p>
+前節のように自動でオープンされているファイルハンドルに
+プログラムの外からファイルを割り当てるやりかたの他に，
+プログラム内でユーザが入出力用にファイルをオープンすることができる．
+</p>
+<div class="embox">
+<pre>
+open INFILE, &quot;&lt; file1&quot;;
+open OUTFILE, &quot;&gt; file2&quot;;
+open APPEND, &quot;&gt;&gt; file3&quot;;
+</pre>
+</div> <!-- embox -->
+
+<p>
+は，上から file1 を入力用に開く， file2 を出力用に開く，
+file3 を追加出力用に開くという意味である．それぞれシェルに対して入力す
+る文字と同じ記号が使われている．&gt; は一旦出力用ファイルを空にして
+新しい内容だけを書き込むのに対し，&gt;&gt; は古い内容を残したまま，後
+に新しい内容を追加する．&lt; も &gt; も付かない場合は &lt; を指定した
+のと同じ意味になる．
+</p>
+<div class="embox">
+<pre>
+% ./match.pl &lt; indata &gt;&gt; outdata
+</pre>
+</div> <!-- embox -->
+<p>
+を実行してシェルに対して同様の出力を指定することができる．
+</p>
+
+<div class="embox">
+<pre>
+close INFILE;
+</pre>
+</div> <!-- embox -->
+
+<p>
+で，INFILE というファイルハンドルでオープンしていたファイルをクローズ
+できる．使い終ったファイルはすみやかにクローズすべきである．
+</p>
+<p>
+11.3 die
+</p>
+<p>
+ファイルのオープンは失敗する可能性がある．
+</p>
+<div class="embox">
+<pre>
+open INFILE, &quot;&lt; file1&quot;
+  or die &quot;Cannot open file1: $!&quot;;
+</pre>
+</div> <!-- embox -->
+
+<p>
+をファイルオープンの構文と思い，毎回この構文を使ってオープンを行う．
+</p>
+
+<p>
+p.122 のパターンチェックプログラムを indata という名前のファイルから入
+力するように変更するには，while ループの前に
+</p>
+<div class="embox">
+<pre>
+open INFILE, &quot;&lt; indata&quot;
+  or die &quot;Cannot open indata: $!&quot;;
+</pre>
+</div> <!-- embox -->
+<p>
+を挿入し，while ループのテスト式を
+</p>
+<div class="embox">
+<pre>
+while (&lt;INFILE&gt;){
+</pre>
+</div> <!-- embox -->
+<p>
+に変更すればよい．変更して確認せよ．
+</p>
+<p>
+同じプログラムを outdata という名前のファイルへ出力する
+ように変更するには，while ループの前に
+</p>
+<div class="embox">
+<pre>
+open OUTFILE, &quot;&gt; outdata&quot;
+  or die &quot;Cannot create outdata: $!&quot;;
+</pre>
+</div> <!-- embox -->
+<p>
+を挿入して出力用にファイルハンドル OUTFILE を開き，
+print 文と引数リストの間にファイルハンドルを書けばよい．
+すなわち，もとのプログラムで print と書いてあるところを
+print OUTFILE に書きなおす．実際に変更して確認せよ．
+</p>
+
+<h2> 第 4 回課題「ファイル入出力」</h2>
+<p>
+<a href="ex-file.html">第 4 回課題「ファイル入出力」</a>
+を読んで第 4 回課題を提出しなさい．
+</p>
+
+
+
+<hr>
+<address>
+Updated in November 27, 2007, 
+<a href="schedule.html">schedule</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

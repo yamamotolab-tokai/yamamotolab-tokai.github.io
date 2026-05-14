@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> CSV </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="schedule.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print"
+ href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Handling of CSV<br>
+CSVファイルの扱い</h1>
+
+
+<h2>8. 文字列：より詳しく．
+</h2>
+<p>
+  8.13 節の内容を実習する．
+</p>
+<p>
+  p.194 スニペット In [4] の
+</p>
+<div class="embox">
+<pre>
+zips.str.match(r'\d{5}')
+</pre>
+</div> <!-- embox -->
+<p>
+  のように開始引用符の前に「r」がついている文字列は
+  r <strong>raw 文字列</strong>（p.186）である．
+  普通の文字列では「\」は改行文字を示す'\n'などの
+  エスケープシーケンスに使うため「\」そのものを示すには
+  '\\'としなければいけない．raw 文字列ではバックスラッシュを
+  エスケープ文字と解釈しないので '\' だけで記述できる．
+  正規表現では 「\」文字を多用するので raw 文字列で書くことが多い．
+  </p>
+
+<h2>9．ファイルと例外
+</h2>
+<p>
+  9.12 節の内容を実習する．
+</p>
+<p>
+  p.215 スニペット In [2] の with 文の説明は p.200 にある．
+  ファイルは処理をする前にオープンし，処理を行った後に
+  クローズしないといけないが，with 文を使用することで
+  この一連の手順がわかりやすくなる．
+</p>
+<p>
+  p.215 下から3行目の
+</p>
+<div class="embox">
+<pre>
+[100, 'Jones, Sue', 24.98]
+</pre>
+</div> <!-- embox -->
+<p>
+  はpython としては<br><br>
+  100<br>
+  Jones, Sue<br>
+  24.98<br><br>
+  の 3 つの要素をもつリストである．
+  CSV 形式のファイルとして書き出すときはカンマを含む文字列は二重引用符で囲むように書き換えられる．
+</p>
+<p>
+  p.218 スニペット In [3] の 'precision' は 'display.precision' に変更する必要がある．
+</p>
+<hr>
+<address>
+Updated in November 14, 2025, 
+<a href="index.html">index</a>,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>
