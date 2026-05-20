@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> misc </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+
+<link rel="START" 
+href="http://www.yamamotolab.je.u-tokai.ac.jp/index.html">
+<link rel="PREV" href="/hiroshi/index.html">
+<link rel="stylesheet"
+ href="../../css/yh.css">
+</head>
+<body>
+<h1 class="title">
+misc.<br>
+その他
+</h1>
+<h2>
+趣味など
+</h2>
+<h3>
+モーターススポーツ
+</h3>
+<ul>
+<li>
+<a href="car.html">鈴鹿サーキット南コース</a>
+</li>
+<li>
+<a href="az.html">AZ山梨レンタルカート</a>
+</li>
+<li>
+<a href="oiso.html">湘南シーサイドGP</a>
+</li>
+</ul>
+
+<h3>
+音楽
+</h3>
+<ul>
+<li>
+<a href="tenor.html">声楽</a>
+</li>
+</ul>
+<h2>
+文法チェック
+</h2>
+<p>
+HTML の文法をチェックするサーバのミラーサーバ
+<a
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/cgi-bin/htmllint/htmllint.html">
+Another HTML-lintミラー</a> 
+</p>
+<hr>
+<address>
+Updated in February 6, 2016,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/">Yamamoto Hiroshi,</a>
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/">Yamamoto Labo.</a>
+</address>
+</body>
+</html>
