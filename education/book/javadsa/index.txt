@@ -1,0 +1,17 @@
+Introduction to Java Information Media Algorims Javaによる情報メディアアルゴリズム入門
+書籍情報
+ 大原茂之，菊池浩明，濱本和彦，山本宙著，「Java による情報メディアアルゴリズム入門」， 日新出版株式会社， ISBN 4-8173-0218-6，（2004年4月）
+正誤表
+	•	教科書 p.8 訂正
+	•	教科書 p.13 訂正
+	•	教科書 p.23 訂正
+	•	教科書 p.24 訂正
+	•	教科書 p.25 訂正
+教科書記載のソースコード
+	•	StackEx.java (スタック,教科書 p.37 より)
+	•	QueueEx.java (キュー,教科書 p.43 より)
+	•	ListTest.java (リスト,教科書 p.48 より)
+	•	Heap.java (ヒープ,教科書 p.97 より)
+	•	FImageTest.java (画像処理,教科書 p.110 より)
+
+Updated on February 6, 2019, Yamamoto Hiroshi
