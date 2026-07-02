@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> check about short report 03</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp">
+<link rel="START" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/index.html">
+<link rel="PREV" href="index.html">
+ <link rel="stylesheet" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Check for short report 3 <br>
+3 クラス第 3 回ミニレポートチェックページ
+</h1>
+<ul>
+<li> 0: チェック済です．</li>
+<li> 1: 指定の場所に report03.c がありません．</li>
+<li> 2: プログラム中に position_search が使用されていません．</li>
+<li> 3: コンパイルに失敗しました．</li>
+<li> 4: 実行時間が 1 分を超えました．</li>
+<li> 5: 実行結果が正しくありません．</li>
+</ul>
+<p>
+の順にチェックし，確定したところで評価をやめます．
+</p>
+<ul>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31024c03.txt">4CJE3102 </a>
+ 1: 指定の場所に report03.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31194c03.txt">4CJE3119 </a>
+ 1: 指定の場所に report03.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31254c03.txt">4CJE3125 </a>
+ 1: 指定の場所に report03.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31314c03.txt">4CJE3131 </a>
+ 3: コンパイルに失敗しました．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32024c03.txt">4CJE3202 </a>
+ 5: 実行結果が正しくありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32164c03.txt">4CJE3216 </a>
+ 1: 指定の場所に report03.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32184c03.txt">4CJE3218 </a>
+ 1: 指定の場所に report03.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32354c03.txt">4CJE3235 </a>
+ 5: 実行結果が正しくありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32424c03.txt">4CJE3242 </a>
+ 1: 指定の場所に report03.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32464c03.txt">4CJE3246 </a>
+ 2: プログラム中に position_search が使用されていません．</li>
+</ul>
+<pre>テスト用 main
+int main(void)
+{
+    int k, position;
+
+    table[0].key =  1; table[0].data = 200;
+    table[1].key =  3; table[1].data = 350;
+    table[2].key =  4; table[2].data = 520;
+    table[3].key =  8; table[3].data = 150;
+    table[4].key = 14; table[4].data = 920;
+    table[5].key = 14; table[5].data = 360;
+    table[6].key = 14; table[6].data = 250;
+    table[7].key = 20; table[7].data = 260;
+    table[8].key = 21; table[8].data = 950;
+    table[9].key = 25; table[9].data = 260;
+    n = 10;
+    k = 0;
+    position = position_search(k);
+    printf("key %d の挿入位置は %d です．\n", k, position);
+    k = 14;
+    position = position_search(k);
+    printf("key %d の挿入位置は %d です．\n", k, position);
+    k = 22;
+    position = position_search(k);
+    printf("key %d の挿入位置は %d です．\n", k, position);
+    k = 26;
+    position = position_search(k);
+    printf("key %d の挿入位置は %d です．\n", k, position);
+} 
+</pre>
+<pre>正解出力
+key 0 の挿入位置は 0 です．
+key 14 の挿入位置は 7 です．
+key 22 の挿入位置は 9 です．
+key 26 の挿入位置は 10 です．
+</pre>
+<hr>
+<address>
+Updated in 2025-02-06T00:01:25+09:00
+,
+<a href="mrp.html">short report</a>,
+<a href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/">Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

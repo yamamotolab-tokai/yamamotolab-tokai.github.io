@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> check about short report 07</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp">
+<link rel="START" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/index.html">
+<link rel="PREV" href="index.html">
+ <link rel="stylesheet" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Check for short report 7 <br>
+3 クラス第 7 回ミニレポートチェックページ
+</h1>
+<ul>
+<li> 0: チェック済です．</li>
+<li> 1: 指定の場所に report07.c がありません．</li>
+<li> 2: プログラム中に preorder inorder postorder が使用されていません．</li>
+<li> 3: コンパイルに失敗しました．</li>
+<li> 4: 実行時間が 1 分を超えました．</li>
+<li> 5: 実行結果が正しくありません．</li>
+</ul>
+<p>
+の順にチェックし，確定したところで評価をやめます．
+</p>
+<ul>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31024c07.txt">4CJE3102 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31084c07.txt">4CJE3108 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31154c07.txt">4CJE3115 </a>
+ 3: コンパイルに失敗しました．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31184c07.txt">4CJE3118 </a>
+ 5: 実行結果が正しくありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31194c07.txt">4CJE3119 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31254c07.txt">4CJE3125 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31414c07.txt">4CJE3141 </a>
+ 5: 実行結果が正しくありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31454c07.txt">4CJE3145 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32014c07.txt">4CJE3201 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32164c07.txt">4CJE3216 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32184c07.txt">4CJE3218 </a>
+ 1: 指定の場所に report07.c がありません．</li>
+</ul>
+<pre>テスト用 main
+int main(void)
+{
+    struct node *root, *ap, *bp, *cp, *dp;
+
+    if ((ap = malloc(sizeof(struct node))) == NULL) /* 節 a 作成 */
+        exit(1);
+    if ((bp = malloc(sizeof(struct node))) == NULL) /* 節 b 作成 */
+        exit(1);
+    if ((cp = malloc(sizeof(struct node))) == NULL) /* 節 c 作成 */
+        exit(1);
+    if ((dp = malloc(sizeof(struct node))) == NULL) /* 節 d 作成 */
+        exit(1);
+    ap->label = 'a';                          /* 節 a の値を設定 */
+    bp->label = 'b';                          /* 節 b の値を設定 */
+    cp->label = 'c';                          /* 節 c の値を設定 */
+    dp->label = 'd';                          /* 節 d の値を設定 */
+    ap->left = bp;                      /* a の左の子に b を登録 */
+    ap->right = dp;                     /* a の右の子に d を登録 */
+    bp->left = cp;                      /* b の左の子に c を登録 */
+    bp->right = NULL;                   /* b の右は NULL         */
+    cp->left = NULL;                    /* c の左は NULL         */
+    cp->right = NULL;                   /* c の右は NULL         */
+    dp->left = NULL;                    /* d の左は NULL         */
+    dp->right = NULL;                   /* d の右は NULL         */
+    root = ap;        /* 根を指すためのポインタ root に a を登録 */
+
+    printf("preorder\n");
+    preorder(root);
+    printf("inorder\n");
+    inorder(root);
+    printf("postorder\n");
+    postorder(root);
+    printf("End\n");
+}
+</pre>
+<pre>正解出力
+preorder
+節aに立ち寄りました
+節bに立ち寄りました
+節cに立ち寄りました
+節dに立ち寄りました
+inorder
+節cに立ち寄りました
+節bに立ち寄りました
+節aに立ち寄りました
+節dに立ち寄りました
+postorder
+節cに立ち寄りました
+節bに立ち寄りました
+節dに立ち寄りました
+節aに立ち寄りました
+End
+</pre>
+<hr>
+<address>
+Updated in 2025-02-06T00:02:12+09:00
+,
+<a href="mrp.html">short report</a>,
+<a href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/">Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> check about short report 04</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp">
+<link rel="START" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/index.html">
+<link rel="PREV" href="index.html">
+ <link rel="stylesheet" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Check for short report 4 <br>
+1 クラス第 4 回ミニレポートチェックページ
+</h1>
+<ul>
+<li> 0: チェック済です．</li>
+<li> 1: 指定の場所に report04.c がありません．</li>
+<li> 2: プログラム中に print_all が使用されていません．</li>
+<li> 3: コンパイルに失敗しました．</li>
+<li> 4: 実行時間が 1 分を超えました．</li>
+<li> 5: 実行結果が正しくありません．</li>
+</ul>
+<p>
+の順にチェックし，確定したところで評価をやめます．
+</p>
+<ul>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je11194c04.txt">4CJE1119 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je11274c04.txt">4CJE1127 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je11374c04.txt">4CJE1137 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12074c04.txt">4CJE1207 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12124c04.txt">4CJE1212 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12134c04.txt">4CJE1213 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12184c04.txt">4CJE1218 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12214c04.txt">4CJE1221 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12294c04.txt">4CJE1229 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12314c04.txt">4CJE1231 </a>
+ 5: 実行結果が正しくありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12424c04.txt">4CJE1242 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je12444c04.txt">4CJE1244 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22304c04.txt">4CJE2230 </a>
+ 1: 指定の場所に report04.c がありません．</li>
+</ul>
+<pre>テスト用 main
+int main(void)
+{
+    struct CELL *ap, *bp, *cp, *dp, *ep;
+
+    printf("test1\n");
+    header.next = NULL;
+    print_all();
+    printf("test2\n");
+    if ((ap = malloc(sizeof(struct CELL *))) == NULL)
+        exit(1);
+    if ((bp = malloc(sizeof(struct CELL *))) == NULL)
+        exit(1);
+    if ((cp = malloc(sizeof(struct CELL *))) == NULL)
+        exit(1);
+    if ((dp = malloc(sizeof(struct CELL *))) == NULL)
+        exit(1);
+    header.next = ap; /*header.next が最初の要素を指す*/
+    ap->value = 2;
+    ap->next = bp;    /*最初の要素のnextが2個目の要素を指す*/
+    bp->value = 5;
+    bp->next = cp;    /*2個目の要素のnextが3個目の要素を指す*/
+    cp->value = 12;
+    cp->next = dp;    /*3個目の要素のnextが最後の要素を指す*/
+    dp->value = -4;
+    dp->next = NULL;  /*最後の要素のnextは何も指さない*/
+    print_all();
+    printf("test3\n");
+    if ((ep = malloc(sizeof(struct CELL *))) == NULL)
+        exit(1);
+    dp->next = ep;
+    ep->value = 3;
+    ep->next = NULL;
+    print_all();
+    printf("End\n");
+}
+</pre>
+<pre>正解出力
+test1
+
+test2
+2 5 12 -4 
+test3
+2 5 12 -4 3 
+End
+</pre>
+<hr>
+<address>
+Updated in 2025-02-06T00:01:30+09:00
+,
+<a href="mrp.html">short report</a>,
+<a href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/">Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

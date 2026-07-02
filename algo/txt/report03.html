@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> position_search </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+position_search (binary search) <br>
+挿入位置の探索
+</h1>
+
+<h2>
+ミニレポート第 3 回課題
+</h2>
+
+<p>
+<a href="report02.html">第2回課題</a>で作成した
+プログラムに以下に述べる関数 position_search を追加する．
+（report02.c を report03.c という名前でコピーし，
+report03.c のほうに書き加える）
+</p>
+<p>
+関数 position_search は，データを挿入するときに配列 table 
+中の挿入するべき場所の<strong>添字</strong>を返すを関数である．
+仕様は以下の通りとする．
+</p>
+<h3>position_searchの仕様</h3>
+<ul>
+<li>
+前提：教科書List2.1の table 配列に要素がメンバ key の値が昇順に
+なるようにあらかじめ整列された状態で格納されており，
+要素の個数はグローバル変数 n に格納されている．
+（例は<a href="http://localhost/~hiroshi/education/algo/txt/algo01.html#list02data">授業ページ図1.3</a>）
+</li>
+<li>
+引数：整数とする．
+</li>
+<li>
+  返り値：table にキーの値が入力値であるような要素を追加
+  する場合の適当な位置の添え字を返す．入力値と等しい値をキーとする
+  要素がすでにあった場合はその最後に挿入するとしてその位置の
+  添え字を返す．関数の書き出しは<br>
+  int position_search(int key)<br>
+  でよい．
+例えば配列 table が以下の内容であるとき，
+<table border="1" rules="all" summary="table">
+<tr>
+<td> </td><td>keyの値</td><td>dataの値</td>
+</tr>
+<tr>
+<td>table[0]</td><td>1</td><td>200</td>
+</tr>
+<tr>
+<td>table[1]</td><td>3</td><td>350</td>
+</tr>
+<tr>
+<td>table[2]</td><td>4</td><td>520</td>
+</tr>
+<tr>
+<td>table[3]</td><td>8</td><td>150</td>
+</tr>
+<tr>
+<td>table[4]</td><td>14</td><td>920</td>
+</tr>
+<tr>
+<td>table[5]</td><td>14</td><td>360</td>
+</tr>
+<tr>
+<td>table[6]</td><td>18</td><td>250</td>
+</tr>
+<tr>
+<td>table[7]</td><td>20</td><td>260</td>
+</tr>
+<tr>
+<td>table[8]</td><td>21</td><td>950</td>
+</tr>
+<tr>
+<td>table[9]</td><td>25</td><td>260</td>
+</tr>
+</table>
+position_search に与えられた引数が 2 であれば key が 1,
+data が 200 である最初のデータの後（今は table[1] のデータが入っている場所）
+に挿入するのが正しいので position_search は添字 1 を返す．
+引数が 4であれば添字 3 を返し，
+引数が14であれば添字 6 を返す．
+引数が26であれば添字 10 を返す．
+</li>
+<li>
+  position_search 内ではキーボードからの入力や
+  画面への出力を行なってはならない．
+</li>
+</ul>
+<p>ヒント1：
+教科書 List 2.1 の search は整数を引数とする関数で，
+配列 table の要素の中にメンバ key の値が引数で指定した
+ものがあれば，そのメンバ data の値を返し，
+無ければ -1 を返す関数である．これを参考に position_search を
+作ることができる．余裕のある学生は教科書 List 2.2 の binary_search を
+ベースに作るほうが難易度は高いが高速なのでチャレンジして欲しい．
+</p>
+
+<p>ヒント2：
+いきなり完成品を作ろうとせずに以下の順で作ってテストしてみるとよい．
+</p>
+<ol>
+  <li>
+まずは関数の入力値 key が table 内に存在するキー
+（1,3,4,8,14,18,20,21,25）だったときだけ
+正しく動くものでいいので，
+そのキーがある番号（配列tableの添字，0から9）を返す
+関数を作る．
+  </li>
+  <li>
+    まず，key の値が table 内の table[i].key の最大値
+    より小さい場合（上の例ではkeyが24以下のとき）だけを
+    考えて，そういうときに正しく課題 3 の答えを
+    計算するプログラムを作る．
+    上の段階のプログラムは i を 0 から増やしてゆき，
+    table[i].key が key と等しくなるまで i を増やす，
+    という形になるはずである．これを変更して
+    table[i].key が key の値を初めて超えたとき，
+    その i を返すようにする．この i の値が
+    この課題で求める挿入すべき場所の添字 i の値になる．
+  </li>
+  <li>
+残りは key の値が table 内の table[i].key の最大値
+以上の場合にも正しく動くように調整することである．
+この場合は table[i].key が key の値を超えないので
+上記プログラムだけでは対応できない．その対応を考える．
+  </li>
+</ol>
+<h3>プログラム全体についての注意</h3>
+<ul>
+<li>
+ファイル名は report03.c とする
+</li>
+<li>
+プログラム全体としては<a href="report02.html">第2回課題</a>
+で作成したものをベースにして
+それに posision_search を追加したものを作成せよ．
+以前に作成した関数には手を加えず，(binary_search 関数や
+table 構造体の中を変更してはいけない．print_all もデバッグに
+便利なので残すこと）
+教科書List2.2 に書かれている部分とmain 関数との間に
+関数 position_search（や必要であれば自作関数）を挿入せよ．
+</li>
+<li>
+main 関数を適当に何度か書き換えて動作させ，
+position_search
+が正しく動作していることを確認せよ．
+提出時の 
+report03.c の main 関数内はどんなものでもよい．
+</li>
+</ul>
+
+<h3>注意事項</h3>
+<ul>
+<li>
+  締切は
+  <!--#include file="ddateR03C1.txt"-->
+  とする．
+</li>
+</ul>
+
+<!--
+<p>
+受理した学生のリストを
+<a href="report1c03r.html"> 1 クラス提出者</a>
+<a href="report2c03r.html"> 2 クラス提出者</a>
+<a href="report3c03r.html"> 3 クラス提出者</a>
+に掲載する．
+締切までに提出したにもかかわらず締切後一週間を過ぎても掲載されていない
+場合は山本 &lt;hiroshi@tokai.ac.jp&gt;まで連絡せよ．
+未提出の学生はすみやかに再提出せよ．
+再提出後一週間経っても掲載されない場合も
+山本まで連絡せよ．
+</p>
+-->
+<hr>
+<address>
+Updated in October 6, 2025, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

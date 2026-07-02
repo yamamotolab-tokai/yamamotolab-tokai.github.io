@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> print_all (linked list) </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+print_all (linked list) <br>
+連結リストでの要素の出力
+</h1>
+
+<h2>
+ミニレポート第 4 回課題
+</h2>
+
+<p>
+<a href="algo04.html#fig4_5">第5回授業図4.5</a>の
+プログラムに以下に述べる関数 print_all を追加する．
+</p>
+
+<h3>print_allの仕様</h3>
+<p>前提：以下の通りとする．第5回授業図4.5 と同じ前提である．</p>
+<ul>
+<li>
+リスト要素の構造体
+struct CELL が定義されており，struct CELL 型の
+グローバル変数 header が宣言されている．
+</li>
+<li>
+header.next は連結リストの最初の要素を指す
+ポインタであり，連結リストが空のときは NULL が格納されている．
+</li>
+<li>
+各要素の next メンバが次の要素を指している．最後の要素の
+next メンバには NULL が格納されている．
+</li>
+<li>
+  引数と戻り値は無い．
+  </li>
+</ul>
+<p>
+関数定義の書き出しは  void print_all(void)
+  となる．
+</p>
+<p>
+  出力：連結リストの要素全てを空白をはさんで順に出力し，
+  最後に改行を出力する．
+例えば<a href="algo04.html#fig4_5">第5回授業図4.5</a>の
+リストであれば
+</p>
+<div class="embox">
+<pre>
+2 5 12 -4
+</pre>
+</div>
+<p>
+と出力されればよい．例とは異なる要素数でも
+正しく出力されるように作れ．また，リストが空の時は改行だけが出力される
+ようにせよ．
+</p>
+<h3>プログラム全体についての注意</h3>
+<ul>
+<li>
+ファイル名は report04.c とする
+</li>
+<li>
+プログラム全体としては
+<a href="algo04.html#fig4_5">第5回授業図4.5</a>
+をベースにして
+それに print_all を追加したものを作成せよ．
+main 関数の前に
+関数 print_all（や必要であれば自作関数）を挿入せよ．
+</li>
+<li>
+main 関数を適当に何度か書き換えて動作させ，
+print_all
+が正しく動作していることを確認せよ．
+提出時の 
+report04.c の main 関数内はどんなものでもよい．
+</li>
+</ul>
+
+<h3>注意事項</h3>
+<ul>
+<li>
+  締切は
+  <!--#include file="ddateR04C1.txt"-->
+  とする．提出方法は担当教員の指示に従え．
+</li>
+</ul>
+<!--
+<p>
+受理した学生のリストを
+<a href="report1c04r.html"> 1 クラス提出者</a>
+<a href="report2c04r.html"> 2 クラス提出者</a>
+<a href="report3c04r.html"> 3 クラス提出者</a>
+に掲載する．
+締切までに提出したにもかかわらず締切後一週間を過ぎても掲載されていない
+場合は山本 &lt;hiroshi@tokai.ac.jp&gt;まで連絡せよ．
+未提出の学生はすみやかに再提出せよ．
+再提出後一週間経っても掲載されない場合も
+山本まで連絡せよ．
+</p>
+-->
+<hr>
+<address>
+Updated in October 13, 2025, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

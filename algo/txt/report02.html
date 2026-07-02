@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> print </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+print  <br>
+要素の出力
+</h1>
+
+<h2>
+ミニレポート第 2 回課題
+</h2>
+
+<p>
+<a href="report01.html">第1回課題</a>で作成した
+教科書List 2.2 を完成させたプログラムに
+関数 print_all を追加する．（report01.c を report02.c という名前でコピーし，
+report02.c のほうに書き加える）
+関数 print_all 仕様は以下の通りとする．
+</p>
+<h3>print_allの仕様</h3>
+<ul>
+<li>
+前提：教科書List2.2の table 配列に要素が格納されており，
+要素の個数はグローバル変数 n に格納されている．
+</li>
+<li>
+  引数と戻り値は無い．関数定義の書き出しは<br>
+  void print_all(void)<br>
+  となる．
+</li>
+<li>
+出力：画面に
+配列 table の全要素（0番からn-1番）の添字，
+メンバ key, data の値を添字の順に出力する．
+例えば配列 table が以下の内容であり，グローバル変数
+n の値が 10 であるとき，
+<table border="1" rules="all" summary="table">
+<tr>
+<td> </td><td>keyの値</td><td>dataの値</td>
+</tr>
+<tr>
+<td>table[0]</td><td>1</td><td>1</td>
+</tr>
+<tr>
+<td>table[1]</td><td>3</td><td>2</td>
+</tr>
+<tr>
+<td>table[2]</td><td>4</td><td>3</td>
+</tr>
+<tr>
+<td>table[3]</td><td>8</td><td>4</td>
+</tr>
+<tr>
+<td>table[4]</td><td>14</td><td>5</td>
+</tr>
+<tr>
+<td>table[5]</td><td>14</td><td>6</td>
+</tr>
+<tr>
+<td>table[6]</td><td>18</td><td>7</td>
+</tr>
+<tr>
+<td>table[7]</td><td>20</td><td>8</td>
+</tr>
+<tr>
+<td>table[8]</td><td>21</td><td>9</td>
+</tr>
+<tr>
+<td>table[9]</td><td>25</td><td>10</td>
+</tr>
+</table>
+以下のように出力される．
+<div class="embox" id="print_allOutput">
+<pre>
+0:key=1,data=1
+1:key=3,data=2
+2:key=4,data=3
+3:key=8,data=4
+4:key=14,data=5
+5:key=14,data=6
+6:key=18,data=7
+7:key=20,data=8
+8:key=21,data=9
+9:key=25,data=10
+</pre>
+</div> <!-- embox -->
+<p>図r2.1 print_all の出力例1</p>
+
+また，配列 table が以下の内容であり，グローバル変数
+n の値が 3 であるとき，
+
+<table border="1" rules="all" summary="table">
+<tr>
+<td> </td><td>keyの値</td><td>dataの値</td>
+</tr>
+<tr>
+<td>table[0]</td><td>1</td><td>1</td>
+</tr>
+<tr>
+<td>table[1]</td><td>3</td><td>2</td>
+</tr>
+<tr>
+<td>table[2]</td><td>4</td><td>3</td>
+</tr>
+</table>
+以下のように出力される．
+<div class="embox">
+<pre>
+0:key=1,data=1
+1:key=3,data=2
+2:key=4,data=3
+</pre>
+</div> <!-- embox -->
+<p>図r2.2 print_all の出力例2</p>
+
+出力フォーマットも上記出力例に合わせたものにせよ．
+グローバル変数 n の値が 0 のときは何も出力してはいけないことに
+注意せよ．
+</li>
+</ul>
+<h3>プログラム全体についての注意</h3>
+<ul>
+<li>
+ファイル名は report02.c とする
+</li>
+<li>
+プログラム全体としては<a href="report01.html">第1回課題</a>
+で作成した教科書List 2.2 を完成させたものをベースにして
+それに print_all を追加したもを作成せよ．
+教科書List2.2 にある部分には手を加えず，(binary_search 関数や
+構造体の定義を変更してはいけない）
+教科書List2.2 に書かれている部分の
+後に関数 print_all を挿入せよ．
+</li>
+<li>
+main 関数を適当に何度か書き換えて動作させ，
+print_all
+が正しく動作していることを確認せよ．
+提出時の 
+report02.c の main 関数内はどんなものでもよい．
+</li>
+</ul>
+
+<h3>注意事項</h3>
+<ul>
+<li>
+  締切は
+  <!--#include file="ddateR02C1.txt"-->
+  とする
+</li>
+<li>
+提出方法は担当教員の指示に従え
+</li>
+</ul>
+
+<hr>
+<address>
+Updated in November 1, 2025, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

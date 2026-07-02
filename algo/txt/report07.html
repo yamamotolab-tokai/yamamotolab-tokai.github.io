@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> traversal of binary tree</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Traversal of binary tree <br>
+二分木のなぞり
+</h1>
+
+<h2>
+ミニレポート第 7 回課題
+</h2>
+
+<p>
+教科書 p.96 List6.1 を実際に動作させるプログラムを作成せよ．
+</p>
+
+<p>
+教科書List 6.1 にある節の定義，
+関数 preorder, inorder, postorder は配布されたサンプルコードの
+list06_1.c にあるのでそれをコピーして
+（c ディレクトリから cp ../algo/list06_1.c report07.c）プログラムの作成を始めればよい．
+ただし，以下の変更を行う必要がある．
+</p>
+
+<h3>
+プログラムの最初に stdio.h のインクルードを追加
+</h3>
+<p>
+プログラムの最初の #include &lt;stdlib.h&gt; の行の上に以下の行を追加せよ．
+</p>
+
+<div class="embox">
+<pre>
+#include &lt;stdio.h&gt;
+</pre>
+</div> <!-- embox -->
+<p>図 r7.1 stdio.h のインクルード</p>
+
+<h3>
+main ルーチンの作成
+</h3>
+<p>
+preorder, inorder, postorder 関数を使って実際になぞる木を作成
+する必要がある．教科書 p.93 Fig 6.5 (a) の木を作成する部分と
+3 つの関数を使ってなぞる部分を main 内に書く．
+以下の main ルーチンをプログラムの最後に挿入せよ．
+</p>
+
+<div class="embox" id="traverse_fig6_5_a">
+<pre>
+int main(void)
+{
+    struct node *rootp, *ap, *bp, *cp, *dp;
+
+    if ((ap = malloc(sizeof(struct node))) == NULL) /* 節 a 作成 */
+        exit(1);
+    if ((bp = malloc(sizeof(struct node))) == NULL) /* 節 b 作成 */
+        exit(1);
+    if ((cp = malloc(sizeof(struct node))) == NULL) /* 節 c 作成 */
+        exit(1);
+    if ((dp = malloc(sizeof(struct node))) == NULL) /* 節 d 作成 */
+        exit(1);
+    ap-&gt;label = 'a';                          /* 節 a の値を設定 */
+    bp-&gt;label = 'b';                          /* 節 b の値を設定 */
+    cp-&gt;label = 'c';                          /* 節 c の値を設定 */
+    dp-&gt;label = 'd';                          /* 節 d の値を設定 */
+    ap-&gt;left = bp;                      /* a の左の子に b を登録 */
+    ap-&gt;right = dp;                     /* a の右の子に d を登録 */
+    bp-&gt;left = cp;                      /* b の左の子に c を登録 */
+    bp-&gt;right = NULL;                   /* b の右は NULL         */
+    cp-&gt;left = NULL;                    /* c の左は NULL         */
+    cp-&gt;right = NULL;                   /* c の右は NULL         */
+    dp-&gt;left = NULL;                    /* d の左は NULL         */
+    dp-&gt;right = NULL;                   /* d の右は NULL         */
+    rootp = ap;        /* 根を指すためのポインタ rootp に a を登録 */
+
+    printf("preorder\n");
+    preorder(rootp);
+    printf("inorder\n");
+    inorder(rootp);
+    printf("postorder\n");
+    postorder(rootp);
+}
+</pre>
+</div> <!-- embox -->
+<p>図 r7.2 main ルーチン</p>
+
+<h3>プログラム全体についての注意</h3>
+<ul>
+<li>
+ファイル名は report07.c とする
+</li>
+</ul>
+
+<h3>注意事項</h3>
+<ul>
+<li>
+  締切は
+  <!--#include file="ddateR07C1.txt"-->
+  とする．提出方法は指導教員の指示に従え．
+</li>
+</ul>
+
+<!--
+<p>
+受理した学生のリストを
+<a href="report1c07r.html"> 1 クラス提出者</a>
+<a href="report2c07r.html"> 2 クラス提出者</a>
+<a href="report3c07r.html"> 3 クラス提出者</a>
+に掲載する．
+締切までに提出したにもかかわらず締切後一週間を過ぎても掲載されていない
+場合は山本 &lt;hiroshi@tokai.ac.jp&gt;まで連絡せよ．
+未提出の学生はすみやかに再提出せよ．
+再提出後一週間経っても掲載されない場合も
+山本まで連絡せよ．
+</p>
+-->
+
+<hr>
+<address>
+Updated in November 4, 2019, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

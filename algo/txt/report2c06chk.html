@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> check about short report 06</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp">
+<link rel="START" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/index.html">
+<link rel="PREV" href="index.html">
+ <link rel="stylesheet" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Check for short report 6 <br>
+2 クラス第 6 回ミニレポートチェックページ
+</h1>
+<ul>
+<li> 0: チェック済です．</li>
+<li> 1: 指定の場所に report06.c がありません．</li>
+<li> 2: プログラム中に insert_position が使用されていません．</li>
+<li> 3: コンパイルに失敗しました．</li>
+<li> 4: 実行時間が 1 分を超えました．</li>
+<li> 5: 実行結果が正しくありません．</li>
+</ul>
+<p>
+の順にチェックし，確定したところで評価をやめます．
+</p>
+<ul>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je21114c06.txt">4CJE2111 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je21184c06.txt">4CJE2118 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je21214c06.txt">4CJE2121 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22064c06.txt">4CJE2206 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22114c06.txt">4CJE2211 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22154c06.txt">4CJE2215 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22324c06.txt">4CJE2232 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22354c06.txt">4CJE2235 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22414c06.txt">4CJE2241 </a>
+ 1: 指定の場所に report06.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22444c06.txt">4CJE2244 </a>
+ 4: 実行時間が 1 分を超えました．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je22454c06.txt">4CJE2245 </a>
+ 5: 実行結果が正しくありません．</li>
+</ul>
+<pre>テスト用 main
+int main(void)
+{
+    int v;
+
+    new_list();
+    print_all();
+    print_reverse();
+    insert_position(&head, 1);
+    insert_position(head.next, 2);
+    insert_position(head.next->next, 3);
+    insert_position(head.next->next->next, 4);
+    print_all();
+    print_reverse();
+    insert_position(head.next, 5);
+    printf("insert_position(head.next, 5)\n");
+    print_all();
+    print_reverse();
+    insert_position(head.next->next, 6);
+    printf("insert_position(head.next->next, 6)\n");
+    print_all();
+    print_reverse();
+    insert_position(head.prev, 7);
+    printf("insert_position(head.prev, 7)\n");
+    print_all();
+    print_reverse();
+    insert_position(head.prev->prev, 8);
+    printf("insert_position(head.prev->prev, 8)\n");
+    print_all();
+    print_reverse();
+    printf("End\n");
+}
+</pre>
+<pre>正解出力
+
+
+1 2 3 4 
+4 3 2 1 
+insert_position(head.next, 5)
+1 5 2 3 4 
+4 3 2 5 1 
+insert_position(head.next->next, 6)
+1 5 6 2 3 4 
+4 3 2 6 5 1 
+insert_position(head.prev, 7)
+1 5 6 2 3 4 7 
+7 4 3 2 6 5 1 
+insert_position(head.prev->prev, 8)
+1 5 6 2 3 4 8 7 
+7 8 4 3 2 6 5 1 
+End
+</pre>
+<hr>
+<address>
+Updated in 2025-02-06T00:01:46+09:00
+,
+<a href="mrp.html">short report</a>,
+<a href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/">Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

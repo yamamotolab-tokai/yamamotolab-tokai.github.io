@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> print_key</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+print_key <br>
+キーの表示
+</h1>
+
+<h2>
+ミニレポート第 9 回課題
+</h2>
+
+<p>
+<a href="algo09.html#ex9_2">練習 9.2 </a> 
+で動作させたオープンアドレス法のプログラムに
+ハッシュ表に登録されているキーの値すべてを
+出力する関数 print_key を作成せよ．
+</p>
+
+<h3>プログラムの仕様</h3>
+<ul>
+<li>
+前提：通常のキーの値は 2 以上の整数とし，空の状態がキーの値 0 で，
+削除済みの状態をキーの値 1 で表されるとする．
+</li>
+<li>
+引数，戻り値：無し
+</li>
+<li>
+動作：ハッシュ表に格納されている全てのデータの key メンバの値を空白を挟んで
+画面に出力し，最後に改行を行う．格納されているデータが一つも無い場合は
+改行のみを行う．出力されるデータの順序は任意でよい．
+空や，削除済みのデータを出力してはならない．
+</li>
+</ul>
+<p>
+関数定義の書き出し例: void print_key(void)
+</p>
+
+<p>
+例えば main ルーチンで
+</p>
+
+<div class="embox">
+<pre>
+int main(void)
+{
+    DATA d;
+
+    init();
+    d = 1;
+    insert(100, &amp;d);
+    d = 2;
+    insert(1000, &amp;d);
+    d = 3;
+    insert(1070, &amp;d);
+    delete(1000);
+    print_key();
+}
+</pre>
+</div><!-- embox -->
+<p>図r9.1 main の例</p>
+
+<p>
+というデータをハッシュ表に登録すると出力は以下のようになる．
+（出力順は異なっていても良い）
+</p>
+
+<div class="embox">
+<pre>
+1070 100
+</pre>
+</div><!-- embox -->
+<p>図r9.2 出力例</p>
+
+<h3>プログラム全体についての注意</h3>
+<ul>
+  <!--
+      <li>
+プログラムファイルの設置場所は演習サーバ
+sirius.yamamotolab.je.u-tokai.ac.jp 上の自分のホームディレクトリ
+直下の c ディレクトリとし，
+ファイル名は report09.c とする
+      </li>
+      -->
+  <li>
+    ファイル名は report09.c とする
+    </li>
+<li>
+  <!--
+      レポート提出時には main 関数だけをこちらで用意したもので
+      置き換えてテストを行うので
+    -->
+  提出時の 
+report09.c の main 関数内はどんなものでもよい．
+</li>
+</ul>
+
+<h3>注意事項</h3>
+<ul>
+<li>
+  締切は
+  <!--#include file="ddateR09C1.txt"-->
+  とする．
+</li>
+<!--
+<li>
+メールでプログラムを提出する必要はない
+</li>
+<li>
+締切後はレポート受理，非受理の結果がわかるまで上書き
+しないように注意せよ
+</li>
+-->
+</ul>
+
+<!--
+    <p>
+受理した学生のリストを
+<a href="report1c09r.html"> 1 クラス提出者</a>
+<a href="report2c09r.html"> 2 クラス提出者</a>
+<a href="report3c09r.html"> 3 クラス提出者</a>
+に掲載する．
+締切までに提出したにもかかわらず締切後一週間を過ぎても掲載されていない
+場合は山本 &lt;hiroshi@tokai.ac.jp&gt;まで連絡せよ．
+未提出の学生はすみやかに再提出せよ．
+再提出後一週間経っても掲載されない場合も
+山本まで連絡せよ．
+</p>
+    -->
+    
+<hr>
+<address>
+Updated in November 4, 2019, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>

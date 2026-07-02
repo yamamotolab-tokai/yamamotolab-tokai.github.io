@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> check about short report 08</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp">
+<link rel="START" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/index.html">
+<link rel="PREV" href="index.html">
+ <link rel="stylesheet" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yh.css">
+<link rel="stylesheet" media="print" href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Check for short report 8 <br>
+3 クラス第 8 回ミニレポートチェックページ
+</h1>
+<ul>
+<li> 0: チェック済です．</li>
+<li> 1: 指定の場所に report08.c がありません．</li>
+<li> 2: プログラム中に postorder max が使用されていません．</li>
+<li> 3: コンパイルに失敗しました．</li>
+<li> 4: 実行時間が 1 分を超えました．</li>
+<li> 5: 実行結果が正しくありません．</li>
+</ul>
+<p>
+の順にチェックし，確定したところで評価をやめます．
+</p>
+<ul>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32283c08.txt">3CJE3228 </a>
+ 3: コンパイルに失敗しました．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31024c08.txt">4CJE3102 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31084c08.txt">4CJE3108 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31194c08.txt">4CJE3119 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31254c08.txt">4CJE3125 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je31454c08.txt">4CJE3145 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32014c08.txt">4CJE3201 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32164c08.txt">4CJE3216 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+<li><a href="http://sirius.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/algotest/outputs/je32184c08.txt">4CJE3218 </a>
+ 1: 指定の場所に report08.c がありません．</li>
+</ul>
+<pre>テスト用 main
+main()
+{
+    struct node *root, *ap, *bp, *cp, *dp, *ep;
+    int m;
+
+    root = NULL;
+    printf("NULL\n");
+    printf("postorder\n");
+    postorder(root);
+    m = max(root);
+    printf("max:%d\n", m);
+    printf("2nd test\n");
+    if ((ap = malloc(sizeof(struct node))) == NULL) /* 節 a 作成 */
+        exit(1);
+    if ((bp = malloc(sizeof(struct node))) == NULL) /* 節 b 作成 */
+        exit(1);
+    if ((cp = malloc(sizeof(struct node))) == NULL) /* 節 c 作成 */
+        exit(1);
+    if ((dp = malloc(sizeof(struct node))) == NULL) /* 節 d 作成 */
+        exit(1);
+    if ((ep = malloc(sizeof(struct node))) == NULL) /* 節 d 作成 */
+        exit(1);
+    ap->value = 10;                          /* 節 a の値を設定 */
+    bp->value = 2;                          /* 節 b の値を設定 */
+    cp->value = 3;                          /* 節 c の値を設定 */
+    dp->value = 4;                          /* 節 d の値を設定 */
+    ep->value = 11;                          /* 節 d の値を設定 */
+    ap->left = bp;                      /* a の左の子に b を登録 */
+    ap->right = dp;                     /* a の右の子に d を登録 */
+    bp->left = cp;                      /* b の左の子に c を登録 */
+    bp->right = ep;                     /* b の右の子に e を登録 */
+    cp->left = NULL;                    /* c の左は NULL         */
+    cp->right = NULL;                   /* c の右は NULL         */
+    dp->left = NULL;                    /* d の左は NULL         */
+    dp->right = NULL;                   /* d の右は NULL         */
+    ep->left = NULL;                    /* e の左は NULL         */
+    ep->right = NULL;                   /* e の右は NULL         */
+    root = ap;        /* 根を指すためのポインタ root に a を登録 */
+
+    printf("postorder\n");
+    postorder(root);
+    m = max(root);
+    printf("max:%d\n", m);
+    printf("End\n");
+}
+</pre>
+<pre>正解出力
+NULL
+postorder
+max:0
+2nd test
+postorder
+3
+11
+2
+4
+10
+max:11
+End
+</pre>
+<hr>
+<address>
+Updated in 2025-02-06T00:02:20+09:00
+,
+<a href="mrp.html">short report</a>,
+<a href="http://www.yamamotolab.jt.u-tokai.ac.jp/%7Ehiroshi/">Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

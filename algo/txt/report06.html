@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> insert_position (doubly-linked list) </title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+insert_position (doubly-linked list) <br>
+双方向リストでの要素の途中挿入
+</h1>
+
+<h2>
+ミニレポート第 6 回課題
+</h2>
+
+<p>
+<a href="algo06.html#dlink">第7回授業図6.5</a>の
+プログラムに教科書 P.76  Fig.5.11 で説明されている，
+指定されたセルの<strong>直後</strong>にデータを挿入する関数
+insert_position を追加する．
+</p>
+
+<h3>insert_position の仕様</h3>
+<p>前提：以下の通りとする．（教科書の双方向（循環）リストと同じ）</p>
+<ul>
+<li>
+セル（リスト要素）の構造体
+struct CELL が定義されており，struct CELL 型の
+グローバル変数 head が宣言されている．（変数名が単純なリストのときとは異なることに注意）
+</li>
+<li>
+head.next は双方向リストの最初のセルを指すポインタで，
+head.prev は双方向リストの最後のセルを指すポインタである．
+双方向リストが空のときはいずれにも head 自身のアドレスが格納されている．
+</li>
+<li>
+各セルの prev メンバは直前のセルを指している．最初の要素のセルの
+prev メンバにはグローバル変数 head のアドレスが格納されている．
+各セルの next メンバは直後のセルを指している．最後の要素のセルの
+next メンバにはグローバル変数 head のアドレスが格納されている．
+</li>
+</ul>
+<p>
+引数：struct CELL 型へのポインタと整数型の値が渡される．
+</p>
+<p>
+戻り値：なし
+</p>
+<p>
+関数定義の書き出し例: void insert_position(struct CELL *p, int v)
+</p>
+<p>
+機能：渡されたパラメータがそれぞれ p と v だとすると
+(上の関数定義の例）
+p で指されたセルの
+<strong>直後</strong>
+に value の値が v である新しいセルを挿入する．
+例えば，リストに要素が 4 個あり，内容が (2 5 12 -4)
+であったとき insert_position(head.next, 6) を
+実行すればリストは (2 6 5 12 -4) となり，このリストにさらに
+insert_position(head.prev, 8) を行うと
+(2 6 5 12 -4 8) になる
+</p>
+
+<p>
+引数として NULL など不正な値が渡されたときの
+エラー処理はなくてもよい．意味のあるデータが渡されると
+仮定してよい．
+</p>
+
+<h3>プログラム全体についての注意</h3>
+<ul>
+<li>
+ファイル名は report06.c とする
+</li>
+<li>
+プログラム全体としては
+<a href="algo06.html#dlink">第7回授業図6.5</a>に
+関数 insert_position とメインルーチンを追加したものを作成せよ．
+もともとあった構造体の定義，new_list, print_all, print_reverse を
+変更してはいけない．main 関数の前に
+関数 insert_position（や必要であれば自作関数）を書け．
+</li>
+<li>
+main 関数を書き換えて十分にテストを行い，
+insert_position
+が正しく動作していることを確認せよ．
+提出時の 
+report06.c の main 関数内はどんなものでもよい．
+</li>
+</ul>
+
+<h3>テスト実行のヒント</h3>
+<p>
+main ルーチンでまず（2 5 12 -4)
+のリストを作ってみる．insert_position が正しくできていれば
+リストの頭を使用した実現であるから最初の要素の挿入も
+insert_position で行える（最初の要素専用の insert_head などが
+必要無い）具体的には insert_position(&amp;head, 値)
+で先頭に指定の値の要素を挿入できるので，
+new_list() でリストを空にして，
+insert_position(&amp;head, -4) を実行することで -4 のみを
+要素としてもつリストができる．続けて
+insert_position(&amp;head, 12) でリストは (12 -4)
+になる．このようにしてテスト用のリスト (2 5 12 -4)
+を作り，適宜 print_all(), print_reverse() を実行しながら
+insert_position(head.next, 6) を行うなどして
+プログラムの正しさをテストすればよい．
+</p>
+
+<h3>注意事項</h3>
+<ul>
+<li>
+  締切は
+  <!--#include file="ddateR06C1.txt"-->
+  とする．提出方法は担当教員の指示に従え．
+</li>
+</ul>
+
+<!--
+<p>
+受理した学生のリストを
+<a href="report1c06r.html"> 1 クラス提出者</a>
+<a href="report2c06r.html"> 2 クラス提出者</a>
+<a href="report3c06r.html"> 3 クラス提出者</a>
+に掲載する．
+締切までに提出したにもかかわらず締切後一週間を過ぎても掲載されていない
+場合は山本 &lt;hiroshi@tokai.ac.jp&gt;まで連絡せよ．
+未提出の学生はすみやかに再提出せよ．
+再提出後一週間経っても掲載されない場合も
+山本まで連絡せよ．
+</p>
+-->
+
+<hr>
+<address>
+Updated in November 4, 2019, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi Web</a>
+</address>
+</body>
+</html>
