@@ -1,0 +1,853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Programming language C</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Programming language C<br>
+C言語初歩</h1>
+
+<p>
+  C言語初学者のために printf と変数，ループ，配列，関数，構造体
+  の説明を行う．
+  </p>
+
+<h2>printf と変数</h2>
+  <p>
+    画面に文字を出力するのによく使われる関数が printf である．
+    次のプログラム1を p1.c というファイル名で保存し，
+    コンパイル（cc p1.c），実行（./a.out）せよ．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("hello world\n");
+}
+</pre>
+</div> <!-- embox -->
+<p>図1. プログラム1</p>
+
+<p>
+  「"hello world\n"」のように「"」と「"」（ダブルクォーテーション）
+で囲まれた文字の列を<strong>文字列</strong>という．
+  hello world の後の「\n」は改行を行う特殊文字である．特殊文字は
+  通常の文字では表せないので「\」から始まる文字列で表現する．
+  \n を削除してコンパイル，実行すると改行されないことが確認できる．
+</p>
+<p>
+  printf のように特定の単語の後にカッコがついたものを<strong>関数</strong>
+  という。カッコの中のデータ"hello world\n"を
+  printf という部分プログラムに渡し，
+  部分プログラムが処理を行なって画面に出力する．
+  次のプログラム2のようにカッコの中で与えるデータを変えると
+  違うものを出力できる．入力されたデータに応じた処理を行うことは
+  関数の重要な機能である．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("出力します。\n");
+}
+</pre>
+</div> <!-- embox -->
+<p>図2. プログラム2</p>
+
+<p>
+  <strong>変数</strong>を使うとデータを保存することができる．以下のプログラム3
+  は整数型の変数 i を<strong>宣言</strong>（int i;）し，整数値10を保存（i = 10）し，値を出力（printf("iの値は%dです\n", i);）するものである．
+  p3.c というファイル名で保存し，コンパイルして実行せよ．
+  「iの値は10です。」が表示されるはずである．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+
+    i = 10;
+    printf("iの値は%dです。\n", i);
+}
+</pre>
+</div> <!-- embox -->
+<p>図3. プログラム3</p>
+<p>
+  int の後に変数名を書くと，整数型の変数が作成され，使えるようになる．整数型変数には -1, 0, 100 などの
+  整数のデータを保存できる．
+  変数に値を保存することを<strong>代入</strong>という．
+</p>
+<p>
+  ここでの注意点は C では変数は使う前に必ず宣言する必要があるということである．
+</p>
+<p>
+  また printf() はプログラム1 のときのような決まった文字列だけでなく，
+  文字列の一部にデータを埋め込んで出力することができる．
+  プログラム3の「%d」の部分がそうで，基本的には「"」と「"」で囲まれた文字列
+  が出力されるが，その中に%dがあるとその部分がデータで置き換えられる．
+  置き換えに使われるデータは「"」と「"」でくくられたの文字列の後
+  にカンマをつけて与える．
+  プログラム3では変数 i を指定しているのであらかじめiに
+  保存した数値 10 で置き換えられている．実行すると以下のように出力される．
+</p>
+<div class="embox">
+<pre>
+iの値は10です。
+</pre>
+</div> <!-- embox -->
+
+<p>
+  i = 10 の部分を
+  i = 100 などに変更してコンパイル，実行すると出力が変化することを
+  確認せよ．
+  </p>
+<p>
+  printf()でのデータの埋め込みは複数箇所で行うこともできる．
+  プログラム4では変数 i と j を使って 2 箇所にデータを埋め込んでいる．
+  「%d」が 2 回出現するが，複数の変数をカンマで区切って与えると
+  対応した順番に埋め込まれる．下の例をコンパイルして実行せよ．
+  </p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i, j;
+
+    i = 10;
+    j = 20;
+    printf("iの値は%dです。jの値は%dです。\n", i, j);
+}
+</pre>
+</div> <!-- embox -->
+実行結果は以下のようになる．
+<div class="embox">
+<pre>
+iの値は10です。jの値は20です。
+</pre>
+</div> <!-- embox -->
+
+<h2>ループ</h2>
+<p>
+  ループはプログラミングの重要な要素の一つである．C 言語では
+  while や for を使ってループを表現するが，
+  今の段階では完璧に原理を理解するよりも
+  こうすればこうなる，ということを覚えて使って慣れるほうが良い．
+  以下のプログラム4は hello world（と改行）を 10
+  回出力するプログラムである．
+  for などの特定の処理のキーワードになっているものを予約語という．
+  予約語は自分で作成する変数名に使えない．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+
+    for(i = 1 ; i &lt;= 10 ; i++){
+        printf("hello world\n");
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図4. プログラム4</p>
+<p>
+  プログラム4では printf 関数は 10 回繰り返し実行される．
+  そのとき，その回ごとに変数 i の値は変化している．ループの
+  進行にあわせて値が変化する変数を<strong>ループ変数</strong>という．
+  ループ変数 i の値の変化を確認するために
+  以下のプログラム5をp5.c というファイル名で保存してコンパイル，実行せよ．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+
+    for(i = 1 ; i &lt;= 10 ; i++){
+        printf("hello world\n");
+        printf("%d\n",i);
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図5. プログラム5</p>
+<p>
+  「hello world」が出力された後に
+  1から10までの変数iの値が出力される．
+  「hello world」を出力する途中にに%dを使って
+  変数 i の値を差し込むことができる．
+  以下のプログラム6を実行して確認せよ．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+
+    for(i = 1 ; i &lt;= 10 ; i++){
+        printf("hello world%d\n",i);
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図6. プログラム6</p>
+<p>
+  出力は以下の図7. のようになる．
+</p>
+<div class="embox">
+<pre>
+hello world1
+hello world2
+hello world3
+hello world4
+hello world5
+hello world6
+hello world7
+hello world8
+hello world9
+hello world10
+</pre>
+</div> <!-- embox -->
+<p>図7. プログラム6の出力</p>
+<h2>配列</h2>
+<p>
+  <strong>配列</strong>は変数の一種で，単一のデータを格納できる
+  単一変数を複数まとめたものである．
+  配列は主にループと組み合わせて使われる．
+</p>
+<p>
+  配列変数の宣言は変数名の後に角括弧をつけて行う．
+  配列に何個の変数を格納するのかを括弧の中に書く．
+  例えば 10 個の整数型変数を格納できる配列変数 a を宣言するには<br>
+  int a[10];<br>
+  と書く．配列変数に格納された個々の単一変数は配列変数の
+  変数名の後に角括弧をつけ，角括弧の中に整数を書いて
+  表現する．例えば上の int a[10]; で宣言された配列変数 a は
+  10 個の単一変数を格納できるが，それぞれを
+  a[0], a[1], a[2], a[3],  a[4], a[5], a[6],  a[7], a[8], a[9]
+  で表すことができる．括弧の中の数値を<strong>添字</strong>（そえじ）という．
+  添字は 0 番から始まることに注意する．そのため int a[10];
+  で宣言された配列変数は 10 個の要素を格納できるが a[0]
+  が最初で，最後は a[10] ではなく一個前の a[9]
+  であることに注意しなければならない．
+  以下のプログラム7は要素数10の配列変数aを宣言し，単一変数と同じように
+  10個の要素それぞれを扱っている．それぞれに別の値を代入して
+  printf で出力している．実行すると0から 90 のデータが出力される．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int a[10];
+
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;           //ここまでが入力
+
+    printf("%d\n",a[0]); //ここからが出力
+    printf("%d\n",a[1]);
+    printf("%d\n",a[2]);
+    printf("%d\n",a[3]);
+    printf("%d\n",a[4]);
+    printf("%d\n",a[5]);
+    printf("%d\n",a[6]);
+    printf("%d\n",a[7]);
+    printf("%d\n",a[8]);
+    printf("%d\n",a[9]);
+}
+</pre>
+</div> <!-- embox -->
+<p>図8. プログラム7</p>
+<p>
+  プログラム7の出力部分を変更する．配列変数の添字は
+  変数でもいい．例えば以下のプログラム8のようにしても
+  同じ結果が得られる．新しく導入した変数 i の宣言も必要なことに
+  注意せよ．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+    int a[10];
+
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;
+
+    i = 0;
+    printf("%d\n",a[i]);
+    i = 1;
+    printf("%d\n",a[i]);
+    i = 2;
+    printf("%d\n",a[i]);
+    i = 3;
+    printf("%d\n",a[i]);
+    i = 4;
+    printf("%d\n",a[i]);
+    i = 5;
+    printf("%d\n",a[i]);
+    i = 6;
+    printf("%d\n",a[i]);
+    i = 7;
+    printf("%d\n",a[i]);
+    i = 8;
+    printf("%d\n",a[i]);
+    i = 9;
+    printf("%d\n",a[i]);
+}
+</pre>
+</div> <!-- embox -->
+<p>図9. プログラム8</p>
+<p>
+  これをループで書くと以下のようになる．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+    int a[10];
+
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;
+
+    for(i = 0 ; i &lt;= 9 ; i++){
+        printf("%d\n",a[i]);
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図10. プログラム9</p>
+<p>
+  プログラム9のループでは i の値を 0 から 9 まで
+  増やしながら<br>
+  printf("%d\n",a[i]);<br>
+  が実行される．
+  ループを使ったプログラムを作成するときは
+  何をループ変数とするかを考えることが非常に重要である．
+</p>
+<p>
+  下のプログラム10のようにループの最初の i の値と最後のの
+  i の値を変数で与えることもができる．新たに導入した変数
+  start と end の宣言も必要なので i の宣言の後ろに
+  便乗して追加した．a[2] から a[8] までの値が
+  出力されることを確認せよ．
+  </p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    int i, start, end;
+    int a[10];
+
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;
+
+    start = 2;
+    end = 8;
+    for(i = start ; i &lt;= end ; i++){
+        printf("%d\n",a[i]);
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図11. プログラム10</p>
+<h2 id="function">関数</h2>
+<p>
+  printf はシステムが最初から用意している関数であるが
+  自分で関数を作ることもできる．関数で処理の一部を
+  記述しておいて，必要なときにmainルーチンから
+  呼び出すような使い方ができる．
+  プログラム10の出力部分
+</p>
+<div class="embox">
+<pre>
+    start = 2;
+    end = 8;
+    for(i = start ; i &lt;= end ; i++){
+        printf("%d\n",a[i]);
+    }
+</pre>
+<p>図12. プログラム部分11</p>
+</div> <!-- embox -->
+<p>
+を print_a という名前の関数として独立させたものが
+以下のプログラム12である．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+int a[10];
+
+void print_a(void)
+{
+    int i, start, end;
+
+    start = 2;
+    end = 8;
+    for(i = start ; i &lt;= end ; i++){
+        printf("%d\n",a[i]);
+    }
+}
+
+int main(void)
+{
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;
+
+    print_a(); //出力処理をまとめた関数 print_a を呼び出している
+}
+</pre>
+</div> <!-- embox -->
+<p>図13. プログラム12</p>
+<p id="main">
+  main も関数で，main から処理が始まるという約束事がある
+  特別な関数である．
+  プログラム12の
+</p>
+<div class="embox">
+<pre>
+void print_a(void)
+{
+    int i, start, end;
+
+    start = 2;
+    end = 8;
+    for(i = start ; i &lt;= end ; i++){
+        printf("%d\n",a[i]);
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図14. プログラム12のprint_a定義部分</p>
+<p>の部分が関数 print_a の定義である．
+  main 関数が呼ぶ側で print_a 関数が呼ばれる側の関係になっている．
+  ここでは呼ばれる関数は呼ぶ関数より前で定義しなければならないと
+  覚えておく，つまり main 関数を最後に書くようにする．
+  プログラム12では print_a のほうが前に書かれているが，
+  プログラムは main から実行されるという約束事により
+  実行は main から始まる．main から print_a が呼ばれて初めて
+  print_a に書かれている部分プログラムが実行される．
+</p>
+<p>
+  プログラム12でもう一つ重要なことは，変数宣言の位置が変わっていることである．
+  関数の中で宣言された変数はその関数の中でしか使えない．
+  プログラム10では変数宣言<br>
+  int i, start, end;<br>
+  はmain関数の中で行われていた．
+  プログラム12では変数 i, start, end は main 関数では使われず，
+  print_a 関数でのみ使われる．このため変数i, start, end の宣言は
+  print_a 関数の中に移動されている．
+</p>
+<p>
+  次にプログラム12では配列変数 a の宣言位置が print_a, main
+  どちらの関数よりも前，関数の外で宣言されていることに注意する．
+  配列変数 a は print_a, main のどちらの関数でも使われるのでどちらかの中で
+  宣言すると他方で使えなくなるからである．プログラム12 の a
+  のように関数定義の外で宣言される変数を<strong>グローバル変数</strong>
+  という．グローバル変数はすべての関数からアクセスできる．
+</p>
+<p>
+  プログラム 12 の print_a 関数は，a[2] からスタートして a[8] までを出力する
+  関数であった．このスタート位置を終了位置を指定できるような関数に
+  print_a を変更する．これは関数に<strong>引数</strong>とよばれる
+  パラメータを渡すことで実現できる．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+int a[10];
+
+void print_a(int start, int end)
+{
+    int i;
+
+    for(i = start ; i &lt;= end ; i++){
+        printf("%d\n",a[i]);
+    }
+}
+
+int main(void)
+{
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;
+
+    print_a(2,8);
+}
+</pre>
+</div> <!-- embox -->
+<p>図15. プログラム13</p>
+<p>
+  プログラム13の以下の部分が print_a 関数に
+  パラメータを渡す仕組みである．
+</p>
+<div class="embox">
+<pre>
+void print_a(int start, int end)
+</pre>
+</div> <!-- embox -->
+<p>図16. 仮引数宣言</p>
+<p>
+  変数宣言と似た書式で整数型<strong>仮引数</strong> start と end
+  が宣言されている．
+  仮引数は関数内で変数と同じように使用できる．違いは
+  print_a 関数が実行されるときにすでに
+  値がセットされている点である．プログラム13
+  では main 関数内から print_a 関数を呼び出すときに
+</p>
+<div class="embox">
+<pre>
+    print_a(2,8);
+</pre>
+</div> <!-- embox -->
+<p>図17. 引数を関数に渡す</p>
+<p>
+  として 2 と 8 の2個のパラメータが渡されている．
+  これを<strong>実引数</strong>という．この
+  パラメータ 2 と 8 は呼び出された print_a
+  関数が実行される最初に仮引数 start と end に
+  この順でセットされる．このように仮引数は
+  変数と同じようなものだが実行時に呼び出し側で
+  与えられたパラメータが初期値としてセットされている．
+  つまり print_a(2,8); という呼び出しにより，
+  print_a 関数は start に 2，end に 8 がセットされた
+  状態で処理が始まる．この結果もとのプログラム12と
+  同じ結果が得られるのである．
+</p>
+<p>
+  関数は一度定義しておけば何度でも呼び出せる．呼び出すときに
+  パラメータを変更するとそれに応じた処理が行われる．
+  下のプログラム14 はプログラム13のmain関数での
+  print_a 関数の呼び出しを増やしたものである．
+  実行して動作を確認せよ．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+int a[10];
+
+void print_a(int start, int end)
+{
+    int i;
+
+    for(i = start ; i &lt;= end ; i++){
+        printf("%d\n",a[i]);
+    }
+}
+
+int main(void)
+{
+    a[0] = 0;
+    a[1] = 10;
+    a[2] = 20;
+    a[3] = 30;
+    a[4] = 40;
+    a[5] = 50;
+    a[6] = 60;
+    a[7] = 70;
+    a[8] = 80;
+    a[9] = 90;
+
+    print_a(2,8);
+    print_a(5,5);
+    print_a(0,9);
+}
+</pre>
+</div> <!-- embox -->
+<p>図18. プログラム14</p>
+<p>
+  最初に print_a(2,8) により a[2]から a[8] のデータが出力され，
+  次に print_a(5,5) により a[5] のデータが出力され，
+  最後に print_a(0,9) によって a[0] から a[9] のデータが出力される
+  ことが確認できる．
+</p>
+<p id="return">
+  次に値を返す関数について説明する．例えば整数を入力するとその2倍の
+  値を計算し，その値を返す関数 bai を作ることを考える．
+  bai 関数の作り方の前に main 関数側でどのように使えるかを
+  説明する．
+</p>
+<div class="embox">
+<pre>
+    n = bai(5);
+    printf("%d\n", n);
+</pre>
+</div> <!-- embox -->
+<p>図19. 関数からの値の受け取り</p>
+<p>
+  とすることで関数 bai に 5 を入力し，関数 bai の
+  計算結果を出力として main の変数 n に代入することができる．
+  結果として printf は 5 の 2 倍である 10 を出力する．
+  関数の返す値を<strong>戻り値</strong>という．
+  戻り値による計算結果の受け取りは図19. において
+  関数の部分 bai(5) が戻り値の 10 に置き換えられて
+  計算が進むと考えればよい．
+</p>
+<p>
+  この関数 bai の戻り値は整数なので int 型であるべきである．
+  それに合わせて関数定義でも関数自体を int 型とする必要がある．
+  呼び出された側（bai）で戻り値を呼び出した側（main）に
+  返すには return 文を使用する．関数は return 文を実行すると
+  その関数の実行は終了し，return の右の値を戻り値として
+  呼び出した側に返して呼び出した側の実行が続く．
+  結局，正しい関数定義を含めたプログラム全体は図20 のようになる．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int bai(int x)
+{
+    int y;
+
+    y = x * 2;
+    return y;
+}
+
+int main(void)
+{
+    int n;
+
+    n = bai(5);
+    printf("%d\n", n);
+}
+</pre>
+</div> <!-- embox -->
+<p>図20. プログラム15</p>
+
+<h2>構造体</h2>
+<p>
+  構造体を使うことで違う型のデータでもまとめて一つの変数として
+  扱うことができる．
+</p>
+<p>
+  構造体の説明の前にすでに使用した int 型とは別の char 型のデータを
+  説明する．char 型は英語の文字<strong>1個</strong>を保存できる
+  データ型である．ここでいう英語の文字はいわゆる半角英数字で，
+  日本語入力モードで入力する全角アルファベットなどは含まれない．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    char letter;
+
+    letter = 'a';
+    printf("%c\n", letter);
+    letter = 'B';
+    printf("%c\n", letter);
+    letter = '?';
+    printf("%c\n", letter);
+}
+</pre>
+</div> <!-- embox -->
+<p>図21. プログラム16</p>
+<p>
+  文字「a」「B」「?」が順に出力される．char型は
+  大文字，小文字，! や ? などの記号を扱うことができる．
+  文字は文字列と違い，「'a'」のように
+  シングルクォーテーションで囲むことに注意する．
+  また，printf で出力するときは int 型の「%d」ではなく
+  char 型を意味する「%c」で指定する．
+</p>
+<p>
+  次に int 型と char 型を格納することができる構造体
+  INTCHAR を定義し，その型の変数 x を宣言し，使用するプログラム 16 を示す．
+  今回 INTCHAR とした文字列は構造体の名前で，プログラマが自由に選べる．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    struct INTCHAR{
+        int integer;
+        char character;
+    } x;
+
+    x.integer = 10;
+    x.character = 'c';
+    printf("%d\n", x.integer);
+    printf("%c\n", x.character);
+}
+</pre>
+</div> <!-- embox -->
+<p>図22. プログラム17</p>
+<p>
+  長くてわかり難いが，
+</p>
+<div class="embox">
+<pre>
+    struct INTCHAR{
+        int integer;
+        char character;
+    }
+</pre>
+</div> <!-- embox -->
+<p>図23. 構造体の定義</p>
+<p>
+  の部分が int や char と同じ型名だと思って読む．
+  そうするとその後の x が変数名であることがわかる．
+</p>
+<p>
+  図21. の定義で INTCHAR 構造体は2つのデータを保存できる．
+  片方が int 型で，もう片方が char 型である．
+  それぞれの型名の後に書かれた文字列
+  "integer"と"character"はプログラマが
+  自由に設定できる名前の文字列で<strong>メンバ</strong>という．
+</p>
+<p>
+  構造体のデータにアクセスするときはどのメンバにアクセスするかを
+  指定しなければいけない．それは「変数名」.「メンバ名」で行う．
+  図20の
+</p>
+<div class="embox">
+<pre>
+    x.integer = 10;
+</pre>
+</div> <!-- embox -->
+<p>図24. メンバへの書き込み</p>
+<p>
+  がINTCHAR構造体型の変数 x のメンバ integer に 10 という値を
+  書き込む処理で，
+<div class="embox">
+<pre>
+    printf("%d\n", x.integer);
+</pre>
+</div> <!-- embox -->
+<p>図25. メンバの読み出し</p>
+<p>
+  が x のメンバ integer の値を読み出して出力する処理である．
+  メンバ character にも同様の処理を行なっている．
+</p>
+<p>
+  構造体も配列にすることができる．図24. プログラム17は
+  struct INTCHAR 型のデータを基本要素とする要素数 10 個の配列を作り，
+  0番から4番までに値を代入してループで出力するプログラムである．
+  このように配列の要素数は必要になると予想されるより大きめにとる
+  ことが多い．
+</p>
+<div class="embox">
+<pre>
+#include&lt;stdio.h&gt;
+
+int main(void)
+{
+    struct INTCHAR{
+        int integer;
+        char character;
+    } table[10];
+
+    int i;
+
+    table[0].integer = 0;
+    table[0].character = 'a';
+    table[1].integer = 10;
+    table[1].character = 'b';
+    table[2].integer = 20;
+    table[2].character = 'c';
+    table[3].integer = 30;
+    table[3].character = 'd';
+    table[4].integer = 40;
+    table[4].character = 'e';
+
+    for (i = 0 ; i &lt;= 4 ; i++){
+        printf("%d\n", table[i].integer);
+        printf("%c\n", table[i].character);
+    }
+}
+</pre>
+</div> <!-- embox -->
+<p>図26. プログラム18</p>
+<hr>
+<address>
+Updated in October 23, 2023, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>
