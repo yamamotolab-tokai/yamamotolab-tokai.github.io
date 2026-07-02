@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Linked list</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+</head>
+<body>
+<h1 class="title">
+Linked list<br>
+連結リスト</h1>
+
+<h2 id="atmail">
+出席調査
+</h2>
+<p>
+教壇に向かって右前の計算機に接続された IC カードリーダに
+学生証をタッチせよ．これを出席とする．
+</p>
+<p>
+自分の欠席状況はキャンパスライフエンジンから確認せよ．
+</p>
+
+<h2>レポート提出確認</h2>
+<p>
+この授業のトップページから
+レポートのページに移動し，
+レポートの提出状況を常に確認せよ．
+</p>
+
+<h2>講義</h2>
+<h3>練習4.1</h3>
+<p>
+p.19 の List2.4 は二分探索法におけるデータの登録を行う
+関数 add_binary の疑似コードである．
+（(4) はtable[pos].data = data;の間違いであること，
+最後に(5)として n++; を追加しなければならないことに注意）
+<a href="report03.html">第 3 回課題</a>
+のプログラムに add_binary を追加して，
+実際に動くプログラムとして完成させよ．
+List2.4 中の (1) の部分は第 3 回課題の position_search
+を使い，(2) の部分を完成させればよい．
+</p>
+<p>
+  完成した add_binary をテストするメインルーチンでは print_all が利用できる．
+  print_all で要素を挿入する前の全データを表示しておき，add_binary
+  で要素を挿入した後で print_all を行って比較することで add_binary
+  が正しく動作しているかどうかのテストができる．
+</p>
+<h3>5.1 連結リスト</h3>
+<p>
+教科書の 5.1 節ではポインタを利用した連結リストの
+説明がされているが，その前にそれに必須の知識である，
+<em>動的メモリ割り当て</em>
+と<em>自己参照的構造体</em>について説明する．
+</p>
+<p>
+リストを実現する場合，連結リストが配列と比較して
+優れているのは，
+</p>
+<ol>
+<li>
+データの増減にあわせてデータ領域を増減させられる
+</li>
+<li>
+効率的に途中への挿入，削除が可能
+</li>
+</ol>
+<p>
+なことが挙げられる．
+検索に時間がかかる欠点もあるので，検索とあわせて
+挿入，削除が行われる場合は 2 番目の利点はあまりない．
+</p>
+<h3>ポインタと動的割り当て</h3>
+<p>
+データの増減に合わせて実行時に使用記憶領域を増減できるという利点は
+連結リストをポインタを用いて実現していることで可能になっている．
+ここで理解しなければならない概念は<em>動的メモリ割り当て</em>
+と<em>自己参照的構造体</em>である．以下に説明する．
+</p>
+<h4>動的メモリ割り当て</h4>
+<p>
+ここでポインタを利用した動的メモリ割り当てについて説明し，演習を
+行う．教科書では 22 章に関連した説明がある．
+</p>
+<p>
+処理するデータの要素数がわからないとき，
+配列による実現では要素数を予測して<strong>コンパイル時</strong>に配列の
+大きさを決める必要がある．これをメモリの<em>静的割り当て</em>
+という．静的割り当てでは，メモリが足りなくなれば
+プログラムは正常に動作しないし，逆に要素数が予想が多すぎたときも
+宣言したメモリ領域が無駄に占有されるので効率が悪い．
+</p>
+<p>
+要素数が増えて領域が必要になったときに
+<strong>実行時に</strong>メモリを新たに確保することを
+メモリの<em>動的割り当て</em>という．
+</p>
+<p>
+この授業では動的メモリ割り当てに malloc 関数を使用する．
+動的割り当てを使用する基本的な手順は，以下の通りである．
+</p>
+
+<ol>
+<li>ポインタ変数をソースコードで宣言しておく</li>
+<li>実行時に malloc 関数で領域を確保する．malloc は確保した
+領域のポインタ（メモリ上のアドレスと理解するとよい）
+を返すのでそれを 1. で作成したポインタ変数に格納する</li>
+<li>
+ポインタ変数からデータを参照する．</li>
+<li>
+不要になったら確保していた領域を free 関数で解放する．</li>
+</ol>
+
+<p>
+静的割り当てと動的割り当てで整数型の
+変数を使用するソースを比較する．以下のソースは静的割り当てにより
+整数型の変数 i を利用するソースである．
+</p>
+
+<div class="embox">
+<pre>
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int i;
+
+    i = 10;
+    printf("%d\n",i);
+}
+</pre>
+</div> <!-- embox -->
+<p>図4.1 静的割り当て</p>
+<p>
+上記と同様のことを動的割り当てで行うソースは
+（実用的なものではないが）以下のものである．
+</p>
+<div class="embox">
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    int *ip;  /*この時点ではまだ整数を入れる領域は確保されない*/
+
+    ip = malloc(sizeof(int)); /*ここで領域が確保される*/
+    *ip = 10;
+    printf("%d\n",*ip);
+    free(ip);
+}
+</pre>
+</div> <!-- embox -->
+<p>図4.2 動的割り当て</p>
+
+<p>
+malloc を利用するときはメモリ制御関連のルーチンが書かれている
+&lt;stdlib.h&gt; をインクルードする必要がある（図4.2の2行目）．
+</p>
+
+<p>
+int *ip; で宣言されているのは整数型領域への<em>ポインタ</em>
+を格納する変数 ip であることに注意する．変数 ip の領域
+はここで確保されるが，整数型ではなく整数へのポインタ型の
+領域である．
+</p>
+<p>
+int *ip; という文は「*ip が整数型である」とも読めるし，
+「(int *) 型（intへのポインタ型）の変数 ip」とも読める．
+後者のほうが正確な表現だが，変数に格納されたデータに
+アクセスする場合は前者のように読むと分りやすい．
+図4.2 の 9, 10 行目もそのように読むと理解しやすい．
+注意しなければいけないのは変数宣言 int *ip; で変数 ip
+の領域が確保されただけでは整数を入れる領域 *ip は確保
+されず使えないことである．
+malloc を行って領域を確保して初めて整数型の領域 *ip 
+を使う事ができるようになる．
+</p>
+
+<p>
+malloc の使い方は一見複雑だがパターンになっているので
+覚えてしまえばよい．malloc の引数には確保すべき
+領域のサイズを指定しなければならないが，
+通常図4.2のように sizeof(「格納するデータの型」) と
+書くパターンが多い．
+sizeof 演算子は変数型が引数であった場合その格納データ領域の大きさを返す．
+この授業ではmalloc(sizeof(「データ型」))のパターンしか使わない
+（「データ型」の部分をその場に応じたものに変える）ので
+この使い方のみ覚えればよい．
+</p>
+
+<p>
+malloc による領域割り当て後は ip が指す領域は *ip として
+普通の整数型変数と同じように利用できる．
+</p>
+<p>
+領域の使用が終れば free 関数で解放する．
+</p>
+
+<p>
+malloc は領域の確保に失敗すると値として NULL を返すので
+その場合にプログラム強制的に異常終了させるライブラリ関数
+exit を使用したものが以下のサンプルコードである．
+図4.3 の if 文とその下の exit(1) までを動的メモリ割当の
+決まり文句と思って使えばよい．（"int" の部分を状況に応じて変える）
+
+図4.3 を
+適当な名前で保存してテスト実行し，ポインタ ip が指す領域
+にある整数型のデータを間接演算子 * を使って利用できることを
+確認せよ．
+</p>
+<div class="embox">
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    int *ip; 
+
+    if ((ip = malloc(sizeof(int))) == NULL)
+        exit(1);
+    *ip = 10;
+    printf("%d\n",*ip);
+    free(ip);
+}
+</pre>
+</div> <!-- embox -->
+<p>図4.3 動的割り当て（エラー処理つき）</p>
+
+<h4>自己参照的構造体</h4>
+<p>
+自己参照的構造体とは以下の例のように構造体に自分と同じ型の
+データへの<strong>ポインタ</strong>をメンバとして含む構造体である．
+</p>
+
+<div class="embox">
+<pre>
+struct CELL {
+    struct CELL *next;
+    int value;
+};
+</pre>
+</div> <!-- embox -->
+<p>図4.4 自己参照的構造体</p>
+
+<p>
+自己参照的構造体は主に動的割り当てと組み合わせて使われる．
+連結リストは自己参照的構造体と動的割り当てを利用したデータ構造である．
+</p>
+<p>
+以下の図4.5は教科書p.51 Fig5.1(b)の連結リストを
+構成したものである．ただし，教科書教科書p.50 から p.59では
+グローバル変数 header が連結リストの最初の要素へのポインタ変数と
+なっているのに対して，図 4.5 では header は各要素と同じ型である 
+struct CELL 型要素となっている．このため図4.5の
+グローバル変数 header は他の要素と同様に
+next, value メンバをもつ．しかし，header.value は使わず，
+header.next のみを連結リストの最初を指すポインタとして利用する．
+つまり，教科書の header は図 4.5 の実装では header.next
+と読み替える必要があることに注意せよ．
+</p>
+
+<div class="embox" id="fig4_5">
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct CELL {
+    struct CELL *next;
+    int value;
+} header;
+
+int main(void)
+{
+    struct CELL *ap, *bp, *cp, *dp;
+
+    if ((ap = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+    if ((bp = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+    if ((cp = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+    if ((dp = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+    header.next = ap; /*header.next が最初の要素を指す*/
+    ap-&gt;value = 2;
+    ap-&gt;next = bp;    /*最初の要素のnextが2個目の要素を指す*/
+    bp-&gt;value = 5;
+    bp-&gt;next = cp;    /*2個目の要素のnextが3個目の要素を指す*/
+    cp-&gt;value = 12;
+    cp-&gt;next = dp;    /*3個目の要素のnextが最後の要素を指す*/
+    dp-&gt;value = -4;
+    dp-&gt;next = NULL;  /*最後の要素のnextは何も指さない*/
+
+    printf ("%d ",header.next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;next-&gt;next-&gt;value);
+    printf ("\n");
+}
+</pre>
+</div> <!-- embox -->
+<p>図4.5 手動で連結リストを作成</p>
+
+<p>
+図 4.5 のように連結リストの先頭を指すのに
+リストの要素と同じ型のダミーを用意してその next メンバのみを
+利用する実装は，要素の削除や挿入のソースが簡単になるために
+よく用いられる．教科書も p.60 以降はこの実装を採用している．
+</p>
+
+<p>
+図 4.5 を読み，実行してポインタの代入による繋ぎ合わせ
+を理解せよ．
+</p>
+<h4>練習4.2</h4>
+<p>
+図4.5の next メンバへの代入文，すなわち，<br>
+    header.next = ap; <br>
+    ap-&gt;next = bp; <br>
+    bp-&gt;next = cp; <br>
+    cp-&gt;next = dp; <br>
+    dp-&gt;next = NULL;<br>
+の右辺のみを書き換えてリストの要素の順番を
+(-4 12 5 2)になるようにポインタのつなぎかえを行え．
+出力も確認せよ．
+</p>
+
+<h4>5.1.1連結リストとは?</h4>
+<p>
+連結リストとは上で説明したように動的割り当てと自己参照的構造体を
+組み合わせてリストを実現したもの．「ポインタ」
+はメモリ上のアドレスのことだと考えて理解する．
+p.52 5,6行目の for ループのように，
+ある要素を指しているポインタを次の要素を指すように更新してゆく手法は
+連結リストに対する操作で最も多用される基本的なものである．　
+</p>
+
+<h2>課題</h2>
+<p>
+<a href="report04.html">第 4 回課題「連結リストでの要素の出力」</a>
+を提出せよ．
+</p>
+
+
+<hr>
+<address>
+Updated in October 20, 2012, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

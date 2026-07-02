@@ -1,0 +1,418 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>circuler list</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+</head>
+<body>
+<h1 class="title">
+Circuler list<br>
+循環リスト</h1>
+
+<h2 id="atmail">
+出席調査
+</h2>
+<p>
+教壇に向かって右前の計算機に接続された IC カードリーダに
+学生証をタッチせよ．これを出席とする．
+</p>
+<p>
+自分の欠席状況はキャンパスライフエンジンから確認せよ．
+</p>
+
+<h2>レポート提出確認</h2>
+<p>
+この授業のトップページから
+レポートのページに移動し，
+レポートの提出状況を常に確認せよ．
+</p>
+
+<h2>講義</h2>
+
+
+<h3>5.1</h3>
+<h4>5.1.4</h4>
+<h5>5.1.4.2 要素の削除</h5>
+<p>
+p.61 List5.2 (1) は
+ポインタ（アドレス）x で指されたセルの<strong>直後</strong>
+のセル（連結リストの要素）を
+削除するプログラム部分である．
+削除するセルが存在しない場合のエラー処理も必要で，
+3,4 行目でそれを行っている．
+</p>
+<p>
+リストからたどれなくなったセルの使用領域は free 関数で
+システムに返さなければならない．ポインタ p に対して
+一旦free(p)を行ってしまうとその領域のデータは参照できなくなる．
+データを利用するときは free を行う前に参照しておく必要がある．
+（7行目）
+</p>
+
+<p>
+次にList5.2(1)を独立した関数として書き直す．
+</p>
+<p>
+関数を設計するときはまず最初に引数と戻り値を
+厳密に定義する．
+引数としては削除場所を渡す必要がある．これはセル
+へのポインタ型なので，(struct CELL *) 型と
+すれば良い．（ここではパラメータ名を x とする）
+戻り値としては削除されたセルの value メンバの値を返す
+とする．
+</p>
+
+<p>
+この仕様従って List5.2(1) を独立した関数 delete_position
+として書き直すと以下のようになる．
+</p>
+<h4>練習6.1</h4>
+<p>
+<a href="report05.html">第5回課題</a>で作成したプログラム
+（未完成の学生は<a href="algo05.html#listtest">前回図5.11</a>を使え）
+の main ルーチンの上に下の図6.1 delete_position
+を書き加え，テストせよ．
+</p>
+
+<div class="embox" id="delete_position">
+<pre>
+int delete_position(struct CELL *x)
+{
+    int v;
+    struct CELL *p;
+
+    if (x-&gt;next == NULL)
+        exit(1);
+    p = x-&gt;next;
+    x-&gt;next = p-&gt;next;
+    v = p-&gt;value;    /* p で指されたセルの内容を取り出す */
+    free(p);         /* return の前に実行する必要がある  */
+    return(v);
+}
+</pre>
+</div> <!-- embox -->
+<p>図6.1 delete_position</p>
+
+<p>
+図6.1 の
+</p>
+
+<div class="embox">
+<pre>
+    v = p-&gt;value;
+    free(p);
+    return(v);
+</pre>
+</div> <!-- embox -->
+<p>図6.2 delete_position の後半</p>
+
+<p>
+について説明する．ポインタ p が指す要素の値を戻り値とするなら
+return(p-&gt;value) でよいはずだが，
+この関数ではポインタ p の領域を解放する
+free(p) も実行する必要がある．
+この 2 つの実行順序について，return を先にするとそこで関数が終了
+するために free が実行されず，
+free を先にするとその時点で p-&gt;value にアクセスできなくなってしまう．
+この問題を回避するために戻り値として返すべき値を先に変数 v に格納して
+最後に return でその値を返している．
+</p>
+<p>
+テストを行うためのメインルーチンとして例えば以下のものを
+用いたとき，どのような出力になるか考察し，実際に動作させて
+確かめよ．
+</p>
+
+<div class="embox">
+<pre>
+int main(void)
+{
+    int v;
+
+    new_list();
+    insert_head(1);
+    insert_head(2);
+    insert_head(3);
+    insert_head(4);
+    print_all();
+    v = delete_position(header.next);
+    printf("deleted: %d\n", v);
+    print_all();
+    v = delete_position(header.next-&gt;next);
+    printf("deleted: %d\n", v);
+    print_all();
+}
+</pre>
+</div> <!-- embox -->
+<p>図6.3 delete_positionテスト用main</p>
+
+<p>
+ポインタではなくダミーのセルを使ってリストの先頭を表すと
+リストが空のときなどの境界条件の対処が簡単になる．
+この授業の実装では最初からダミーのセルを使う実装
+を採用しているのでリストの先頭要素を削除する場合を
+特別扱いしなくてもよい．p.61 List 5.2(2)のルーチンは
+使う必要がなく，delete_position を先頭要素の削除にも
+使うことができる．先頭要素を削除したい場合は
+delete_position(&amp;header) とすればよい．
+&amp; は<em>アドレス演算子</em>と呼ばれ，
+<strong>変数</strong>の前に書くことで
+「その変数がメモリ上に格納されているアドレス」という意味になる．
+</p>
+<h4>練習6.2</h4>
+<p>
+上記のdelete_positionの使い方で実際に先頭要素の削除を
+行う様子を確認するテスト用の main ルーチンを作成し，
+動作を確認せよ．
+</p>
+<p>
+前回課題で作成した insert_position もこの授業の実装では同様に先頭セルの
+特別扱いの必要がない．例えば先頭に value = 10 のセルを挿入する
+場合，insert_head(10) の代わりに insert_position(&amp;header, 10)
+で 先頭にセルを挿入することができる．
+</p>
+
+<h5>5.1.4.3  境界条件の扱い</h5>
+<p>
+連結リストが「ポインタ p が今指している場所」
+への挿入ができない（その次の場所ならできる）ことを回避するテクニックが
+p.63 List5.3 の insert である．
+アイデアは単純で，常に p の一個前をさすポインタ q を用意して，p の一個前
+にアクセスできる状態を保つ方法で，実際の場面でもよく使われる．
+</p>
+<h4>練習6.3</h4>
+<p>
+ここまでの練習問題で作成したプログラムに List5.3 の insert 関数を
+追加し，テストせよ．List5.3 は配布されたサンプルコードに含まれているので
+（普段作業している c ディレクトリからなら cat ../algo/list05_3.c で表示できる）
+コピーペーストで insert 関数の定義部分だけを
+ここまでの練習問題で作成したプログラムに追加（mainの上に貼付ける）すれば
+よい．ただし，サンプルコードに以下の2点の変更が必要である．
+</p>
+<ol>
+  <li>関数の書き出しを
+<div class="embox">
+<pre>
+  void insert(int a)
+</pre>
+</div> <!-- embox -->
+    に変更する．
+  </li>
+  <li>
+    fatal_error 関数は存在しないので，
+    該当する行を exit(1); に差し替える．
+  </li>
+</ol>
+<p>
+ここではデータは数値の昇順（小→大の順）に並んでいることが前提（p.62）
+なので，テスト用の main では最初に
+</p>
+
+<div class="embox">
+<pre>
+    new_list();
+    insert_head(12);
+    insert_head(7);
+    insert_head(5);
+    insert_head(2);
+    print_all();
+</pre>
+</div> <!-- embox -->
+<p>図6.4 insertテスト用mainの前半</p>
+
+<p>
+などを行って昇順のリストを作る必要がある．このあとに insert 関数
+をテストするルーチンを書き，動作を確認せよ．
+</p>
+<p>
+insert 関数でもダミーのヘッダセル
+を使う実装のおかげで先頭セルを特別扱いしなくても良いことに注意せよ．
+</p>
+<p>
+この insert 関数のように，今見ているセルを指すポインタとその一個前を
+指すポインタのセットで連結リストをスキャンするするテクニックは
+連結リストでは定石といえるほど良く使われる．
+</p>
+
+<h3>5.2 循環リスト</h3>
+<h4>5.2.1 循環リストとは</h4>
+<p>
+単純な連結リストでは最後のセルの next には NULL が格納され，
+どのセルも指さない．これを変更して最後のセルが最初のセルを
+指すようにしたものが循環リストである．
+</p>
+<h4>5.2.2 循環リストの操作</h4>
+<p>
+この節での実装は先頭にダミーセルを使わない実装である．
+</p>
+<h4>5.2.3 リストの頭を用いた循環リスト</h4>
+<p>
+循環リストでも先頭にリストの頭（ダミーのヘッダセル）を置く方法で
+ソースを簡単にできる．
+p.70 Fig. 5.9 のように，今までのリストの頭があるタイプの
+連結リストの実装（Fig. 5.9(c)）から最後のセルに NULL の代わりに
+リストの頭へのポインタを格納することでこのタイプの循環リスト
+を実現できる．
+</p>
+<p>
+要素が空のときはリストの頭のセル （head とする）だけが存在し，
+head の次の要素として head 自身を指すようにする．（Fig. 5.9(b)）
+</p>
+<p>
+p.71 List5.5 は「今どのセルをみているか」を示すポインタ
+p を head.next から始めて p が リストの頭のアドレスになるまで
+進めるプログラムである．こうすることでこの循環リストを
+先頭から末尾までたどることができる．
+</p>
+
+<h3>5.3 双方向リスト</h3>
+<h4>5.3.1 双方向リストとは？</h4>
+<p>
+単純な連結リストではリストを戻る操作に致命的に手間がかかる．
+それを改善するため，各セルが直後のセルを指すポインタである
+ next メンバをデータとして持っているように
+直前のセルを指すメンバも持てば前にたどる操作が簡単にできる，
+という発想で設計されているのが双方向リストである．
+ここでは直前のセルを指すメンバを prev とする．
+</p>
+<p>
+双方向リストは 5.2.3 節で学習したリストの頭を使った循環リスト
+と組み合わせて実装されることが多い．（p,73 Fig. 5.10）
+ここからはこの実装を前提にする．
+</p>
+<p>
+単純な連結リストに比べてリストを戻ることが可能になるので
+いろいろな操作が効率よくできる一方，各セルごとに 1 個づつ
+ポインタ変数の領域が余分に必要になる．トレードオフを考えて
+使用しなければいけない．
+</p>
+
+<h4>5.3.2 双方向リストの操作</h4>
+<p>
+双方向リストをリストの頭を使った循環リストで作成する．
+セルを表す構造体に同じ名前 CELL が使われているが
+この節では定義が異なり，メンバ prev が新しく加わっている
+ことに注意せよ．（p.75）
+</p>
+<p>
+まず双方向リストを初期化する関数 new_list を作成する．
+教科書 p.75 にあるように空リストは Fig. 5.10(c) の状態で，
+グローバル変数 head の prev メンバ，next メンバ両方が自分自身を指す，
+つまり変数 head のアドレスが格納された状態になればよい．
+これは head.prev = head.next = &amp;head を実行するだけでよい．
+</p>
+<p>
+次に双方向リスト用の print_all を作る．
+前から後ろへたどる場合は5.2.3節の循環リストと全く同じなので
+p.71 List5.5 の処理で最初の要素から最後の要素までの処理が
+行える．
+</p>
+<p>
+これらをまとめ，
+</p>
+<ul>
+<li>
+struct CELL 構造体の定義
+</li>
+<li>
+双方向（循環）リストの頭を表すグローバル変数
+head の宣言
+</li>
+<li>
+双方向リストを初期化する関数 new_list()
+</li>
+<li>
+リストの要素すべてを順に表示する関数 print_all()
+</li>
+<li>
+print_all の逆順にリストの要素すべてを表示する関数 print_reverse()
+</li>
+</ul>
+<p>
+を記述したものが以下の図 6.5 になる．
+</p>
+
+<div class="embox" id="dlink" >
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct CELL {
+    struct CELL *prev;
+    struct CELL *next;
+    int value;
+} head;
+
+void new_list(void)
+{
+    head.prev = head.next = &amp;head;
+}
+
+void print_all(void)
+{
+    struct CELL *p;
+
+    p = head.next;
+    while(p != &amp;head)
+    {
+        printf("%d ",p-&gt;value);
+        p = p-&gt;next;
+    }
+    printf("\n");
+}
+
+void print_reverse(void)
+{
+    struct CELL *p;
+
+    p = head.prev;
+    while(p != &amp;head)
+    {
+        printf("%d ",p-&gt;value);
+        p = p-&gt;prev;
+    }
+    printf("\n");
+}
+</pre>
+</div> <!-- embox -->
+<p>図6.5 双方向リストのプログラム部分</p>
+
+<p>
+p.76 Fig. 5.11 はポインタ x が指す新しいセルを
+ポインタ p の直後に挿入する手順である．
+図と説明を良く読み，ポインタの繋ぎ変えを理解せよ．
+</p>
+<p>
+p.77 Fig. 5.12 はポインタ p が指すセルを
+削除する手順である．
+図と説明を良く読み，ポインタの繋ぎ変えを理解せよ．
+実際には<a href="algo06.html#delete_position">単純な連結リストの delete_position </a>
+のように戻り値を確保する手順と不要になった領域を解放する
+手順も必要である．
+</p>
+<h3>5.4 節は省略</h3>
+
+<h2>課題</h2>
+<p>
+<a href="report06.html">第 6 回課題「双方向リストでの要素の途中挿入」</a>
+を提出せよ．
+</p>
+
+
+<hr>
+<address>
+Updated in October 22, 2012, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

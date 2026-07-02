@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Data structures and algorithms guidance</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+</head>
+<body>
+<h1 class="title">
+Data structures and algorithms guidance<br>
+データ構造とアルゴリズムガイダンス</h1>
+
+<h2>授業の進め方</h2>
+<p>
+  出席の確認はOpenLMS の 3 限のコマを用いて行う．
+  3限の授業時間中に出席登録を完了せよ．
+  ただし，第8回は 4 限の時間内に出席登録を行え．
+  この場合もOpen LMS の 3 限のコマに登録する．
+</p>
+<p>
+  2回目以降の授業では課題を出題する，
+  授業用サーバーには課題の自動採点機能がある．
+  自力で課題に挑戦し，
+  自動採点の結果を確認してプログラミング能力の向上に利用せよ．
+</p>
+
+<h2>家庭で予習復習する場合の受講環境の構築</h2>
+<p>
+  家庭で学習するには授業用サーバーへ遠隔ログインができる環境が
+  必須である．環境構築で質問があればメールで
+  山本宙&lt;<a href="mailto:hiroshi@tokai.ac.jp">hiroshi@tokai.ac.jp</a>&gt;
+  まで質問すること．
+</p>
+<p>
+  Windows の場合 Tera Term を利用して遠隔ログインを行う．下記リンクからインストールせよ．<br>
+  <a href="https://forest.watch.impress.co.jp/library/software/utf8teraterm/">
+    窓の杜Tera Termダウロードページ</a><br>
+  計算機室のPCの場合は Tera Term がインストールされているのでそのまま利用できる．
+</p>
+<p>
+  Mac の場合は標準の「ターミナル」を使ってログインできる．
+</p>
+
+<h2>接続テスト</h2>
+<p>
+  情報通信学科以外の学生は授業用サーバーにアカウントを
+  追加する必要があるので山本
+  &lt;<a href="mailto:hiroshi@u-tokai.ac.jp">hiroshi@u-tokai.ac.jp</a>&gt;
+  まで連絡
+  （自分の学生証番号，氏名，科目名，受講クラスをメール本文に書くこと）し，
+  アカウントの追加が完了したというメールを受け取ったら以下の接続テストを行え．
+</p>
+<h3>通知メールの確認</h3>
+
+<p>
+  情報通信学科の学生にはすでに授業用サーバーにアカウントを
+  作成し，ユーザ名とパスワードをメールで連絡してある．
+<a href="https://cc.u-tokai.ac.jp">web メール（T365）</a>
+にログインし，1年生は
+9/30 に
+ "Username and password for data structures and algorithms"
+という件名のメールが届いているはずなので開け．
+</p>
+<p>
+情報通信学科の 2 年生以上は自分が 1 年の秋学期だった時期に同じ
+件名のメールが届いているはずである．
+わからない場合はユーザ名とパスワードをメールで山本に聞くこと．
+</p>
+
+<h3>授業用サーバへのログイン</h3>
+<p>
+上で開いたメールに
+授業で使用する研究室のサーバへログインするための
+ユーザ名とパスワードが書かれている．
+これは計算機室の端末にログインするときに用いたものとは
+独立なので注意せよ．
+</p>
+<p>
+以下の手順で授業用サーバへログインせよ．
+</p>
+<h4>Windowsの場合</h4>
+<ol>
+  <li>
+    <ul>
+      <li>
+大学の計算機室で学習する場合は画面左下のスタートボタンを左クリックし，
+「Tera Term」を探して左クリックせよ．
+      </li>
+      <li>
+	家庭で学習する場合は
+	インストールしたTera Termを起動せよ．
+      </li>
+    </ul>
+  </li>
+  <li>
+「新しい接続」ダイアログの「ホスト欄」に
+sirius.yamamotolab.je.u-tokai.ac.jp と記入し，「OK」を押せ．
+  </li>
+<li>
+「セキュリティ警告」ダイアログが出た場合は「続行」を押す．
+<li>
+「SSH認証」ダイアログの「ユーザ名」と「パスフレーズ」欄にそれぞれ
+上記メールで配布されたユーザ名とパスワードを入力し，「OK」を押せ．
+ターミナルに Welcome to ... という文字列が出ればログイン成功である．
+</li>
+  <li>
+（学習を終えてログアウトするときは
+「ファイル」メニューから「終了」を選び，
+Tera Term を終了する．）
+</li>
+</ol>
+
+<h4>Macの場合</h4>
+<ol>
+<li>
+  標準の「ターミナル」を起動せよ．
+</li>
+<li>
+  自分のユーザ名がje00000cとすると，ターミナルに<br>
+  ssh je00000c@sirius.yamamotolab.je.u-tokai.ac.jp<br>
+  とと入力し，改行キーを押せ．
+</li>
+<li>
+  セキュリティの警告が出たら yes と答えよ．
+</li>
+<li>
+  パスワードを聞かれるので自分のパスワードを入力して改行キーを押せ．
+  自分が入力した文字は画面に表示されないが入力されているので注意して入力せよ．
+ターミナルに Welcome to ... という文字列が出ればログイン成功である．
+</li>
+<li>
+    （学習を終えてログアウトするときはターミナルにて行頭で
+  Ctrl-d（コントロールキーを押しながらd）を
+  入力して遠隔ログインを終了する．）
+</li>
+</ol>
+  <h2>講義のまえに</h2>
+<p>
+最初にプログラム作成，コンパイル，実行の環境の実習を行う．
+</p>
+
+<p>
+  上の説明に従って授業用サーバーにログインした状態で実習を続ける．
+</p>
+
+<h3>UNIX 入門</h3>
+<p>
+ログインすると，自分のホームディレクトリにいるはずである．
+ターミナルの最下行の 
+</p>
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~$
+</pre>
+</div> <!-- embox -->
+<p>
+をプロンプトという．プロンプトが出ているときはコマンド入力が可能である．
+以下のようにキーボードから "ls" と入力し改行キーを押せ．
+</p>
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~$ ls
+</pre>
+</div> <!-- embox -->
+<p>
+これは ls というコマンドを実行する方法で，ls コマンドは
+現在自分のいる「カレントディレクトリ」にあるファイル，ディレクトリの
+一覧を表示するコマンドである．初期状態では以下のように結果が表示さる
+はずである．再びプロンプトが出力され，次の入力が可能な状態になっていることが
+分る．
+</p>
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~$ ls
+algo
+je<em class="var">XXXXXX</em>@sirius:~$ 
+</pre>
+</div> <!-- embox -->
+<p>
+このディレクトリ（ホームディレクトリ，ログインしたときの初期位置）
+に授業専用のディレクトリを作成し，すべてのプログラムをそこで作成
+するようにする．まず，ディレクトリの作成を行うために mkdir c
+というコマンドをターミナルに入力せよ．
+</p>
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~$ mkdir c
+je<em class="var">XXXXXX</em>@sirius:~$ 
+</pre>
+</div> <!-- embox -->
+<p>
+mkdir が「コマンド」，c は「引数」とよばれ，
+今いるディレクトリに c という名前のディレクトリを作るコマンド
+となっている．できたかどうか ls コマンドで確認せよ．
+</p>
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~$ ls
+algo  c
+je<em class="var">XXXXXX</em>@sirius:~$ 
+</pre>
+</div> <!-- embox -->
+<p>
+作成したディレクトリ c に移動して作業を行う．ディレクトリを
+移動するコマンドは cd で，移動先を引数で与えるため，コマンドは
+以下のとおりである．
+</p>
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~$ cd c
+je<em class="var">XXXXXX</em>@sirius:~/c$ 
+</pre>
+</div> <!-- embox -->
+<p>
+プロンプトの $ 記号の左に現在いるディレクトリ（カレントディレクトリ）
+が表示されている．この場所にはまだファイルが存在しないはずである．
+ls コマンドを実行して確認せよ．
+</p>
+
+<p>
+プログラムの作成は emacs エディタで行う．プログラムの作成には
+emacs のようなテキストエディタとよばれるものが使われることが多い．
+</p>
+
+<h3>プログラム作成</h3>
+<p>
+ここまでの作業を行うと自分のホームディレクトリの直下の c 
+ディレクトリがカレントディレクトリになっているはずである．
+この場所に最初のプログラムとして画面に hello, world と出力する
+プログラム hello.c を作成する．ファイル名をまずターミナルから emacs 
+コマンドを作成したファイル名を引数として入力する．（下図）
+</p>
+
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~/c$ emacs hello.c
+</pre>
+</div> <!-- embox -->
+<p>
+ここからはターミナル全体は emacs が支配することになる．
+emacs を終了し，プロンプトが現れるまで他のコマンドは入力できない．
+</p>
+<p>
+  emacs の操作方法は神戸大学のコンテンツ
+「<a href="http://exp.cs.kobe-u.ac.jp/wiki/comp_practice/index.php?plugin=attach&refer=1.Linux%A4%CE%B4%F0%CB%DC%B1%E9%BD%ACI%2C%20II&openfile=editor_180412.pdf">Emacsエディタの使い方</a>」
+などを参照すること．情報はウェブ上にも多くの情報があるので参考にすること．
+</p>
+<p>
+hello.c の内容は以下のものとする．マウスによるコピーアンドペーストで
+先ほど開いた emacs を実行中の画面にコピーせよ．（マウスでコピーし，
+Tera Term の編集メニューから貼付けでコピーできる）
+</p>
+
+<div class="embox">
+<pre>
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("hello, world\n");
+}
+</pre>
+</div> <!-- embox -->
+<p>図1.1 hello.c</p>
+<p>
+emacs でファイルを上書きセーブするにはコントロールキーを押したまま
+x キーを一回押して離し，次に s を一回押して離す．この操作を CTRL-x CTRL-s
+と書く．この操作を実行し，セーブせよ．
+</p>
+<p>
+emacs を終了するには CTRL-x CTRL-c を実行する．このとき
+ファイルが未セーブであれば確認される．終了作業を行え．
+</p>
+<p>
+emacs が終了すると再びプロンプトが表示され，コマンドが入力できる
+ようになっている．ls コマンドで hello.c が存在していることを確認せよ．
+</p>
+<p>
+  自分が作成した覚えのない hello.c~ や #hello.c# のような名前の
+  ファイルができていることがある．これらは emacs がバックアップのために
+  自動的に保存したファイルである．例えばhello.c というファイルをエディットして
+  保存すると，一つ前に保存したバージョンが hello.c~ という名前で
+  保存される．また，長時間エディットしているとemacs は安全のために
+オートセーブを行うことがある．このときのファイル名は
+  本来のファイル名の前後に # をつけたものになる．正常に終了した
+  場合は自動的に消されるが強制終了があった場合このファイルが残る．
+</p>
+<p>
+  いずれも問題が起こったときのリカバーのために保存されるもので，
+  放置しても問題ない．気になるならファイルを消去する rm コマンドを
+  使って rm hello.c~ や rm '#hello.c#' と入力することで消去することが
+  できる．
+</p>
+
+<h3>コンパイル</h3>
+<p>
+C プログラムはコンパイルすることで実行可能となる．コンパイルのコマンドは
+cc というコマンドで，ソースファイルを引数として与える．この場合は
+hello.c が存在するディレクトリで
+<strong>プロンプトが表示されているときに</strong>
+cc hello.c というコマンドを実行すればよい．実際にコマンドを実行せよ．
+</p>
+
+<p>
+cc が何も画面に表示せずに終了（次のプロンプトが出る）すれば
+コンパイルは成功である．同じディレクトリに実行ファイルの
+a.out ができているはずなので確認せよ（以下の実行例）
+</p>
+
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~/c$ ls
+a.out  hello.c
+je<em class="var">XXXXXX</em>@sirius:~/c$ 
+</pre>
+</div> <!-- embox -->
+<p>
+  この方法でコンパイルすると，どのプログラムをコンパイルしても結果は
+  同じ a.out というファイルに上書きされる．
+  a.out は最後にコンパイルに成功したプログラムの実行ファイルになる．
+</p>
+<p>
+コンパイルに失敗し，エラーが出た場合は emacs で hello.c を
+修正し，コンパイルを再実行せよ．
+</p>
+<h3 id="execute">実行</h3>
+<p>
+出来た a.out ファイルを実行するには ./a.out というコマンドを実行
+する．以下のように出力されたら成功である．
+</p>
+
+<div class="embox">
+<pre>
+je<em class="var">XXXXXX</em>@sirius:~/c$ ./a.out
+hello, world
+je<em class="var">XXXXXX</em>@sirius:~/c$ 
+</pre>
+</div> <!-- embox -->
+
+<p>
+複雑なプログラムを作成するときは emacs で修正して
+コンパイル，実行を繰り返すことになる．Tera Term の
+「ファイル」メニューから「セッションの複製」を選び，
+2枚目のターミナルを開け，両方ともディレクトリ c に
+いる状態にして片方では emacs を起動させてままにして
+もう片方でコンパイル，実行を行うと効率が良い．
+</p>
+
+<p>
+  C 言語への導入のため，以下のリンクをクリックせよ．<br>
+  <a href="programming.html">C 言語初歩</a>
+</p>
+<p>今回は課題は無い．</p>
+<hr>
+<address>
+Updated in September 24, 2021, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

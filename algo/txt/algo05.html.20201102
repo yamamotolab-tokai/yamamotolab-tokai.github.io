@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Linked list 2</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+</head>
+<body>
+<h1 class="title">
+Linked list 2<br>
+連結リストその2</h1>
+
+<h2 id="atmail">
+出席調査
+</h2>
+<p>
+教壇に向かって右前の計算機に接続された IC カードリーダに
+学生証をタッチせよ．これを出席とする．
+</p>
+<p>
+自分の欠席状況はキャンパスライフエンジンから確認せよ．
+</p>
+
+<h2>レポート提出確認</h2>
+<p>
+この授業のトップページから
+レポートのページに移動し，
+レポートの提出状況を常に確認せよ．
+</p>
+
+<h2>講義</h2>
+
+<h3>5.1.1</h3>
+<p>
+<a href="algo04.html#fig4_5">前回図4.5</a>
+の出力部分に注目する．
+</p>
+<div class="embox">
+<pre>
+    printf ("%d ",header.next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;next-&gt;next-&gt;value);
+</pre>
+</div> <!-- embox -->
+<p>図 5.1 出力部分</p>
+
+<p>
+<a href="report04.html">第 4 回課題</a>
+の print_all を作成するにはこの出力部分をループで実現しなければならない．
+ループにするためにはループ変数を決めて，同じ形を繰り返すように
+変形しなければならない．上のプログラム部分は以下のものと等価である．
+（p は (struct CELL *) 型のポインタ変数とする）
+</p>
+<div class="embox">
+<pre>
+    p = header.next;
+    printf ("%d ",p-&gt;value);
+    p = p-&gt;next;
+    printf ("%d ",p-&gt;value);
+    p = p-&gt;next;
+    printf ("%d ",p-&gt;value);
+    p = p-&gt;next;
+    printf ("%d ",p-&gt;value);
+</pre>
+</div> <!-- embox -->
+<p>図5.2 出力部分を繰り返す形に</p>
+
+<p>
+これで printf ("%d ", p-&gt;value); p = p-&gt;next; 
+をループの中で繰り返せばよいことがわかる．
+最後の要素を出力した p の p-&gt;next 値は NULL であるから
+これをループ終了の条件とすればよい．結局 print_all は以下のような
+ループで作ることができる．
+</p>
+
+<div class="embox">
+<pre>
+void print_all(void)
+{
+    struct CELL *p;
+
+    p = header.next;
+    while (p != NULL)
+    {
+        printf("%d ", p-&gt;value);
+        p = p-&gt;next;
+    }
+    printf("\n");
+}
+</pre>
+</div> <!-- embox -->
+<p>図5.3 連結リストの print_all</p>
+<p>
+この，リストの先頭から最後までたどる処理は連結リストの
+基本となる処理なのでよく理解すること．</p>
+
+<h4>練習5.1</h4>
+<p>
+<a href="algo04.html#fig4_5">前回図4.5</a>
+の main 関数の上に print_all() 関数を追加し，
+出力するための行</p>
+<div class="embox">
+<pre>
+    printf ("%d ",header.next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;next-&gt;value);
+    printf ("%d ",header.next-&gt;next-&gt;next-&gt;next-&gt;value);
+    printf ("\n");
+</pre>
+</div> <!-- embox -->
+<p>を print_all(); で置き換えたものを作り，動作を確認せよ．
+</p>
+
+<h4>5.1.2連結リストの基本的性質</h4>
+<p>
+単純な連結リストでは，途中の要素にアクセスするためには
+先頭から一つずつ next メンバをたどってゆく必要がある．
+（O(n)）また，全ての要素にデータを格納する領域の他に
+次の要素を指すポインタを格納する領域が必要である．
+</p>
+
+<p>
+要素の途中への挿入，削除は，近隣の数個の要素の
+next メンバの書き換えで行うことができる．配列のように
+後の要素を全てずらす必要がない．
+</p>
+<p>
+P.54 Fig5.2 の操作を実際に行ってみる．
+<a href="algo04.html#fig4_5">前回図4.5</a>
+の2個目の要素の後ろに要素（value=8 とする）を挿入する手順を
+説明する．まず教科書 p.54 Fig 5.2 と同じ状況になるように
+挿入位置の前の要素へのポインタを記憶する変数 x と
+新しい要素へのポインタを記憶する変数 p を
+main 関数の最初の変数宣言の場所に付け加える．
+</p>
+
+<div class="embox">
+<pre>
+    struct CELL *ap, *bp, *cp, *dp, *x, *p;
+</pre>
+</div> <!-- embox -->
+<p>図5.4 main の変数宣言への追加</p>
+
+<p>
+<a href="algo04.html#fig4_5">前回図4.5</a>
+の</p>
+<div class="embox">
+<pre>
+    dp-&gt;next = NULL;
+</pre> <!-- embox -->
+</div>
+<p>図5.5 main 変更場所</p>
+<p>
+の行でリスト(2,5,12,-4)が完成した部分の後ろに
+挿入作業のコードを追加する．
+</p>
+<p>
+教科書図 5.2 の変数 x と同じ状況にするには
+2 個めの要素へのポインタ bp を x に代入すればよい．
+（2番目の後に挿入するため）
+</p>
+<div class="embox">
+<pre>
+    x = bp;
+</pre> <!-- embox -->
+</div>
+<p>図5.6 x の設定</p>
+<p>
+次にmalloc を行い，
+要素一つ分のメモリを確保してそのアドレスを変数 p に保存する以下の文を挿入する．
+<div class="embox">
+<pre>
+    if ((p = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+</pre> <!-- embox -->
+</div>
+<p>図5.7 malloc による領域確保</p>
+<p>
+次にデータの記録（value=8）と周辺の
+ポインタのつなぎ変えを行う．
+具体的にはまず p-&gt;value にデータである 8 を代入する．
+x-&gt;next には旧3番めの要素へのポインタが格納されている．
+この値は新4番目として必要なので先に p-&gt;next に
+コピーしておく．
+次に x-&gt;next へ新3番目となる新しく作成した要素へのポインタ p を代入する．
+（x-&gt;next が p と同じものを指すようにする）
+まとめると，具体的には上の図5.7「malloc による領域確保」の次に以下の文を挿入する．
+</p>
+<div class="embox">
+<pre>
+    p-&gt;value = 8;
+    p-&gt;next = x-&gt;next;
+    x-&gt;next = p;
+</pre> <!-- embox -->
+</div>
+<p>図5.8 value の設定と周辺ポインタのつなぎ変え</p>
+
+<p>
+2 行目と 3 行目の順番を逆にししまうと後で必要になる
+新4番目へのポインタの値が消えてしまうので正しく動作しない
+ことに注意せよ．
+</p>
+
+<h4>練習5.2</h4>
+<p>
+main に上記の変更を行い，挿入作業（図5.6,図5.7と図5.8追加部分）
+の前後で print_all()を実行するテストプログラムを作成し，
+実行してリストが (2 5 12 -4) から
+(2 5 8 12 -4) に変化し，実際に挿入が行われていることを確認せよ．
+</p>
+
+<p>
+必要になってから要素の領域を動的に増やせることが
+連結リストの大きな利点である．
+</p>
+
+<h4>練習5.3</h4>
+<p>
+P.54 Fig5.3 をよく見て，練習 5.2 の状態のリスト(2 5 8 12 -4) 
+から2 番目の要素を削除するようにポインタをつなぎ変えよ．
+print_all() を使って削除されていることを確認せよ．
+</p>
+<p>
+実際のプログラムでは，ここまでの例の変数 ap, bp, cp, dp のように
+全ての要素へのポインタを記憶しておくようなことはしない．
+「現在見ている要素」へのポインタ p を用意しておいて
+p = p-&gt;next などを実行して p を「進めながら」処理する． 
+</p>
+<p>
+P.56 Fig5.4,5.5 のように連結リストは，
+接続，切断ポイントのポインタが分っていれば簡単に（O(1)で）
+接続，切断が行える．
+</p>
+
+<h4>5.1.3 連結リストとメモリ管理</h4>
+<p>
+動的割り当てを行うのでプログラム実行中に
+領域を確保する関数を実行する必要がある．
+この授業では malloc を使う．コンパイル時ではなく，
+プログラム実行中の任意の時点で malloc で領域を確保し，
+free で解放できる．　
+</p>
+<h4>5.1.4 連結リストの操作</h4>
+<h5>5.1.4.1 要素の挿入</h5>
+<p>
+ここからは練習5.2までのように全ての要素へのポインタを記憶する
+ことなく必要なポインタ変数だけ使用してメモリの動的割り当てを行う
+より実践的な関数を実装してゆく．また，データ構造の実現と
+本体アルゴリズムを分離する意味から，抽象データ型リスト
+（データ構造である連結リストとは別の概念であることに注意）
+の基本操作（教科書p.35 Table 4.1）を関数として提供し，
+main からは基本操作関数を通してのみデータにアクセスする
+方針でプログラムを作成する．例えば今まで行っていたように
+main 内で直接構造体の value メンバの値を参照するようなことはせず，
+値を取り出す基本操作関数を通して要素の値を受け取るような構造にする．
+</p>
+<p>
+データ構造と本体アルゴリズムを分離し，基本操作のアクセス方法を
+決めることで，データ構造だけの改良，本体アルゴリズムだけの変更
+ができる．これは抽象化を意識したソフトウェアの開発方法で，
+大規模なソフトウェアになるほど重要になる．
+</p>
+<p>
+使用する連結リストはこれまでと同様に
+struct CELL 型として宣言されたグローバル変数
+header をダミーヘッダとしたものとする．
+header.next が NULL なら連結リストは空であり，
+NULL でなければ header.next が一個目の要素へのポインタ
+となる．
+</p>
+<p>
+最初に空のリストを作成する関数 new_list を作成する．
+構造体 header はグローバル変数として宣言されているので
+プログラム開始時は領域は確保されているが値が
+設定されていない状態になっている．new_list のすべきことは
+グローバル変数 header の next メンバに NULL を代入することである．
+関数 new_list には引数も戻り値もない．
+</p>
+
+<div class="embox">
+<pre>
+void new_list(void)
+{
+    header.next = NULL;
+}
+</pre> <!-- embox -->
+</div>
+<p>図5.9 new_list</p>
+
+<p>
+次にリストの先頭に要素を挿入する関数 insert_head
+を作成する．この関数には引数として挿入する要素の
+値（value メンバに設定する値）を渡す必要がある．
+この int 型のパラメータの名前を v とする．
+</p>
+<p>
+insert_head の戻り値はない．
+</p>
+<p>
+手順としてはまず以下のことを行い，挿入する一個分
+の要素を作成する．
+</p>
+<ol>
+<li>
+malloc で領域を確保し，その領域へのポインタ（アドレス）
+を変数 p に記録する．
+</li>
+<li>
+ポインタ p が指す要素（アドレスが p である領域）
+の value メンバにパラメータ v を代入する．
+</li>
+</ol>
+
+<p>
+次に，p が指している（アドレスが p である）新たに作成した要素を
+連結リストの先頭に挿入するためのポインタのつなぎ変えを行う．
+連結リストが空のときでも正しく動作するかどうか吟味することは
+重要である．このような場合には漏れがないように場合分けを行って考察する．
+</p>
+
+<ul>
+<li>
+連結リストが空のとき：<br>
+新しい要素が最後の要素になるので p-&gt;next に NULL を代入し，
+header.next に p を代入して header.next が
+作成した新しい要素を指す（新要素のアドレスを保持する）
+ようにする．
+</li>
+<li>
+連結リストに少なくとも要素が一個存在するとき：<br>
+header.next が指していた要素（アドレスが header.next である領域）
+が次に2個目になる要素であるから，
+新しい要素のメンバ nextがそこを指す
+（メンバ nextに header.next のアドレスをコピーする）
+ようにする，つまり，p-&gt;next に header.next を代入する．
+次に header.next が新要素を指す（新要素のアドレスを保持する）ように
+header.next に p を代入する．
+</li>
+</ul>
+<p>
+ここで上記 2 つの場合をよく見ると，要素が存在するときの処理を
+連結リストが空のときに行っても正しい値が設定されることが
+わかる．（空のリストの header.next は NULL だから）
+このことからプログラムでは場合分けは必要なく，要素があるとき用に
+書いた処理を行えば両方の場合で正しく動作することがわかる．
+</p>
+
+<p>
+以上をまとめたものが下の関数 insert_head である．
+</p>
+
+<div class="embox">
+<pre>
+void insert_head(int v)
+{
+    struct CELL *p;
+
+    if ((p = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+    p-&gt;value = v;
+    p-&gt;next = header.next;
+    header.next = p;
+}
+</pre> <!-- embox -->
+</div>
+<p>図5.10 insert_head</p>
+
+<p>
+sttuct CELL 構造体の定義と，
+これまで作成した new_list, insert_head, print_all
+をまとめて，main として簡単なテストを行う
+プログラムを付け加えたものが下の図5.11 である．
+実行し，main 内のテスト内容を変更して動作を確認せよ．
+</p>
+
+<div class="embox" id="listtest">
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct CELL {
+    struct CELL *next;
+    int value;
+} header;
+
+void insert_head(int v)
+{
+    struct CELL *p;
+
+    if ((p = malloc(sizeof(struct CELL))) == NULL)
+        exit(1);
+    p-&gt;value = v;
+    p-&gt;next = header.next;
+    header.next = p;
+}
+
+void new_list(void)
+{
+     header.next = NULL;
+}
+
+void print_all(void)
+{
+    struct CELL *p;
+
+    p = header.next;
+    while (p != NULL)
+    {
+        printf("%d ",p-&gt;value);
+        p = p-&gt;next;
+    }
+    printf("\n");
+}
+
+int main(void)
+{
+    new_list();
+    print_all();
+    insert_head(-4);
+    print_all();
+    insert_head(12);
+    print_all();
+    insert_head(5);
+    print_all();
+    insert_head(2);
+    print_all();
+}
+</pre> <!-- embox -->
+</div>
+<p>図5.11 連結リストのテスト</p>
+
+<h2>課題</h2>
+<p>
+<a href="report05.html">第 5 回課題「連結リストでの要素の途中挿入」</a>
+を提出せよ．
+</p>
+
+<hr>
+<address>
+Updated in October 22, 2012, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>

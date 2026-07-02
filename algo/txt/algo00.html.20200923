@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> Data structures and algorithms guidance</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://localhost/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="index.html">
+<link rel="stylesheet"
+href="../../../css/yh.css">
+</head>
+<body>
+<h1 class="title">
+Data structures and algorithms guidance<br>
+データ構造とアルゴリズムガイダンス</h1>
+
+<h2 id="atmail">
+出席調査
+</h2>
+<p>
+教壇に向かって右前の計算機に接続された IC カードリーダに
+学生証をタッチせよ．これを出席とする．
+</p>
+<p>
+自分の欠席状況はキャンパスライフエンジンから確認せよ．
+</p>
+
+
+<h2>接続テスト</h2>
+<h3>通知メールの確認</h3>
+<p>
+計算機室の PC には大学から受領した ID, パスワードでログインする．
+ログインせよ．
+</P>
+
+<p>
+<a href="https://cc.u-tokai.ac.jp">web メール（T365）</a>
+にログインしせよ．
+9/24 に
+ "Username and password for data structures and algorithms"
+という件名のメールが届いているはずなので開け．
+</p>
+<p>
+1 年生以外は自分が 1 年の秋学期だった時期に同じ
+件名のメールが届いているはずである．
+わからない場合はユーザ名とパスワードを教員に聞くこと．
+</p>
+
+<h3>授業用サーバへのログイン</h3>
+<p>
+上で開いたメールに
+授業で使用する研究室のサーバへログインするための
+ユーザ名とパスワードが書かれている．
+これは計算機室の端末にログインするときに用いたものとは
+独立なので注意せよ．
+</p>
+<p>
+以下の手順で授業用サーバへログインせよ．
+</p>
+<ol>
+<li>
+Windows 8 画面左下のスタートボタンを左クリックし，
+「Tera Term」を探して左クリックせよ．
+</li>
+<li>
+「新しい接続」ダイアログの「ホスト欄」に
+sirius.yamamotolab.je.u-tokai.ac.jp と記入し，「OK」を押せ．
+</li>
+<li>
+「セキュリティ警告」ダイアログが出た場合は「続行」を押す．
+<li>
+「SSH認証」ダイアログの「ユーザ名」と「パスフレーズ」欄にそれぞれ
+上記メールで配布されたユーザ名とパスワードを入力し，「OK」を押せ．
+ターミナルに Welcome to ... という文字列が出ればログイン成功である．
+</li>
+</ol>
+
+<p>
+ログイン成功を確認したら
+「ファイル」メニューから「終了」を選び，
+Tera Term を終了せよ．
+</p>
+<hr>
+<address>
+Updated in September 27, 2019, 
+<a href="index.html">index.html</a>,
+<a href="http://localhost/%7Ehiroshi/education/index.html">
+Yamamoto Hiroshi</a>
+</address>
+</body>
+</html>
