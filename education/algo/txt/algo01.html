@@ -13,12 +13,15 @@ href="index.html">
 href="../../../css/yh.css">
 <link rel="stylesheet" media="print" href="../../../css/yhprint.css">
 <script>
-window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-  }
-};
+  window.MathJax = {
+      chtml: {
+	  scale: 0.85
+      },
+      tex: {
+	  inlineMath: [['$', '$'], ['\\(', '\\)']],
+	  displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+  };
 </script>
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">

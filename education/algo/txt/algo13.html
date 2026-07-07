@@ -11,23 +11,20 @@ href="http://localhost/%7Ehiroshi/education/index.html">
 href="index.html">
 <link rel="stylesheet"
 href="../../../css/yh.css">
-<META http-equiv="Content-Script-Type" content="text/javascript">
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+<script>
+  window.MathJax = {
+      chtml: {
+	  scale: 0.85
+      },
+      tex: {
+	  inlineMath: [['$', '$'], ['\\(', '\\)']],
+	  displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+  };
 </script>
-<script type="text/x-mathjax-config">
-<!--
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
--->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 </head>
 <body>
