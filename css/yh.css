@@ -105,6 +105,9 @@ img.google
 	border: 0;
 	vertical-align: middle;
 }
+mjx-container {
+    font-size: 95%;
+}
 p.picture
 {
 	font-size: 70%;
