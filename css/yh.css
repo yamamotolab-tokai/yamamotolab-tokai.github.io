@@ -106,7 +106,7 @@ img.google
 	vertical-align: middle;
 }
 mjx-container {
-    font-size: 50%;
+    font-size: 50% !important;
 }
 p.picture
 {
