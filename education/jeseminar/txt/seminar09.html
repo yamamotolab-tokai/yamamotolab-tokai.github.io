@@ -60,7 +60,7 @@ machine learning<br>
   それぞれの要素がグラフ記入用オブジェクトになる．
 </p>
 <p>
-  p.374 スニペット In[11] を実行する前に下記の命令を一行づつ実行し，
+  p.374 スニペット In [11] を実行する前に下記の命令を一行づつ実行し，
   図のウィンドウの左上の表示の変化を確認せよ． 
 </p>
 <div class="embox">
@@ -71,6 +71,16 @@ axes[0][0].set_yticks([])
 axes[0][0].set_title(digits.target[0])
 </pre>
 </div> <!-- embox -->
+
+<p>
+  スニペットIn [11] の zip(axes.ravel(), digits.images, digits.target)
+  axes.ravel() はスニペット In [10] で作成した 6x4 の二次元配列 axes
+  を一次元化したもので，要素数 48 個の配列である
+  zip は引数の3つの配列それぞれの先頭から1つづつ要素をとりだし，
+  要素数 3 のタプルを返す．digits.images, digits.target の要素数は 1797
+  個であり，zip の引数の要素数が異なる．この場合，最も少ない要素数をもつ
+  axes.ravel() の個数である 48 個のタプルが返される．
+</p>
 
 <p>
   p.375 スニペット In [13] は訓練セットとテストセットへの分割である．
