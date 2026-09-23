@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title> coding theory document 11</title>
+<link rev=made href="mailto:hiroshi@tokai.ac.jp"> 
+<link rel="START"
+href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">
+<link rel="PREV"
+href="../../index.html">
+<link rel="stylesheet" href="../../../css/yh.css">
+<link rel="stylesheet" media="print" href="../../../css/yhprint.css">
+<META http-equiv="Content-Script-Type" content="text/javascript">
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+<!--
+  MathJax.Hub.Config({
+    TeX: { equationNumbers: { autoNumber: "AMS" }},
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { matchFontHeight: false },
+    displayAlign: "left",
+    displayIndent: "2em"
+  });
+-->
+</script>
+</head>
+<body>
+  <h1 class="title">
+Codint Theory document 11<br>
+符号理論特論第 11 回補足資料<br>
+</h1>
+  <h2>
+    2.2 完全符号，ハミング符号，スフェアパッキングバウンド，つづき
+  </h2>
+  <p>
+    いままでで得られた知識をまとめると，線形符号の最小重みが $d$ のとき，
+  </p>
+  <ul>
+    <li>
+      符号語を中心とする半径 $t = \lfloor(d-1)/2\rfloor$ の球は
+      互いに重なりがない．
+    </li>
+    <li>
+      $t$ 個以下の誤りであれば，受信語は送信符号語を中心とする球に
+      一意に含まれるので正しく復号できる．
+    </li>
+    <li>
+      各球に含まれるベクトルの数は等しく，球 1 個に含まれるベクトルの
+      数と符号語を掛けたベクトルの数が全空間のベクトルの数に
+      一致するとき，完全符号という．
+    </li>
+  </ul>
+  <p>
+    などがわかった．完全符号は与えられた符号語長 $n$，情報ビット数 $k$
+    の条件で最も訂正能力の高い符号であるから完全符号を探す研究が
+    行われた．まずは完全符号が満たすべき条件を調べることから始める．
+    上にあげた知識の 3 番目から，完全符号であるためには
+    $n, k, d$ が満たす必要がある何らかの拘束条件があるはずである．
+    最初にこの $n, k, d$ が満たさなければならない拘束条件を
+    明らかにする．これは上の知識 3 に書かれているように，
+    一つの球に属するベクトルの個数を数えてそれに符号語の数
+    を掛けた数を考えればよい．これが全空間のベクトル数と
+    一致することが完全符号であるための必要条件である．
+  </p>
+  <p>
+  <strong>定理 6</strong><br>
+    $t$ 重誤り訂正可能な完全符号である $[n,k]$ 2 元符号が存在するためには，
+    $n, k, t$ は以下の式を満たすことが必要である．
+    \[
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)+ \cdots +
+    \left(\begin{array}{cc}
+    n\\
+    t
+    \end{array}\right)
+    \right)2^k = 2^n \hspace{20pt}(11.1)
+    \]
+  </p>
+  <p>
+    （定理終わり）
+  </p>
+  <p>
+    $
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)
+    $
+が符号語からハミング距離 $0$ のベクトルの個数で，$1$個である．
+    $
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)
+    $
+    が符号語からハミング距離 $1$ のベクトルの個数で，ベクトルの
+    長さが $n$ であるから $n$ のうち $1$ 箇所が誤る場合の
+    数で，$n$ 個である．以降，ベクトルの長さ $n$ のうちに
+    $2$ 個, $3$ 個誤るパターンの数を誤り訂正限界の $t$ 個まで加算して
+    半径 $t$ の球に含まれるベクトルの数を求めている．
+  </p>
+  <p>
+    完全符号を探すために，
+    どんなパラメータなら式 (11.1) を満たすか考える．最初に
+    $t=1$ のときを考える．このとき式 (11.1) は
+    \begin{eqnarray}
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)
+    \right)2^k = 2^n \nonumber\\
+    (1+n)2^k = 2^n \nonumber
+    \end{eqnarray}
+    となる．両辺を $2^k$ で割ると
+    \[
+    1+n=2^{n-k}
+    \]
+    \[
+    n=2^{n-k}-1
+    \]
+    が得られる．
+    冗長ビット数を $r$ と書くと，$r=n-k$ であるから
+    符号語長は $n = 2^r-1$ である．情報ビット数は
+    $k = n-r = 2^r-1-r$ である．$d=3$ で $t=1$ になることから
+    $[2^r-1, 2^r-1-r, 3]$ 2元線形符号が式 (11.1) を
+    満たす．これは前に述べた一般化ハミング符号
+    $\mbox{Ham}(r,2)$ として実際に存在する．
+    $r$ を変化させたときの$\mbox{Ham}(r,2)$ の族は
+    全て式 (11.1) を満たす完全符号である．
+  </p>
+  <p>
+    次に $t=2$ のときについて考える．このとき，式 (11.1) は
+    \begin{eqnarray}
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)
+    \right)2^k = 2^n \nonumber\\
+    \left(
+    1+n+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)
+    \right)2^k = 2^n \nonumber\\
+    \left(
+    1+n+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)
+    \right) = 2^{n-k} \nonumber
+    \end{eqnarray}
+    となる．この式の右辺は 2 の冪乗であるから左辺も 2
+    の冪乗であることが必要である．$n=1$ から順に調べると，
+    最初に
+    $\left(1+n+
+\left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)\right)$
+    が 2 の冪乗になるのは $n=5$ のときである．
+    このときの各パラメーターは，式 (11.1) から
+    \[
+    (1 + 5 + 10)2^k = 2^5
+    \]
+    となるので $k=1$ である．このパラメータをもつ
+    完全符号は $[5,1,5]$ 線形符号で，これは情報ビット数が
+    $1$, つまり符号語がオール0かオール1 の 2 つしかない
+    5 回繰り返し符号で，自明な符号の一つである．
+    次に
+        $\left(1+n+
+\left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)\right)$
+    が 2 の冪乗になるのは $n=90$ のときである．
+    しかし，符号語長が $90$ である完全符号は存在しないことが
+    証明されている．
+  </p>
+  <p>
+    次に $t=3$ のときについて考える．このとき，式 (11.1) は
+    \begin{eqnarray}
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    3
+    \end{array}\right)
+    \right)2^k = 2^n \nonumber\\
+    \left(
+    1+n+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    3
+    \end{array}\right)
+    \right)2^k = 2^n \nonumber\\
+    \left(
+    1+n+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    3
+    \end{array}\right)
+    \right) = 2^{n-k} \nonumber
+    \end{eqnarray}
+    となる．一つの符号語を中心とする球には
+    $    \left(
+    1+n+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    3
+    \end{array}\right)
+    \right)$
+    個のベクトルが含まれている．右辺が 2 の冪乗であるから
+    これが 2 の冪乗になる必要がある．$n = 23$ のときに
+    $ 1 + 23 + 253 + 1771 = 2048 = 2^{11}$ で
+    2 の冪乗となる．このパラメータをもつ完全符号は
+    $[11,6,5]$ ゴレイ符号である．
+  </p>
+  <p>
+    式 (11.1) は 2 元符号に対する $n$ と $k$ が与えられたときに
+    完全符号であるために $t$ と $d$ が満たすべき拘束条件であるが，
+    一般の $q$ 元符号に対しても同様の拘束条件を与える式を
+    得ることができる．その式を使って 2 元符号と同様の議論を行うことで
+    完全符号である $[11,6,5]$ 3 元ゴレイ符号のパラメータを
+    得ることができる．
+  </p>
+  <p>
+    $[n,k,d]$ 線形符号 $C$ について，$C$ は完全符号であるか，
+    そうでなければどの符号語を中心とする半径 $t$ の球にも
+    含まれないベクトルが存在することになる．このことから以下の
+    定理が成り立つ．
+  </p>
+  <p>
+    <strong>定理 7 （スフェアパッキングバウンド）</strong><br>
+        $[n,k,d]$ 2 元線形符号 $C$ について以下の不等式が成り立つ．
+    \[
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)+ \cdots +
+    \left(\begin{array}{cc}
+    n\\
+    t
+    \end{array}\right)
+    \right)2^k \leq 2^n \hspace{20pt}(11.2)
+    \]
+    すなわち，$n$ と $k$ が与えられると式 (11.2) は
+    $t$ と $d$ の上界を与える．
+  </p>
+  <p>
+    （定理終わり）
+  </p>
+  <p>
+    <strong>例 11.1</strong><br>
+     \[
+      G =\left(
+      \begin{array}{cccccc}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1\\
+      0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+      0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0
+      \end{array}
+      \right)
+    \]
+    を生成行列とする$[6,3,3]$ 2元線形符号符号 $C$ を考える．
+    スフェアパッキングバウンド，式 (11.2) の左辺は $t=1$とすると
+    \[
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)
+    \right)2^k = (1+6)2^3 = 56
+    \]
+    であり，右辺の $2^6=64$ より小さいので成り立つ．しかし $t=2$ とすると
+    \[
+    \left(
+    \left(\begin{array}{cc}
+    n\\
+    0
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    1
+    \end{array}\right)+
+    \left(\begin{array}{cc}
+    n\\
+    2
+    \end{array}\right)
+    \right)2^k = (1+6+15)2^3 =176
+    \]
+    となり，スフェアパッキングバウンドを超える．
+    このため $t$ の上界が $1$ であることがわかる．必要条件なので
+    スフェアパッキングバウンドでは $t$ が $1$ 以下であることしかわからないが，
+    この符号は $d=3$ であるため，実際に $t=1$ の符号であることがわかる．
+  </p>
+  <p>
+    （例終わり）
+  </p>
+  <p>
+    この定理の非線形符号版も考えられる．非線形符号の
+    符号語の数を $M$ とし，符号語間の最小距離を
+    $d$ とすると $2^k$ を $M$ に置き換えることで
+    非線形符号版の定理になる．
+  </p>
+  <p>
+    これまでに紹介した完全符号は
+    自明な完全符号（全空間のベクトルが符号語である符号と
+    符号語長が奇数の繰り返し符号），一般化 $q$ 元ハミング符号
+    $\mbox{Ham}(r,q)$（一般化2元ハミング符号 $\mbox{Ham}(r,2)$ を $q$
+    元符号に一般化したもの），$[23,12,7]$ 2 元ゴレイ符号，$[11,6,5]$
+    3 元ゴレイ符号である．これらと等価な符号も完全符号である．
+    しかし，（残念なことに）以下のことが証明されている．
+  </p>
+  <p>
+    <strong>定理 8</strong><br>
+    自明でない2重誤り（2シンボル誤り）訂正可能な完全符号は $[23,12,7]$ 2
+    元ゴレイ符号か $[11,6,5]$ 3 元ゴレイ符号と等価な符号のみである．
+    また，自明でない単一誤り（ 1
+    シンボル誤り）誤り訂正符号は一般化ハミング符号と同じパラメータ
+    をもつ符号のみである．
+  </p>
+  <p>
+    （定理終わり）
+  </p>
+  
+  <h2>課題11</h2>
+  <p>
+    \[
+      G =\left(
+      \begin{array}{cccc}
+      1 &amp; 0 &amp; 1 &amp; 0\\
+      0 &amp; 1 &amp; 1 &amp; 1
+      \end{array}
+      \right)
+    \]
+    を生成行列とする符号について以下の問に答えよ．メールで答えるときは
+    $
+    \left(
+    \begin{array}{c}
+    n\\
+    r
+    \end{array}
+    \right)
+    $ を nCr と書け．
+  </p>
+  <ol>
+    <li>
+      符号語長 $n$ を答えよ．
+    </li>
+    <li>
+      情報ビット数 $k$ を答えよ．
+    </li>
+    <li>
+      スフェアパッキングバウンドにより誤り訂正能力 $t$ の
+      上界を求めよ．
+    </li>
+  </ol>
+  <p>
+    授業の6日後までにメールで提出せよ．
+    メールの件名（サブジェクト）は CT11 とせよ．
+  </p>
+  <h3>課題提出の注意事項</h3>
+  <ul>
+    <li>
+    <a href="mailto:hiroshi@tokai.ac.jp">hiroshi@tokai.ac.jp</a>宛に
+    大学のメールアドレスから提出せよ．
+    </li>
+    <li>
+    メールに不調があったときの
+    ためにCc:で自分宛にも送信せよ．
+    </li>
+  </ul>
+  <hr>
+<address>
+Updated in December 11, 2020,
+<a href="http://www.yamamotolab.je.u-tokai.ac.jp/%7Ehiroshi/education/index.html">Yamamoto Hirosh</a>
+</address>
+</body>
+</html>
